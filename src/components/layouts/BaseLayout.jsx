@@ -4,16 +4,21 @@ import SideBar from "../base/SideBar";
 
 const BaseLayout = ({ children }) => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
+    <div className="h-screen flex overflow-hidden bg-slate-50">
+      {/* LEFT SIDEBAR (FULL HEIGHT) */}
+      <SideBar />
 
-      <div className="flex flex-1">
-        <SideBar />
+      {/* RIGHT COLUMN */}
+      <div className="flex flex-col flex-1 min-w-0">
+        {/* HEADER (solo derecha) */}
+        <Header />
 
-        <main className="flex-1 p-6 bg-gray-50">{children}</main>
+        {/* CONTENT (scroll aquí) */}
+        <main className="flex-1 overflow-y-auto p-6">{children}</main>
+
+        {/* FOOTER (solo derecha) */}
+        {/* <Footer /> */}
       </div>
-
-      <Footer />
     </div>
   );
 };

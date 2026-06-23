@@ -2,30 +2,39 @@ import { Outlet } from "react-router-dom";
 
 const AuthLayout = () => {
   return (
-    <div className="bg-white">
-      <div className="flex justify-center h-screen">
-        <div
-          className="hidden bg-cover lg:block lg:w-2/3"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1616763355603-9755a640a287?auto=format&fit=crop&w=1470&q=80')",
-          }}
-        >
-          <div className="flex items-center h-full px-20 bg-opacity-40">
-            <div>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl">
-                Meraki UI
-              </h2>
+    <div className="min-h-screen flex font-sans">
+      {/* LEFT - Branding */}
+      <div className="hidden lg:flex w-1/2 relative overflow-hidden">
+        <div className="absolute inset-0 bg-linear-to-br from-[#0F766E] to-[#115E59]" />
 
-              <p className="max-w-xl mt-3 text-gray-100">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
-                autem ipsa, nulla laboriosam dolores, repellendus perferendis
-                libero suscipit nam temporibus molestiae
-              </p>
-            </div>
+        <div className="relative z-10 flex flex-col justify-center px-20 text-white">
+          <h1 className="text-4xl font-semibold tracking-tight leading-tight">
+            Controla tu dinero con precisión
+          </h1>
+
+          <p className="mt-6 text-white/80 text-lg max-w-md leading-relaxed">
+            Visualiza ingresos, gastos y metas financieras en una sola
+            plataforma.
+          </p>
+
+          <div className="mt-10 space-y-3 text-white/70 text-sm">
+            <p>✓ Seguimiento en tiempo real</p>
+            <p>✓ Reportes inteligentes</p>
+            <p>✓ Seguridad bancaria</p>
           </div>
         </div>
-        <Outlet />
+
+        {/* decor */}
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-black/10 rounded-full blur-3xl" />
+      </div>
+
+      <div className="w-full lg:w-1/2 bg-slate-50 flex items-center justify-center p-6">
+        <div className="w-full max-w-md">
+          <div className="bg-white border border-slate-200 rounded-2xl shadow-soft px-8 py-10">
+            <Outlet />
+          </div>
+        </div>
       </div>
     </div>
   );
