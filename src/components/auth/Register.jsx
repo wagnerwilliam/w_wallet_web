@@ -1,5 +1,5 @@
-import Input from "../Input";
-import Button from "../Button";
+import Input from "../base/Input";
+import Button from "../base/Button";
 import AuthHeader from "./AuthHeader";
 
 const Register = () => {
