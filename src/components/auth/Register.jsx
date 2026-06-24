@@ -1,6 +1,7 @@
 import Input from "../base/Input";
 import Button from "../base/Button";
 import AuthHeader from "./AuthHeader";
+import AuthFooter from "./AuthFooter";
 
 const Register = () => {
   return (
@@ -9,7 +10,7 @@ const Register = () => {
         title="Crear cuenta"
         subtitle="Empieza a controlar tus finanzas"
       />
-      <div className="mt-8 space-y-5">
+      <form className="mt-8 space-y-5">
         <Input type="text" placeholder="Usuario" px="px-4" />
         <Input type="email" placeholder="Correo electrónico" px="px-4" />
         <Input type="password" placeholder="Contraseña" px="px-4" />
@@ -17,22 +18,8 @@ const Register = () => {
 
         <Button width="w-full">Crear cuenta</Button>
 
-        {/* esto puede ser un componente. */}
-        <p className="text-center text-sm text-slate-500 font-sans">
-          ¿Ya tienes cuenta?{" "}
-          <a
-            className="
-            text-[#0F766E]
-            font-medium
-            hover:text-[#115E59]
-            hover:underline
-            transition-colors
-          "
-          >
-            Inicia sesión
-          </a>
-        </p>
-      </div>
+        <AuthFooter text="¿Ya tienes cuenta?" linkText="Inicia sesión" />
+      </form>
     </div>
   );
 };

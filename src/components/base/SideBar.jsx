@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import logo from "../../assets/logo.png";
 import {
   HomeIcon,
   UserGroupIcon,
@@ -7,11 +6,13 @@ import {
   Cog6ToothIcon,
   ChartBarIcon,
 } from "@heroicons/react/24/outline";
-
-const linkBase =
-  "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition";
+import SideBarLink from "./SideBarLink";
+import Icon from "./Icon";
+import Logo from "./Logo";
 
 const SideBar = () => {
+  const iconClass = "w-5 h-5";
+
   return (
     <aside
       className="
@@ -44,7 +45,7 @@ const SideBar = () => {
               flex items-center justify-center
             "
           >
-            <img className="h-6 w-auto" src={logo} alt="Wallet" />
+            <Logo className="h-6 w-auto" />
           </div>
 
           <div className="leading-tight">
@@ -68,32 +69,17 @@ const SideBar = () => {
           </p>
 
           <div className="space-y-1 text-sm">
-            <NavLink
-              to="/dashboard"
-              className="group flex items-center gap-3
-                px-3 py-2.5 rounded-xl
-                transition-all duration-200
-                text-white/70 hover:bg-white/10 hover:text-white
-                font-medium
-                "
-            >
-              <HomeIcon className="w-5 h-5" />
-              <span>Dashboard</span>
-            </NavLink>
+            <SideBarLink to="/dashboard" icon={HomeIcon} iconClass={iconClass}>
+              Dashboard
+            </SideBarLink>
 
-            <NavLink
+            <SideBarLink
               to="/accounts"
-              className="
-              group flex items-center gap-3
-              px-3 py-2.5 rounded-xl
-              transition-all duration-200
-              text-white/70 hover:bg-white/10 hover:text-white
-              font-medium
-              "
+              icon={UserGroupIcon}
+              iconClass={iconClass}
             >
-              <UserGroupIcon className="w-5 h-5" />
-              <span>Cuentas</span>
-            </NavLink>
+              Cuentas
+            </SideBarLink>
           </div>
         </div>
 
@@ -104,32 +90,21 @@ const SideBar = () => {
           </p>
 
           <div className="space-y-1 text-sm">
-            <NavLink
+            <SideBarLink
               to="/transactions"
-              className="
-              group flex items-center gap-3
-              px-3 py-2.5 rounded-xl
-              transition-all duration-200
-            text-white/70 hover:bg-white/10 hover:text-white
-            font-medium
-            "
+              icon={CreditCardIcon}
+              iconClass={iconClass}
             >
-              <CreditCardIcon className="w-5 h-5" />
-              <span>Transacciones</span>
-            </NavLink>
+              Transacciones
+            </SideBarLink>
 
-            <NavLink
+            <SideBarLink
               to="/budgets"
-              className="group flex items-center gap-3
-              px-3 py-2.5 rounded-xl
-              transition-all duration-200
-            text-white/70 hover:bg-white/10 hover:text-white
-            font-medium
-            "
+              icon={ChartBarIcon}
+              iconClass={iconClass}
             >
-              <ChartBarIcon className="w-5 h-5" />
-              <span>Presupuestos</span>
-            </NavLink>
+              Presupuestos
+            </SideBarLink>
           </div>
         </div>
       </nav>

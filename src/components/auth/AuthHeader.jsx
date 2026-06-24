@@ -1,9 +1,9 @@
-import logo from "../../assets/logo.png";
+import Logo from "../base/Logo";
 
 const AuthHeader = ({ title, subtitle }) => {
   return (
     <div className="text-center">
-      <img src={logo} className="h-8 mx-auto" />
+      <Logo className="h-8 mx-auto" />
 
       <h2 className="mt-6 text-2xl font-medium tracking-tight text-slate-900 font-sans">
         {title}
