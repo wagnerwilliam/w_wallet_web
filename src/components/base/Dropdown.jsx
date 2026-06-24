@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 const DropDown = () => {
   return (
     <div
@@ -55,19 +57,9 @@ const DropDown = () => {
       <div className="border-t border-slate-100" />
 
       {/* ACTION */}
-      <button
-        className="
-          w-full text-left
-          px-4 py-2.5 text-sm font-medium
-
-          text-red-500
-          hover:bg-red-50
-
-          transition-colors
-        "
-      >
+      <Button width="w-full" variant="logout">
         Cerrar sesión
-      </button>
+      </Button>
     </div>
   );
 };

@@ -1,39 +1,23 @@
-const Button = ({ width, children }) => {
-  // tener en cuenta las variantes de los botones para este componente.
+import { baseButtonStyles, buttonVariants } from "../utils/buttonVariants";
+
+const Button = ({
+  width = "w-auto",
+  variant = "primary",
+  type = "button",
+  disabled = false,
+  children,
+  onClick,
+}) => {
   return (
     <button
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
       className={`
-            ${width}
-            py-3 px-4 
-
-            font-sans
-            text-sm font-semibold
-            tracking-tight
-
-            text-white
-            bg-[#0F766E]
-
-            rounded-xl
-
-            shadow-sm
-
-            transition-all duration-200 ease-out
-
-            hover:bg-[#115E59]
-            hover:shadow-md
-            hover:-translate-y-0.5
-
-            active:translate-y-0
-            active:shadow-sm
-
-            focus:outline-none
-            focus:ring-4
-            focus:ring-[#0F766E]/20
-
-            disabled:opacity-50
-            disabled:cursor-not-allowed
-
-            `}
+        ${baseButtonStyles}
+        ${buttonVariants[variant]}
+        ${width}
+      `}
     >
       {children}
     </button>
