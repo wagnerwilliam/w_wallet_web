@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Header from "../base/Header";
 import SideBar from "../base/SideBar";
 import { Outlet } from "react-router-dom";
+import useClickOutside from "../../custom_hooks/useClickOutside";
 
 const BaseLayout = ({ children }) => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const sidebarRef = useRef(null);
+
+  useClickOutside(sidebarRef, () => {
+    if (isMobileSidebarOpen) setIsMobileSidebarOpen(false);
+  });
 
   return (
     <div className="h-screen flex overflow-hidden bg-slate-50">
@@ -14,17 +20,14 @@ const BaseLayout = ({ children }) => {
       </div>
 
       {/* MOBILE SIDEBAR OVERLAY */}
-      {mobileOpen && (
+      {isMobileSidebarOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           {/* BACKDROP */}
-          <div
-            onClick={() => setMobileOpen(false)}
-            className="absolute inset-0 bg-black/40"
-          />
+          <div className="absolute inset-0 bg-black/40" />
 
           {/* SIDEBAR */}
-          <div className="relative w-64 h-full">
-            <SideBar />
+          <div className="relative w-64 h-full" ref={sidebarRef}>
+            <SideBar setIsMobileSidebarOpen={setIsMobileSidebarOpen} />
           </div>
         </div>
       )}
@@ -32,7 +35,7 @@ const BaseLayout = ({ children }) => {
       {/* RIGHT SIDE */}
       <div className="flex flex-col flex-1 min-w-0">
         {/* HEADER recibe trigger */}
-        <Header onMenuClick={() => setMobileOpen(true)} />
+        <Header setIsMobileSidebarOpen={setIsMobileSidebarOpen} />
 
         <main className="flex-1 overflow-y-auto p-6">
           <Outlet />

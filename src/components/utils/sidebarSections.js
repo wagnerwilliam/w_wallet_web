@@ -15,7 +15,7 @@ export const sidebarSections = [
     items: [
       {
         label: "Dashboard",
-        path: "/dashboard",
+        path: "/home",
         icon: HomeIcon,
       },
     ],
@@ -32,7 +32,7 @@ export const sidebarSections = [
       },
       {
         label: "Gastos",
-        path: "/expenses",
+        path: "/gastos",
         icon: ArrowTrendingDownIcon,
       },
       {
@@ -49,12 +49,12 @@ export const sidebarSections = [
     items: [
       {
         label: "Metas de ahorro",
-        path: "/goals",
+        path: "/metas-ahorro",
         icon: TrophyIcon,
       },
       {
         label: "Resumen",
-        path: "/summary",
+        path: "/resumen",
         icon: ChartPieIcon,
       },
     ],

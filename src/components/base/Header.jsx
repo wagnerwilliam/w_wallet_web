@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import DropDown from "./Dropdown";
 import { Bars3Icon } from "@heroicons/react/24/outline";
+import useClickOutside from "../../custom_hooks/useClickOutside";
 
-const Header = ({ onMenuClick }) => {
-  const [open, setOpen] = useState(false);
+const Header = ({ setIsMobileSidebarOpen }) => {
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const menuRef = useRef(null);
+
+  useClickOutside(menuRef, () => {
+    setOpenDropdown(false);
+  });
 
   return (
     <header
+      ref={menuRef}
       className="
         sticky top-0 z-40
         h-22
@@ -24,25 +31,23 @@ const Header = ({ onMenuClick }) => {
       >
         <div className="flex items-center gap-3">
           {/* Hamburguesa (mobile) */}
-          {onMenuClick && (
-            <button
-              onClick={onMenuClick}
-              className="
-                lg:hidden
-                p-2 rounded-lg
-                hover:bg-slate-100
-                transition
-              "
-            >
-              <Bars3Icon className="w-8 h-8" />
-            </button>
-          )}
+          <button
+            onClick={() => setIsMobileSidebarOpen(true)}
+            className="
+              lg:hidden
+              p-2 rounded-lg
+              hover:bg-slate-100
+              transition
+            "
+          >
+            <Bars3Icon className="w-8 h-8" />
+          </button>
         </div>
 
         {/* RIGHT SIDE (USER) */}
         <div className="relative">
           <button
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpenDropdown((prev) => !prev)}
             className="
               flex items-center gap-3
               px-2 py-1.5
@@ -83,7 +88,7 @@ const Header = ({ onMenuClick }) => {
           </button>
 
           {/* DROPDOWN */}
-          {open && <DropDown />}
+          {openDropdown && <DropDown />}
         </div>
       </nav>
     </header>

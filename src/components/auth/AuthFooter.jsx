@@ -1,11 +1,15 @@
+import { Link } from "react-router-dom";
+
 const AuthFooter = ({
   text = "¿No tienes cuenta?",
   linkText = "Regístrate",
+  to = "/register",
 }) => {
   return (
     <p className="text-center text-sm text-slate-500 font-sans">
       {text}{" "}
-      <a
+      <Link
+        to={to}
         className="
                 text-[#0F766E]
                 font-medium
@@ -15,7 +19,7 @@ const AuthFooter = ({
             "
       >
         {linkText}
-      </a>
+      </Link>
     </p>
   );
 };

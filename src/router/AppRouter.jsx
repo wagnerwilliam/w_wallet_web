@@ -5,6 +5,9 @@ import Register from "../components/auth/Register";
 import BaseLayout from "../components/layouts/BaseLayout";
 import Ingresos from "../components/ingresos/Ingresos";
 import Categorias from "../components/categorias/Categorias";
+import Gastos from "../components/gastos/Gastos";
+import MetasAhorro from "../components/metas_ahorro/MetasAhorro";
+import Resumen from "../components/resumen/Resumen";
 
 const router = createBrowserRouter([
   {
@@ -56,8 +59,35 @@ const router = createBrowserRouter([
     element: <BaseLayout />,
     children: [
       {
+        path: "/gastos",
+        element: <Gastos />,
+      },
+    ],
+  },
+  {
+    element: <BaseLayout />,
+    children: [
+      {
         path: "/categorias",
         element: <Categorias />,
+      },
+    ],
+  },
+  {
+    element: <BaseLayout />,
+    children: [
+      {
+        path: "/metas-ahorro",
+        element: <MetasAhorro />,
+      },
+    ],
+  },
+  {
+    element: <BaseLayout />,
+    children: [
+      {
+        path: "/resumen",
+        element: <Resumen />,
       },
     ],
   },
