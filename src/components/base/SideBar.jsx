@@ -5,17 +5,20 @@ import Icon from "./Icon";
 import Logo from "./Logo";
 import { sidebarSections } from "../utils/sidebarSections";
 
-const SideBar = () => {
+const SideBar = ({ setIsMobileSidebarOpen }) => {
   const iconClass = "w-5 h-5";
 
   return (
     <aside
       className="
-        w-64
+        h-full w-full lg:w-64
+
         flex flex-col
+
         bg-linear-to-b
         from-[#0F766E]
         to-[#115E59]
+
         text-white
         border-r border-white/10
         shadow-xl
@@ -74,14 +77,19 @@ const SideBar = () => {
 
             <div className="space-y-1">
               {section.items.map((item) => (
-                <SideBarLink
+                <div
                   key={item.label}
-                  to={item.path}
-                  icon={item.icon}
-                  iconClass="w-5 h-5"
+                  onClick={() => setIsMobileSidebarOpen(false)}
                 >
-                  {item.label}
-                </SideBarLink>
+                  <SideBarLink
+                    key={item.label}
+                    to={item.path}
+                    icon={item.icon}
+                    iconClass="w-5 h-5"
+                  >
+                    {item.label}
+                  </SideBarLink>
+                </div>
               ))}
             </div>
           </div>

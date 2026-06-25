@@ -18,7 +18,11 @@ const Register = () => {
 
         <Button width="w-full">Crear cuenta</Button>
 
-        <AuthFooter text="¿Ya tienes cuenta?" linkText="Inicia sesión" />
+        <AuthFooter
+          text="¿Ya tienes cuenta?"
+          linkText="Inicia sesión"
+          to="/login"
+        />
       </form>
     </div>
   );

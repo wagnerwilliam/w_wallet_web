@@ -2,8 +2,8 @@ import Row from "./Row";
 
 const Table = ({ th, data }) => {
   return (
-    <div className="mt-6 bg-white border border-slate-200 rounded-2xl overflow-hidden">
-      <table className="w-full text-sm">
+    <div className="mt-6 bg-white border border-slate-200 rounded-2xl overflow-x-auto">
+      <table className="w-full min-w-160 text-sm">
         <thead className="bg-slate-50 text-xs uppercase text-slate-500">
           <tr>
             {th.map((item) => {
