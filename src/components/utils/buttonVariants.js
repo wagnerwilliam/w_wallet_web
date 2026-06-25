@@ -1,11 +1,24 @@
 export const baseButtonStyles = `
-  py-3 px-4
+  inline-flex items-center justify-center
+  gap-2
+
+  py-2.5 px-4
+
   font-sans text-sm font-semibold tracking-tight
+
   rounded-xl
+
   transition-all duration-200 ease-out
+
   focus:outline-none focus:ring-4
+
   disabled:opacity-50 disabled:cursor-not-allowed
 `;
+
+export const buttonSizes = {
+  sm: "px-2 py-1 text-xs rounded-md",
+  md: "px-4 py-2.5 text-sm",
+};
 
 export const buttonVariants = {
   primary: `
@@ -22,7 +35,7 @@ export const buttonVariants = {
 
   secondary: `
     text-[#0F766E]
-    bg-[#E6F4F1]
+    bg-transparent
     hover:bg-[#D1ECE6]
     focus:ring-[#0F766E]/10
   `,
@@ -37,14 +50,23 @@ export const buttonVariants = {
 
   danger: `
     text-white
-    bg-red-500
-    hover:bg-red-600
-    focus:ring-red-200
+    bg-[#E11D48]
+    hover:bg-[#BE123C]
+    focus:ring-[#E11D48]/20
+    shadow-sm
+  `,
+
+  ghost: `
+    text-slate-600
+    bg-transparent
+    hover:bg-slate-100
+    focus:ring-slate-200
   `,
 
   logout: `
-    text-red-500
-    hover:bg-red-50
-    transition-colors
+    text-[#E11D48]
+    bg-transparent
+    hover:bg-[#FEE2E2]
+    focus:ring-[#E11D48]/10
   `,
 };

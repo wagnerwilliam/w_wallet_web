@@ -1,9 +1,14 @@
-import { baseButtonStyles, buttonVariants } from "../utils/buttonVariants";
+import {
+  baseButtonStyles,
+  buttonVariants,
+  buttonSizes,
+} from "../utils/buttonVariants";
 
 const Button = ({
   width = "w-auto",
   variant = "primary",
   type = "button",
+  size = "md",
   disabled = false,
   children,
   onClick,
@@ -16,6 +21,7 @@ const Button = ({
       className={`
         ${baseButtonStyles}
         ${buttonVariants[variant]}
+        ${buttonSizes[size]},
         ${width}
       `}
     >

@@ -1,49 +1,68 @@
 import { useState } from "react";
-
 import DropDown from "./Dropdown";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 
-const Header = () => {
+const Header = ({ onMenuClick }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <header
       className="
-        sticky top-0 z-50
+        sticky top-0 z-40
+        h-22
         bg-white/80 backdrop-blur-md
         border-b border-slate-200
-        h-22
         font-sans
-    "
+      "
     >
       <nav
         className="
-        h-full
-        px-8
-        flex items-center justify-end
-    "
+          h-full
+          px-6 lg:px-8
+          flex items-center justify-between
+        "
       >
+        <div className="flex items-center gap-3">
+          {/* Hamburguesa (mobile) */}
+          {onMenuClick && (
+            <button
+              onClick={onMenuClick}
+              className="
+                lg:hidden
+                p-2 rounded-lg
+                hover:bg-slate-100
+                transition
+              "
+            >
+              <Bars3Icon className="w-8 h-8" />
+            </button>
+          )}
+        </div>
+
+        {/* RIGHT SIDE (USER) */}
         <div className="relative">
           <button
             onClick={() => setOpen(!open)}
             className="
-            flex items-center gap-3
-            px-2 py-1.5
-            rounded-xl
-            hover:bg-slate-100
-            transition
-            focus:outline-none
-        "
+              flex items-center gap-3
+              px-2 py-1.5
+              rounded-xl
+              hover:bg-slate-100
+              transition
+              focus:outline-none
+            "
           >
+            {/* AVATAR */}
             <div
               className="
-              w-11 h-11
-              overflow-hidden
-              rounded-full
-              border border-slate-200
-              ring-2 ring-transparent
-              hover:ring-[#0F766E]/20
-              transition
-          "
+                w-10 h-10
+                overflow-hidden
+                rounded-full
+                border border-slate-200
+                ring-2 ring-transparent
+                hover:ring-[#0F766E]/20
+                transition
+              "
             >
               <img
                 src="https://images.unsplash.com/photo-1517841905240-472988babdf9"
@@ -52,14 +71,18 @@ const Header = () => {
               />
             </div>
 
-            <div className="hidden sm:block text-left leading-tight">
-              <p className="text-sm font-semibold tracking-tight text-slate-900">
+            {/* INFO */}
+            <div className="hidden sm:flex flex-col text-left leading-tight">
+              <span className="text-sm font-semibold text-slate-900 tracking-tight">
                 Usuario
-              </p>
-              <p className="text-xs text-slate-500 font-medium">Admin</p>
+              </span>
+              <span className="text-xs text-slate-500 font-medium">
+                Administrador
+              </span>
             </div>
           </button>
 
+          {/* DROPDOWN */}
           {open && <DropDown />}
         </div>
       </nav>
