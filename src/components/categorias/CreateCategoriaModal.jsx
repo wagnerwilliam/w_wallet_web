@@ -1,5 +1,7 @@
 import { useState } from "react";
-import Button from "./Button";
+import Button from "../base/Button";
+import Input from "../base/Input";
+import Label from "../base/Label";
 
 const CreateModal = ({ open, setModal }) => {
   if (!open) return null;
@@ -29,33 +31,26 @@ const CreateModal = ({ open, setModal }) => {
           <h2 className="text-lg font-semibold text-slate-900 tracking-tight">
             Crear categoría
           </h2>
-          <p className="text-sm text-slate-500">
+          {/* <p className="mt-2 text-sm text-slate-500">
             Organiza tus ingresos y gastos de forma clara
-          </p>
+          </p> */}
         </div>
 
         {/* FORM */}
         <form className="space-y-4">
           {/* NOMBRE */}
-          <div>
-            <label className="text-xs font-medium text-slate-600">Nombre</label>
-            <input
-              name="nombre"
+          <div className="space-y-2">
+            <Label text="Nombre" />
+            <Input
+              type="text"
               placeholder="Ej: Alimentación"
-              className="
-                mt-1 w-full
-                px-4 py-2.5
-                bg-slate-50
-                border border-slate-200
-                rounded-xl
-                text-sm text-slate-700
-                placeholder:text-slate-400
-                focus:outline-none
-                focus:border-[#0F766E]
-                focus:ring-4
-                focus:ring-[#0F766E]/10
-              "
+              variant="filled"
             />
+          </div>
+
+          <div className="space-y-2">
+            <Label text="Gasto total" />
+            <Input type="text" placeholder="Total de gastos" variant="filled" />
           </div>
 
           {/* TIPO */}
@@ -86,21 +81,9 @@ const CreateModal = ({ open, setModal }) => {
 
           {/* ACTIONS */}
           <div className="pt-4 flex justify-end gap-2">
-            <button
-              type="button"
-              onClick={() => setModal(false)}
-              className="
-                px-4 py-2
-                text-sm font-medium
-                text-slate-600
-                hover:bg-slate-100
-                rounded-xl
-                transition
-              "
-            >
+            <Button variant="ghost" onClick={() => setModal(false)}>
               Cancelar
-            </button>
-
+            </Button>
             <Button variant="primary">Crear categoría</Button>
           </div>
         </form>

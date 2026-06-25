@@ -1,6 +1,6 @@
 import Input from "../base/Input";
 import Button from "../base/Button";
-import { UserIcon, LockClosedIcon } from "@heroicons/react/24/outline";
+import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import Icon from "../base/Icon";
 
 import AuthHeader from "./AuthHeader";
@@ -22,16 +22,20 @@ const Login = () => {
       <form className="mt-8 space-y-5">
         {/* username */}
         <div className="relative flex items-center group">
-          <Icon icon={UserIcon} className={iconClass} />
+          <Icon icon={EnvelopeIcon} className={iconClass} />
 
-          <Input type="text" placeholder="Usuario" px="px-11" />
+          <Input
+            type="email"
+            placeholder="Correo electrónico"
+            className="px-11"
+          />
         </div>
 
         {/* password */}
         <div className="relative flex items-center group">
           <Icon icon={LockClosedIcon} className={iconClass} />
 
-          <Input type="password" placeholder="Contraseña" px="px-11" />
+          <Input type="password" placeholder="Contraseña" className="px-11" />
         </div>
 
         {/* button */}
