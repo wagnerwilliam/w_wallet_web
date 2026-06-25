@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from "../base/Button";
+import Button from "./Button";
 
-const CreateCategoryModal = ({ open, setModal }) => {
+const CreateModal = ({ open, setModal }) => {
   if (!open) return null;
 
   return (
@@ -109,4 +109,4 @@ const CreateCategoryModal = ({ open, setModal }) => {
   );
 };
 
-export default CreateCategoryModal;
+export default CreateModal;

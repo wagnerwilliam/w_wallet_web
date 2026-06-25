@@ -4,7 +4,7 @@ import Button from "../base/Button";
 import Table from "../table/Table";
 import { CategoriasTableHead } from "../utils/tablesHead";
 import { useState, useEffect } from "react";
-import CreateCategoryModal from "../base/CreateCategorymodal";
+import CreateModal from "../base/CreateModal";
 
 const Categorias = () => {
   const categorias = [
@@ -43,7 +43,7 @@ const Categorias = () => {
         {/* TABLE */}
 
         <Table data={categorias} th={CategoriasTableHead} />
-        <CreateCategoryModal open={modal} setModal={setModal} />
+        <CreateModal open={modal} setModal={setModal} />
       </div>
     </>
   );
