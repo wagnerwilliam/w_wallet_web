@@ -2,9 +2,9 @@ import Row from "../table/Row";
 import Search from "../base/Search";
 import Button from "../base/Button";
 import Table from "../table/Table";
-import { CategoriasTableHead } from "../utils/tablesHead";
+import { CategoriasTableHead } from "../utils/categorias/tablesHead";
 import { useState, useEffect } from "react";
-import CreateModal from "../base/CreateModal";
+import CreateModal from "./CreateCategoriaModal";
 
 const Categorias = () => {
   const categorias = [
