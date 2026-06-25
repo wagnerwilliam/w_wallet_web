@@ -3,6 +3,8 @@ import Login from "../components/auth/Login";
 import AuthLayout from "../components/layouts/AuthLayout";
 import Register from "../components/auth/Register";
 import BaseLayout from "../components/layouts/BaseLayout";
+import Ingresos from "../components/ingresos/Ingresos";
+import Categorias from "../components/categorias/Categorias";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,24 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+    ],
+  },
+  {
+    element: <BaseLayout />,
+    children: [
+      {
+        path: "/ingresos",
+        element: <Ingresos />,
+      },
+    ],
+  },
+  {
+    element: <BaseLayout />,
+    children: [
+      {
+        path: "/categorias",
+        element: <Categorias />,
       },
     ],
   },

@@ -1,14 +1,9 @@
 import { NavLink } from "react-router-dom";
-import {
-  HomeIcon,
-  UserGroupIcon,
-  CreditCardIcon,
-  Cog6ToothIcon,
-  ChartBarIcon,
-} from "@heroicons/react/24/outline";
+
 import SideBarLink from "./SideBarLink";
 import Icon from "./Icon";
 import Logo from "./Logo";
+import { sidebarSections } from "../utils/sidebarSections";
 
 const SideBar = () => {
   const iconClass = "w-5 h-5";
@@ -62,51 +57,35 @@ const SideBar = () => {
 
       {/* NAV */}
       <nav className="flex-1 px-3 py-4">
-        {/* GENERAL */}
-        <div>
-          <p className="px-3 mb-2 text-[11px] uppercase tracking-wider text-white/50 font-medium">
-            General
-          </p>
-
-          <div className="space-y-1 text-sm">
-            <SideBarLink to="/dashboard" icon={HomeIcon} iconClass={iconClass}>
-              Dashboard
-            </SideBarLink>
-
-            <SideBarLink
-              to="/accounts"
-              icon={UserGroupIcon}
-              iconClass={iconClass}
+        {sidebarSections.map((section) => (
+          <div key={section.title} className="mb-8">
+            <p
+              className="
+                px-3 mb-2
+                text-[11px]
+                uppercase
+                tracking-wider
+                text-white/50
+                font-medium
+              "
             >
-              Cuentas
-            </SideBarLink>
+              {section.title}
+            </p>
+
+            <div className="space-y-1">
+              {section.items.map((item) => (
+                <SideBarLink
+                  key={item.label}
+                  to={item.path}
+                  icon={item.icon}
+                  iconClass="w-5 h-5"
+                >
+                  {item.label}
+                </SideBarLink>
+              ))}
+            </div>
           </div>
-        </div>
-
-        {/* FINANZAS */}
-        <div className="mt-8">
-          <p className="px-3 mb-2 text-[11px] uppercase tracking-wider text-white/50 font-medium">
-            Finanzas
-          </p>
-
-          <div className="space-y-1 text-sm">
-            <SideBarLink
-              to="/transactions"
-              icon={CreditCardIcon}
-              iconClass={iconClass}
-            >
-              Transacciones
-            </SideBarLink>
-
-            <SideBarLink
-              to="/budgets"
-              icon={ChartBarIcon}
-              iconClass={iconClass}
-            >
-              Presupuestos
-            </SideBarLink>
-          </div>
-        </div>
+        ))}
       </nav>
     </aside>
   );
