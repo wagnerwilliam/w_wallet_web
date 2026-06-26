@@ -1,13 +1,8 @@
-import { NavLink } from "react-router-dom";
-
 import SideBarLink from "./SideBarLink";
-import Icon from "./Icon";
 import Logo from "./Logo";
 import { sidebarSections } from "../utils/sidebarSections";
 
 const SideBar = ({ setIsMobileSidebarOpen }) => {
-  const iconClass = "w-5 h-5";
-
   return (
     <aside
       className="

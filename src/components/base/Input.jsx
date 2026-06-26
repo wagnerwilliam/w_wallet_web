@@ -4,6 +4,8 @@ const Input = ({
   type = "text",
   placeholder,
   variant = "primary",
+  value,
+  onChange,
   className = "",
   ...props
 }) => {
@@ -11,6 +13,8 @@ const Input = ({
     <input
       type={type}
       placeholder={placeholder}
+      value={value}
+      onChange={onChange}
       className={`
         ${baseInputStyles}
         ${inputVariants[variant]}
