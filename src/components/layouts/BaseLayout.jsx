@@ -4,7 +4,7 @@ import SideBar from "../base/SideBar";
 import { Outlet } from "react-router-dom";
 import useClickOutside from "../../custom_hooks/useClickOutside";
 
-const BaseLayout = ({ children }) => {
+const BaseLayout = () => {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
 

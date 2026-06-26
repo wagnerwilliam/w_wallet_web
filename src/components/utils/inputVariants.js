@@ -79,4 +79,20 @@ export const inputVariants = {
     focus:ring-4
     focus:ring-[#0F766E]/10
   `,
+  color: `
+    h-10
+    p-1
+
+    bg-slate-50
+    border border-slate-200
+
+    rounded-xl
+    cursor-pointer
+
+    hover:border-slate-300
+
+    focus:outline-none
+    focus:ring-4
+    focus:ring-[#0F766E]/10
+  `,
 };
