@@ -3,7 +3,7 @@ import Button from "../base/Button.jsx";
 import Table from "../table/Table.jsx";
 import { IngresosTableHead } from "../utils/ingresos/tableHead.js";
 import { useState } from "react";
-import CreateModal from "./CreateIngresoModal.jsx";
+import CreateModal from "./CreateIngresoModal";
 import { MODALS } from "../utils/modals.js";
 
 const Ingresos = () => {
