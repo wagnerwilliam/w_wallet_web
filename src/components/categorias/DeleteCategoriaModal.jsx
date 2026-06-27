@@ -2,24 +2,21 @@ import Button from "../base/Button";
 import { useQueryClient } from "@tanstack/react-query";
 import { EliminarCategoriaMutation } from "../../queries/categorias";
 
-const DeleteCategoriaModal = ({ setDeleteModal, categoria }) => {
+const DeleteCategoriaModal = ({ closeModal, categoria }) => {
   const eliminarCategoria = EliminarCategoriaMutation();
   const queryClient = useQueryClient();
   const handleDelete = () =>
     eliminarCategoria.mutate(categoria._id, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["categorias"] });
-        setDeleteModal(false);
+        closeModal();
       },
     });
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* BACKDROP */}
-      <div
-        onClick={() => setDeleteModal(false)}
-        className="absolute inset-0 bg-black/40"
-      />
+      <div onClick={closeModal} className="absolute inset-0 bg-black/40" />
 
       {/* MODAL */}
       <div
@@ -61,7 +58,7 @@ const DeleteCategoriaModal = ({ setDeleteModal, categoria }) => {
 
         {/* ACTIONS */}
         <div className="mt-6 flex justify-end gap-2">
-          <Button variant="secondary" onClick={() => setDeleteModal(false)}>
+          <Button variant="ghost" onClick={closeModal}>
             Cancelar
           </Button>
 

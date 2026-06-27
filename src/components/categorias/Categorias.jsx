@@ -6,18 +6,31 @@ import { useState } from "react";
 import CreateModal from "./CreateCategoriaModal";
 import { UseCategorias } from "../../queries/categorias";
 import DeleteCategoriaModal from "./DeleteCategoriaModal.jsx";
+import UpdateCategoriaModal from "./UpdateCategoriaModal.jsx";
+import { MODALS } from "../utils/modals.js";
 
 const Categorias = () => {
-  let [createModal, setCreateModal] = useState(false);
-  let [deleteModal, setDeleteModal] = useState(false);
-  let [categoriaToDelete, setCategoriaToDelete] = useState(null);
+  let [modal, setModal] = useState(null);
+  let [selectedtCategoria, setSelectedCategoria] = useState(null);
+  let [search, setSearch] = useState("");
 
   const { data: categorias = [], isLoading, error } = UseCategorias();
 
-  const openDeleteModal = (categoria) => {
-    setCategoriaToDelete(categoria);
-    setDeleteModal(true);
+  const openModal = (type, categoria = null) => {
+    setModal(type);
+    setSelectedCategoria(categoria);
   };
+
+  const closeModal = () => {
+    setModal(null);
+    setSelectedCategoria(null);
+  };
+
+  const filteredCategorias = categorias.filter(
+    (c) =>
+      c.name.toLowerCase().includes(search.toLowerCase()) ||
+      c.type.toLowerCase().includes(search.toLocaleLowerCase()),
+  );
 
   return (
     <>
@@ -35,9 +48,13 @@ const Categorias = () => {
 
         {/* ACTION BAR */}
         <div className="flex justify-between items-center mt-6">
-          <Search placeholder="Buscar categoría..." />
+          <Search
+            value={search}
+            onChange={() => setSearch(event.target.value)}
+            placeholder="Buscar categoría..."
+          />
 
-          <Button width="ml-4" onClick={() => setCreateModal(true)}>
+          <Button width="ml-4" onClick={() => openModal(MODALS.CREATE)}>
             + Crear categoria
           </Button>
         </div>
@@ -58,16 +75,24 @@ const Categorias = () => {
           </div>
         ) : (
           <Table
-            data={categorias}
+            data={filteredCategorias}
             th={CategoriasTableHead}
-            openDeleteModal={openDeleteModal}
+            openModal={openModal}
           />
         )}
-        {createModal && <CreateModal setCreateModal={setCreateModal} />}
-        {deleteModal && (
+        {modal === MODALS.CREATE && (
+          <CreateModal onClose={() => closeModal()} />
+        )}
+        {modal === MODALS.DELETE && (
           <DeleteCategoriaModal
-            setDeleteModal={setDeleteModal}
-            categoria={categoriaToDelete}
+            closeModal={() => closeModal()}
+            categoria={selectedtCategoria}
+          />
+        )}
+        {modal === MODALS.UPDATE && (
+          <UpdateCategoriaModal
+            closeModal={() => closeModal()}
+            categoria={selectedtCategoria}
           />
         )}
       </div>
