@@ -35,6 +35,7 @@ const Row = ({ categoria, openModal }) => {
       </td>
 
       <td className="px-4 py-2 text-xs text-slate-500">
+        {/* este boton se puede usar con el componente de botones ya creado. */}
         <button
           type="button"
           onClick={handleStatus}

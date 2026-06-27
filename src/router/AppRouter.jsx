@@ -8,8 +8,10 @@ import Categorias from "../components/categorias/Categorias";
 import Gastos from "../components/gastos/Gastos";
 import MetasAhorro from "../components/metas_ahorro/MetasAhorro";
 import Resumen from "../components/resumen/Resumen";
+import ProtectedRoute from "../components/auth/ProtectedRoute";
 
 const router = createBrowserRouter([
+  // Rutas publicas.
   {
     element: <AuthLayout />,
     children: [
@@ -17,77 +19,48 @@ const router = createBrowserRouter([
         path: "/",
         element: <Login />,
       },
-    ],
-  },
-  {
-    element: <BaseLayout />,
-    children: [
-      {
-        path: "/home",
-        //element: <Login />,
-      },
-    ],
-  },
-  {
-    element: <AuthLayout />,
-    children: [
       {
         path: "/login",
         element: <Login />,
       },
-    ],
-  },
-  {
-    element: <AuthLayout />,
-    children: [
       {
         path: "/register",
         element: <Register />,
       },
     ],
   },
+
+  // Rutas privadas.
   {
-    element: <BaseLayout />,
+    element: <ProtectedRoute />,
     children: [
       {
-        path: "/ingresos",
-        element: <Ingresos />,
-      },
-    ],
-  },
-  {
-    element: <BaseLayout />,
-    children: [
-      {
-        path: "/gastos",
-        element: <Gastos />,
-      },
-    ],
-  },
-  {
-    element: <BaseLayout />,
-    children: [
-      {
-        path: "/categorias",
-        element: <Categorias />,
-      },
-    ],
-  },
-  {
-    element: <BaseLayout />,
-    children: [
-      {
-        path: "/metas-ahorro",
-        element: <MetasAhorro />,
-      },
-    ],
-  },
-  {
-    element: <BaseLayout />,
-    children: [
-      {
-        path: "/resumen",
-        element: <Resumen />,
+        element: <BaseLayout />,
+        children: [
+          {
+            path: "/home",
+          },
+          {
+            path: "/ingresos",
+            element: <Ingresos />,
+          },
+          {
+            path: "/gastos",
+            element: <Gastos />,
+          },
+          {
+            path: "/categorias",
+            element: <Categorias />,
+          },
+          {
+            path: "/metas-ahorro",
+            element: <MetasAhorro />,
+          },
+          {
+            path: "/resumen",
+            element: <Resumen />,
+          },
+        ],
       },
     ],
   },

@@ -18,8 +18,8 @@ export const UseCategorias = () => {
 
 export const CrearCategoriaMutation = () => {
   return useMutation({
-    mutationFn: async (data) => {
-      const response = await crearCategoria(data);
+    mutationFn: async (data, token) => {
+      const response = await crearCategoria(data, token);
 
       if (!response.ok) {
         throw new Error("Error al crear categoría");
