@@ -1,7 +1,10 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { ObtenerCategorias } from "../services/categorias/CategoriasService";
-import { crearCategoria } from "../services/categorias/CategoriasService";
-import { eliminarCategoria } from "../services/categorias/CategoriasService";
+import {
+  ObtenerCategorias,
+  crearCategoria,
+  eliminarCategoria,
+  editarCategoria,
+} from "../services/categorias/CategoriasService";
 
 export const UseCategorias = () => {
   return useQuery({
@@ -23,6 +26,20 @@ export const CrearCategoriaMutation = () => {
       }
 
       return response.json();
+    },
+  });
+};
+
+export const EditarCategoriaMutation = () => {
+  return useMutation({
+    mutationFn: async ({ _id, data }) => {
+      const response = await editarCategoria(_id, data);
+
+      if (!response.ok) {
+        throw new Error("Error al editar categoría");
+      }
+
+      return true;
     },
   });
 };

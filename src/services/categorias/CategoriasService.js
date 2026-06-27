@@ -14,6 +14,16 @@ export const crearCategoria = async (data) => {
   });
 };
 
+export const editarCategoria = async (id, data) => {
+  return await fetch(`${API_URL}api/categorias/editar/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+};
+
 export const eliminarCategoria = async (id) => {
   return await fetch(`${API_URL}api/categorias/eliminar/${id}`, {
     method: "DELETE",

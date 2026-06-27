@@ -5,7 +5,7 @@ import Label from "../base/Label";
 import { CrearCategoriaMutation } from "../../queries/categorias";
 import { useQueryClient } from "@tanstack/react-query";
 
-const CreateModal = ({ setCreateModal }) => {
+const CreateModal = ({ onClose }) => {
   let [name, setName] = useState("");
   let [type, setType] = useState("");
   let [color, setColor] = useState("");
@@ -24,7 +24,7 @@ const CreateModal = ({ setCreateModal }) => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["categorias"] });
-          setCreateModal(false);
+          onClose();
         },
       },
     );
@@ -33,10 +33,7 @@ const CreateModal = ({ setCreateModal }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* BACKDROP */}
-      <div
-        onClick={() => setCreateModal(false)}
-        className="absolute inset-0 bg-black/40"
-      />
+      <div onClick={onClose} className="absolute inset-0 bg-black/40" />
 
       {/* MODAL */}
       <div
@@ -110,7 +107,7 @@ const CreateModal = ({ setCreateModal }) => {
           </div>
           {/* ACTIONS */}
           <div className="pt-4 flex justify-end gap-2">
-            <Button variant="ghost" onClick={() => setCreateModal(false)}>
+            <Button variant="ghost" onClick={onClose}>
               Cancelar
             </Button>
             <Button type="submit" variant="primary">
