@@ -2,13 +2,16 @@ import Input from "../base/Input";
 import Button from "../base/Button";
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import Icon from "../base/Icon";
-
+import { useContext } from "react";
+import Context from "../../context/Context";
 import AuthHeader from "./AuthHeader";
 import AuthFooter from "./AuthFooter";
 
 const Login = () => {
   const iconClass =
     "absolute left-3 w-5 h-5 text-slate-400 group-focus-within:text-[#0F766E] transition-colors";
+
+  let { token, setToken } = useContext(Context);
 
   return (
     <div>

@@ -30,6 +30,16 @@ const CreateModal = ({ onClose }) => {
     );
   };
 
+  // crearCategoria.mutate({
+  //   data: {
+  //     name,
+  //     type,
+  //     color,
+  //     user_id: "1",
+  //   },
+  //   token,
+  // });
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* BACKDROP */}
