@@ -1,11 +1,11 @@
-const API_URL = import.meta.env.VITE_API_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const ObtenerCategorias = async () => {
-  return await fetch(`${API_URL}api/categorias/`);
+  return await fetch(`${BACKEND_URL}api/categorias/`);
 };
 
 export const crearCategoria = async (data) => {
-  return await fetch(`${API_URL}api/categorias/crear`, {
+  return await fetch(`${BACKEND_URL}api/categorias/crear`, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
@@ -15,7 +15,7 @@ export const crearCategoria = async (data) => {
 };
 
 export const editarCategoria = async (id, data) => {
-  return await fetch(`${API_URL}api/categorias/editar/${id}`, {
+  return await fetch(`${BACKEND_URL}api/categorias/editar/${id}`, {
     method: "PATCH",
     headers: {
       "Content-type": "application/json",
@@ -25,7 +25,7 @@ export const editarCategoria = async (id, data) => {
 };
 
 export const eliminarCategoria = async (id) => {
-  return await fetch(`${API_URL}api/categorias/eliminar/${id}`, {
+  return await fetch(`${BACKEND_URL}api/categorias/eliminar/${id}`, {
     method: "DELETE",
   });
 };
