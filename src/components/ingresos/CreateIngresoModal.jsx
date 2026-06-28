@@ -5,7 +5,7 @@ import Label from "../base/Label";
 import { CrearCategoriaMutation } from "../../queries/Categorias";
 import { useQueryClient } from "@tanstack/react-query";
 
-const CreateModal = ({ onClose }) => {
+const CreateIngresoModal = ({ onClose }) => {
   let [name, setName] = useState("");
   let [type, setType] = useState("");
   let [color, setColor] = useState("");
@@ -130,4 +130,4 @@ const CreateModal = ({ onClose }) => {
   );
 };
 
-export default CreateModal;
+export default CreateIngresoModal;

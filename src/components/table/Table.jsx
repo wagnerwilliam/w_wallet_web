@@ -1,6 +1,4 @@
-import Row from "./Row";
-
-const Table = ({ th, data, openModal }) => {
+const Table = ({ th, data, openModal, Row }) => {
   return (
     <div className="mt-6 bg-white border border-slate-200 rounded-2xl overflow-x-auto">
       <table className="w-full min-w-160 text-sm">
@@ -20,8 +18,8 @@ const Table = ({ th, data, openModal }) => {
         </thead>
 
         <tbody className="divide-y divide-slate-100">
-          {data.map((c, i) => (
-            <Row key={i} categoria={c} openModal={openModal} />
+          {data.map((obj) => (
+            <Row key={obj._id} obj={obj} openModal={openModal} />
           ))}
         </tbody>
       </table>

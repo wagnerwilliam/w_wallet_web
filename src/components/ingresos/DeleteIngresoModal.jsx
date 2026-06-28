@@ -1,17 +1,16 @@
 import Button from "../base/Button";
 import { useQueryClient } from "@tanstack/react-query";
-import { EliminarCategoriaMutation } from "../../queries/Ingresos";
 
-const DeleteCategoriaModal = ({ closeModal, categoria }) => {
-  const eliminarCategoria = EliminarCategoriaMutation();
-  const queryClient = useQueryClient();
-  const handleDelete = () =>
-    eliminarCategoria.mutate(categoria._id, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["Ingresos"] });
-        closeModal();
-      },
-    });
+const DeleteIngresoModal = ({ closeModal, categoria }) => {
+  // const eliminarCategoria = EliminarCategoriaMutation();
+  // const queryClient = useQueryClient();
+  // const handleDelete = () =>
+  //   eliminarCategoria.mutate(categoria._id, {
+  //     onSuccess: () => {
+  //       queryClient.invalidateQueries({ queryKey: ["Ingresos"] });
+  //       closeModal();
+  //     },
+  //   });
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -62,13 +61,11 @@ const DeleteCategoriaModal = ({ closeModal, categoria }) => {
             Cancelar
           </Button>
 
-          <Button variant="danger" onClick={handleDelete}>
-            Sí, eliminar
-          </Button>
+          <Button variant="danger">Sí, eliminar</Button>
         </div>
       </div>
     </div>
   );
 };
 
-export default DeleteCategoriaModal;
+export default DeleteIngresoModal;
