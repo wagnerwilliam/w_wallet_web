@@ -9,7 +9,7 @@ export const crearCategoria = async (data, token) => {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-type": "application/json"
+      "Content-type": "application/json",
     },
     body: JSON.stringify(data),
   });

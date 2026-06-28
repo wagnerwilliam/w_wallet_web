@@ -1,7 +1,8 @@
 export const IngresosTableHead = [
-  "Nombre",
-  "Tipo",
-  "Color",
-  "Activo",
+  "Descripción",
+  "Monto",
+  "Fecha",
+  "Categoria",
+  "Estado",
   "Acciones",
 ];

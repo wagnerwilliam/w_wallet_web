@@ -3,8 +3,8 @@ import { MODALS } from "../utils/modals";
 import { useState } from "react";
 import { EditarCategoriaMutation } from "../../queries/categorias";
 
-const Row = ({ categoria, openModal }) => {
-  let { _id, name, type, color, is_active } = categoria;
+const CategoriasRow = ({ obj, openModal }) => {
+  let { _id, name, type, color, is_active } = obj;
   let [currentActive, setActive] = useState(is_active);
   const editarCategoria = EditarCategoriaMutation();
 
@@ -59,14 +59,14 @@ const Row = ({ categoria, openModal }) => {
           <Button
             variant="secondary"
             size="sm"
-            onClick={() => openModal(MODALS.UPDATE, categoria)}
+            onClick={() => openModal(MODALS.UPDATE, obj)}
           >
             Editar
           </Button>
           <Button
             variant="logout"
             size="sm"
-            onClick={() => openModal(MODALS.DELETE, categoria)}
+            onClick={() => openModal(MODALS.DELETE, obj)}
           >
             Eliminar
           </Button>
@@ -76,4 +76,4 @@ const Row = ({ categoria, openModal }) => {
   );
 };
 
-export default Row;
+export default CategoriasRow;

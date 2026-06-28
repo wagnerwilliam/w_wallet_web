@@ -2,39 +2,38 @@ import Label from "../base/Label";
 import Button from "../base/Button";
 import Input from "../base/Input";
 import { useState } from "react";
-import { EditarCategoriaMutation } from "../../queries/Ingresos";
 import { useQueryClient } from "@tanstack/react-query";
 
-const UpdateCategoriaModal = ({ closeModal, categoria }) => {
+const UpdateIngresoModal = ({ closeModal, categoria }) => {
   let { _id, name, type, color } = categoria;
   let [currentName, setName] = useState(name);
   let [currentType, setType] = useState(type);
   let [currentColor, setColor] = useState(color);
 
-  const editarCategoria = EditarCategoriaMutation();
-  const queryClient = useQueryClient();
+  // const editarCategoria = EditarCategoriaMutation();
+  // const queryClient = useQueryClient();
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    const data = {};
-    currentName !== name ? (data.name = currentName) : null;
-    currentType !== type ? (data.type = currentType) : null;
-    currentColor !== color ? (data.color = currentColor) : null;
-    if (Object.keys(data).length === 0) return;
+  // const handleUpdate = (e) => {
+  //   e.preventDefault();
+  //   const data = {};
+  //   currentName !== name ? (data.name = currentName) : null;
+  //   currentType !== type ? (data.type = currentType) : null;
+  //   currentColor !== color ? (data.color = currentColor) : null;
+  //   if (Object.keys(data).length === 0) return;
 
-    editarCategoria.mutate(
-      {
-        _id,
-        data,
-      },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["Ingresos"] });
-          closeModal();
-        },
-      },
-    );
-  };
+  //   editarCategoria.mutate(
+  //     {
+  //       _id,
+  //       data,
+  //     },
+  //     {
+  //       onSuccess: () => {
+  //         queryClient.invalidateQueries({ queryKey: ["Ingresos"] });
+  //         closeModal();
+  //       },
+  //     },
+  //   );
+  // };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -67,7 +66,7 @@ const UpdateCategoriaModal = ({ closeModal, categoria }) => {
         </div>
 
         {/* FORM */}
-        <form onSubmit={handleUpdate} className="space-y-4">
+        <form className="space-y-4">
           <div className="space-y-2">
             <Label text="Nombre" />
 
@@ -134,4 +133,4 @@ const UpdateCategoriaModal = ({ closeModal, categoria }) => {
   );
 };
 
-export default UpdateCategoriaModal;
+export default UpdateIngresoModal;

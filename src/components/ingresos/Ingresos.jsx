@@ -4,13 +4,31 @@ import Table from "../table/Table.jsx";
 import { IngresosTableHead } from "../utils/ingresos/tableHead.js";
 import { useState } from "react";
 import { MODALS } from "../utils/modals.js";
+import IngresosRow from "../table/IngresosRow.jsx";
+import NoRecords from "../base/NoRecords.jsx";
+import Loading from "../base/Loading.jsx";
+import DataState from "../base/DataState.jsx";
+import CreateIngresoModal from "./CreateIngresoModal.jsx";
+import DeleteIngresoModal from "./DeleteIngresoModal.jsx";
+import UpdateIngresoModal from "./UpdateIngresoModal.jsx";
 
 const Ingresos = () => {
   let [modal, setModal] = useState(null);
-  let [selectedtCategoria, setSelectedCategoria] = useState(null);
+  let [selectedtIngreso, setSelectedIngreso] = useState(null);
   let [search, setSearch] = useState("");
 
-  const data = [];
+  const data = [
+    {
+      _id: "asasasa",
+      name: "Pago por mes de trabajo",
+      value: 50,
+      is_active: true,
+      created_at: "2026-06-28T11:30:00.000Z",
+      category_id: "Honorarios",
+    },
+  ];
+  const isLoading = false;
+  const error = false;
 
   const openModal = (type, categoria = null) => {
     setModal(type);
@@ -25,68 +43,70 @@ const Ingresos = () => {
   const filteredIngresos = [];
   return (
     <>
+      {/* HEADER */}
       <div>
-        {/* HEADER */}
-        <div>
-          <h1 className="text-xl font-semibold text-slate-900 tracking-tight">
-            Categorías
-          </h1>
+        <h1 className="text-xl font-semibold text-slate-900 tracking-tight">
+          Ingresos
+        </h1>
 
-          <p className="text-sm text-slate-500 mt-1">
-            Gestiona ingresos y gastos de forma ordenada
-          </p>
-        </div>
-
-        {/* ACTION BAR */}
-        <div className="flex justify-between items-center mt-6">
-          <Search
-            value={search}
-            onChange={() => setSearch(event.target.value)}
-            placeholder="Buscar categoría..."
-          />
-
-          <Button width="ml-4" onClick={() => openModal(MODALS.CREATE)}>
-            + Crear categoria
-          </Button>
-        </div>
-
-        {/* TABLE */}
-        {false ? (
-          <div className="mt-6 flex items-center justify-center py-12 border border-slate-200 rounded-2xl bg-white">
-            <p className="text-sm text-slate-500">Cargando categorías...</p>
-          </div>
-        ) : Ingresos.length === 0 ? (
-          <div className="mt-6 flex flex-col items-center justify-center py-12 border border-slate-200 rounded-2xl bg-white">
-            <p className="text-sm font-medium text-slate-700">
-              No hay categorías registradas
-            </p>
-            <p className="text-xs text-slate-500 mt-1">
-              Crea tu primera categoría para comenzar a organizar tus finanzas
-            </p>
-          </div>
-        ) : (
-          <Table
-            data={filteredIngresos}
-            th={IngresosTableHead}
-            openModal={openModal}
-          />
-        )}
-        {/* {modal === MODALS.CREATE && (
-          <CreateModal onClose={() => closeModal()} />
-        )}
-        {modal === MODALS.DELETE && (
-          <DeleteCategoriaModal
-            closeModal={() => closeModal()}
-            categoria={selectedtCategoria}
-          />
-        )}
-        {modal === MODALS.UPDATE && (
-          <UpdateCategoriaModal
-            closeModal={() => closeModal()}
-            categoria={selectedtCategoria}
-          />
-        )} */}
+        <p className="text-sm text-slate-500 mt-1">
+          Registra y administra todos tus ingresos.
+        </p>
       </div>
+
+      {/* ACTION BAR */}
+      <div className="flex justify-between items-center mt-6">
+        <Search
+          value={search}
+          onChange={() => setSearch(event.target.value)}
+          placeholder="Buscar ingreso..."
+        />
+
+        <Button width="ml-4" onClick={() => openModal(MODALS.CREATE)}>
+          + Crear ingreso
+        </Button>
+      </div>
+
+      {/* TABLE */}
+      <DataState
+        isLoading={isLoading}
+        isError={error}
+        data={data}
+        loadingComponent={<Loading description="Cargando ingresos..." />}
+        errorComponent={
+          <NoRecords title="Error" description="No se pudieron cargar datos" />
+        }
+        emptyComponent={
+          <NoRecords
+            title="No hay ingresos registrados"
+            description="Registra tu primer ingreso para empezar a controlar tu dinero"
+          />
+        }
+      >
+        <Table
+          data={data}
+          th={IngresosTableHead}
+          openModal={openModal}
+          Row={IngresosRow}
+        />
+      </DataState>
+
+      {/* MODAL */}
+      {modal === MODALS.CREATE && (
+        <CreateIngresoModal onClose={() => closeModal()} />
+      )}
+      {modal === MODALS.DELETE && (
+        <DeleteIngresoModal
+          closeModal={() => closeModal()}
+          categoria={selectedtIngreso}
+        />
+      )}
+      {modal === MODALS.UPDATE && (
+        <UpdateIngresoModal
+          closeModal={() => closeModal()}
+          categoria={data[0]}
+        />
+      )}
     </>
   );
 };

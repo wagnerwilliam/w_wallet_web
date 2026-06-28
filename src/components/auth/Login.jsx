@@ -6,6 +6,7 @@ import { useContext } from "react";
 import Context from "../../context/Context";
 import AuthHeader from "./AuthHeader";
 import AuthFooter from "./AuthFooter";
+import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const iconClass =
@@ -14,40 +15,50 @@ const Login = () => {
   let { token, setToken } = useContext(Context);
 
   return (
-    <div>
-      {/* HEADER */}
-      <AuthHeader
-        title="Iniciar sesión"
-        subtitle="Ingresa tu usuario y tu contraseña"
-      />
-
-      {/* FORM */}
-      <form className="mt-8 space-y-5">
-        {/* username */}
-        <div className="relative flex items-center group">
-          <Icon icon={EnvelopeIcon} className={iconClass} />
-
-          <Input
-            type="email"
-            placeholder="Correo electrónico"
-            className="px-11"
+    <>
+      {!token ? (
+        <Navigate to="/home" />
+      ) : (
+        <div>
+          {/* HEADER */}
+          <AuthHeader
+            title="Iniciar sesión"
+            subtitle="Ingresa tu usuario y tu contraseña"
           />
+
+          {/* FORM */}
+          <form className="mt-8 space-y-5">
+            {/* username */}
+            <div className="relative flex items-center group">
+              <Icon icon={EnvelopeIcon} className={iconClass} />
+
+              <Input
+                type="email"
+                placeholder="Correo electrónico"
+                className="px-11"
+              />
+            </div>
+
+            {/* password */}
+            <div className="relative flex items-center group">
+              <Icon icon={LockClosedIcon} className={iconClass} />
+
+              <Input
+                type="password"
+                placeholder="Contraseña"
+                className="px-11"
+              />
+            </div>
+
+            {/* button */}
+            <Button width="w-full">Iniciar sesión</Button>
+
+            {/* footer */}
+            <AuthFooter />
+          </form>
         </div>
-
-        {/* password */}
-        <div className="relative flex items-center group">
-          <Icon icon={LockClosedIcon} className={iconClass} />
-
-          <Input type="password" placeholder="Contraseña" className="px-11" />
-        </div>
-
-        {/* button */}
-        <Button width="w-full">Iniciar sesión</Button>
-
-        {/* footer */}
-        <AuthFooter />
-      </form>
-    </div>
+      )}
+    </>
   );
 };
 
