@@ -18,6 +18,7 @@ export const UseCategorias = () => {
 
 export const UseCategoriasByType = (type) => {
   const { data = [], ...rest } = UseCategorias();
+  console.log("UseCategoriasByType")
 
   const filtered = data?.filter((c) => c.type === type && c.is_active);
 

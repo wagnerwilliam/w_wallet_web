@@ -23,6 +23,7 @@ const Ingresos = () => {
   const { data: ingresos = [], isLoading, error } = UseIngresos();
   const { data: categorias } = UseCategoriasByType("ingreso");
 
+  console.log("categorias en ingresos" + categorias)
   //validar uso de useMemo
   const categoriasMap = Object.fromEntries(
     categorias?.map((c) => [c._id, c.name]),
