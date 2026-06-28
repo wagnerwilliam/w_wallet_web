@@ -14,8 +14,8 @@ export const crearIngreso = async (data) => {
   });
 };
 
-export const editarCategoria = async (id, data) => {
-  return await fetch(`${BACKEND_URL}api/categorias/editar/${id}`, {
+export const editarIngreso = async (id, data) => {
+  return await fetch(`${BACKEND_URL}api/ingresos/editar/${id}`, {
     method: "PATCH",
     headers: {
       "Content-type": "application/json",
@@ -24,8 +24,8 @@ export const editarCategoria = async (id, data) => {
   });
 };
 
-export const eliminarCategoria = async (id) => {
-  return await fetch(`${BACKEND_URL}api/categorias/eliminar/${id}`, {
+export const eliminarIngreso = async (id) => {
+  return await fetch(`${BACKEND_URL}api/ingresos/eliminar/${id}`, {
     method: "DELETE",
   });
 };
