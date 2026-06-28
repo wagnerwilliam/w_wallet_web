@@ -4,7 +4,7 @@ const Table = ({ th, data, openModal, Row, extra }) => {
       <table className="w-full min-w-160 text-sm">
         <thead className="bg-slate-50 text-xs uppercase text-slate-500">
           <tr>
-            {th.map((item) => {
+            {th?.map((item) => {
               return (
                 <th
                   key={item}
@@ -18,7 +18,7 @@ const Table = ({ th, data, openModal, Row, extra }) => {
         </thead>
 
         <tbody className="divide-y divide-slate-100">
-          {data.map((obj) => (
+          {data?.map((obj) => (
             <Row key={obj._id} obj={obj} openModal={openModal} {...extra} />
           ))}
         </tbody>
