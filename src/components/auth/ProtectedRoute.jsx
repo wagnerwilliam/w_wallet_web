@@ -5,9 +5,9 @@ import Context from "../../context/Context";
 const ProtectedRoute = () => {
   let { token, setToken } = useContext(Context);
 
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
+  // if (!token) {
+  //   return <Navigate to="/login" replace />;
+  // }
 
   return <Outlet />;
 };
