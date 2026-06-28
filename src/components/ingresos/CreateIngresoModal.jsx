@@ -2,7 +2,6 @@ import { useState } from "react";
 import Button from "../base/Button";
 import Input from "../base/Input";
 import Label from "../base/Label";
-import { CrearCategoriaMutation } from "../../queries/Categorias";
 import { useQueryClient } from "@tanstack/react-query";
 
 const CreateIngresoModal = ({ onClose }) => {
@@ -12,23 +11,23 @@ const CreateIngresoModal = ({ onClose }) => {
   const crearCategoria = CrearCategoriaMutation();
   const queryClient = useQueryClient();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    crearCategoria.mutate(
-      {
-        name,
-        type,
-        color,
-        user_id: "1",
-      },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["Ingresos"] });
-          onClose();
-        },
-      },
-    );
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   crearCategoria.mutate(
+  //     {
+  //       name,
+  //       type,
+  //       color,
+  //       user_id: "1",
+  //     },
+  //     {
+  //       onSuccess: () => {
+  //         queryClient.invalidateQueries({ queryKey: ["Ingresos"] });
+  //         onClose();
+  //       },
+  //     },
+  //   );
+  // };
 
   // crearCategoria.mutate({
   //   data: {
@@ -65,7 +64,7 @@ const CreateIngresoModal = ({ onClose }) => {
         </div>
 
         {/* FORM */}
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <form className="space-y-4">
           {/* NOMBRE */}
           <div className="space-y-2">
             <Label text="Nombre" />
