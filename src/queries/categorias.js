@@ -11,6 +11,10 @@ export const UseCategorias = () => {
     queryKey: ["categorias"],
     queryFn: async () => {
       const response = await ObtenerCategorias();
+
+      if (!response.ok) {
+        throw new Error("Error al obtener categorías");
+      }
       return response.json();
     },
   });
@@ -20,6 +24,10 @@ export const UseCategoriasByType = (type) => {
   const { data = [], ...rest } = UseCategorias();
   console.log("data:", data);
   console.log("¿Es array?", Array.isArray(data));
+
+  if (!response.ok) {
+    throw new Error("Error al obtener ctegorias para select");
+  }
 
   const filtered = data?.filter((c) => c.type === type && c.is_active);
 
