@@ -25,10 +25,6 @@ export const UseCategoriasByType = (type) => {
   console.log("data:", data);
   console.log("¿Es array?", Array.isArray(data));
 
-  if (!response.ok) {
-    throw new Error("Error al obtener ctegorias para select");
-  }
-
   const filtered = data?.filter((c) => c.type === type && c.is_active);
 
   return {
