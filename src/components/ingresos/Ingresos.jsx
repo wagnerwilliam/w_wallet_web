@@ -11,33 +11,31 @@ import DataState from "../base/DataState.jsx";
 import CreateIngresoModal from "./CreateIngresoModal.jsx";
 import DeleteIngresoModal from "./DeleteIngresoModal.jsx";
 import UpdateIngresoModal from "./UpdateIngresoModal.jsx";
+import { UseIngresos } from "../../queries/ingresos.js";
+import { UseCategoriasByType } from "../../queries/categorias.js";
 
 const Ingresos = () => {
   let [modal, setModal] = useState(null);
   let [selectedtIngreso, setSelectedIngreso] = useState(null);
   let [search, setSearch] = useState("");
 
-  const data = [
-    {
-      _id: "asasasa",
-      name: "Pago por mes de trabajo",
-      value: 50,
-      is_active: true,
-      created_at: "2026-06-28T11:30:00.000Z",
-      category_id: "Honorarios",
-    },
-  ];
-  const isLoading = false;
-  const error = false;
+  // Queries
+  const { data: ingresos = [], isLoading, error } = UseIngresos();
+  const { data: categorias } = UseCategoriasByType("ingreso");
+
+  //validar uso de useMemo
+  const categoriasMap = Object.fromEntries(
+    categorias.map((c) => [c._id, c.name]),
+  );
 
   const openModal = (type, categoria = null) => {
     setModal(type);
-    setSelectedCategoria(categoria);
+    setSelectedIngreso(categoria);
   };
 
   const closeModal = () => {
     setModal(null);
-    setSelectedCategoria(null);
+    setSelectedIngreso(null);
   };
 
   const filteredIngresos = [];
@@ -71,7 +69,7 @@ const Ingresos = () => {
       <DataState
         isLoading={isLoading}
         isError={error}
-        data={data}
+        data={ingresos}
         loadingComponent={<Loading description="Cargando ingresos..." />}
         errorComponent={
           <NoRecords title="Error" description="No se pudieron cargar datos" />
@@ -84,28 +82,29 @@ const Ingresos = () => {
         }
       >
         <Table
-          data={data}
+          data={ingresos}
           th={IngresosTableHead}
           openModal={openModal}
           Row={IngresosRow}
+          extra={{ categoriasMap }}
         />
       </DataState>
 
       {/* MODAL */}
       {modal === MODALS.CREATE && (
-        <CreateIngresoModal onClose={() => closeModal()} />
+        <CreateIngresoModal
+          onClose={() => closeModal()}
+          categorias={categorias}
+        />
       )}
       {modal === MODALS.DELETE && (
         <DeleteIngresoModal
           closeModal={() => closeModal()}
-          categoria={selectedtIngreso}
+          ingreso={selectedtIngreso}
         />
       )}
       {modal === MODALS.UPDATE && (
-        <UpdateIngresoModal
-          closeModal={() => closeModal()}
-          categoria={data[0]}
-        />
+        <UpdateIngresoModal closeModal={() => closeModal()} ingreso={data[0]} />
       )}
     </>
   );

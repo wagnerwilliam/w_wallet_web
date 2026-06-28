@@ -1,39 +1,23 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
-import {
-  ObtenerCategorias,
-  crearCategoria,
-  eliminarCategoria,
-  editarCategoria,
-} from "../services/CategoriasService";
+import { ObtenerIngresos, crearIngreso } from "../services/IngresosService";
 
-export const UseCategorias = () => {
+export const UseIngresos = () => {
   return useQuery({
-    queryKey: ["categorias"],
+    queryKey: ["ingresos"],
     queryFn: async () => {
-      const response = await ObtenerCategorias();
+      const response = await ObtenerIngresos();
       return response.json();
     },
   });
 };
 
-export const UseCategoriasByType = (type) => {
-  const { data = [], ...rest } = UseCategorias();
-
-  const filtered = data.filter((c) => c.type === type && c.is_active);
-
-  return {
-    ...rest,
-    data: filtered,
-  };
-};
-
-export const CrearCategoriaMutation = () => {
+export const CrearIngresoMutation = () => {
   return useMutation({
     mutationFn: async (data) => {
-      const response = await crearCategoria(data);
+      const response = await crearIngreso(data);
 
       if (!response.ok) {
-        throw new Error("Error al crear categoría");
+        throw new Error("Error al crear ingreso");
       }
 
       return response.json();

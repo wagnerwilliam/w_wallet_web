@@ -4,11 +4,10 @@ export const ObtenerCategorias = async () => {
   return await fetch(`${API_URL}api/categorias/`);
 };
 
-export const crearCategoria = async (data, token) => {
+export const crearCategoria = async (data) => {
   return await fetch(`${API_URL}api/categorias/crear`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
       "Content-type": "application/json",
     },
     body: JSON.stringify(data),
