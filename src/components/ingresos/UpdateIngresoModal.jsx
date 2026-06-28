@@ -3,37 +3,42 @@ import Button from "../base/Button";
 import Input from "../base/Input";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import CategoriaOptions from "../categorias/CategoriaOptions";
+import { EditarIngresoMutation } from "../../queries/ingresos";
 
-const UpdateIngresoModal = ({ closeModal, categoria }) => {
-  let { _id, name, type, color } = categoria;
+const UpdateIngresoModal = ({ closeModal, ingreso }) => {
+  let { _id, name, value, category_id } = ingreso;
+
   let [currentName, setName] = useState(name);
-  let [currentType, setType] = useState(type);
-  let [currentColor, setColor] = useState(color);
+  let [currentValue, setValue] = useState(value);
+  let [currentCategory, setCategoryId] = useState(category_id);
 
-  // const editarCategoria = EditarCategoriaMutation();
-  // const queryClient = useQueryClient();
+  const editarIngreso = EditarIngresoMutation();
+  const queryClient = useQueryClient();
 
-  // const handleUpdate = (e) => {
-  //   e.preventDefault();
-  //   const data = {};
-  //   currentName !== name ? (data.name = currentName) : null;
-  //   currentType !== type ? (data.type = currentType) : null;
-  //   currentColor !== color ? (data.color = currentColor) : null;
-  //   if (Object.keys(data).length === 0) return;
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const data = {};
+    currentName !== name ? (data.name = currentName) : null;
+    currentValue !== value ? (data.value = currentValue) : null;
+    currentCategory !== category_id
+      ? (data.category_id = currentCategory)
+      : null;
+    if (Object.keys(data).length === 0) return;
 
-  //   editarCategoria.mutate(
-  //     {
-  //       _id,
-  //       data,
-  //     },
-  //     {
-  //       onSuccess: () => {
-  //         queryClient.invalidateQueries({ queryKey: ["Ingresos"] });
-  //         closeModal();
-  //       },
-  //     },
-  //   );
-  // };
+    editarIngreso.mutate(
+      {
+        _id,
+        data,
+      },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["ingresos"] });
+          closeModal();
+        },
+      },
+    );
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -57,16 +62,16 @@ const UpdateIngresoModal = ({ closeModal, categoria }) => {
         {/* HEADER */}
         <div className="mb-6">
           <h2 className="text-lg font-semibold text-slate-900 tracking-tight">
-            Editar categoría
+            Editar ingreso
           </h2>
 
           <p className="mt-1 text-sm text-slate-500">
-            Actualiza la información de esta categoría.
+            Actualiza la información de este ingreso.
           </p>
         </div>
 
         {/* FORM */}
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleUpdate}>
           <div className="space-y-2">
             <Label text="Nombre" />
 
@@ -79,42 +84,49 @@ const UpdateIngresoModal = ({ closeModal, categoria }) => {
           </div>
 
           <div className="space-y-2">
-            <Label text="Tipo" />
+            <Label text="Monto" />
 
-            <select
-              value={currentType}
-              onChange={(e) => setType(e.target.value)}
-              className="
-                  w-full
-                  px-4
-                  py-2.5
-                  bg-slate-50
-                  border
-                  border-slate-200
-                  rounded-xl
-                  text-sm
-                  text-slate-700
-                  focus:outline-none
-                  focus:border-[#0F766E]
-                  focus:ring-4
-                  focus:ring-[#0F766E]/10
-                "
-            >
-              <option value="">Seleccionar...</option>
-              <option value="ingreso">Ingreso</option>
-              <option value="gasto">Gasto</option>
-            </select>
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
+                €
+              </span>
+
+              <Input
+                type="number"
+                value={currentValue}
+                onChange={(e) => setValue(e.target.value)}
+                placeholder="0.00"
+                variant="filled"
+                min="0"
+                step="0.01"
+                className="pl-8"
+              />
+            </div>
           </div>
 
           <div className="space-y-2">
-            <Label text="Color" />
+            <Label text="Categoría" />
 
-            <Input
-              value={currentColor}
-              onChange={(e) => setColor(e.target.value)}
-              type="color"
-              variant="color"
-            />
+            <select
+              value={currentCategory}
+              onChange={(e) => setCategoryId(e.target.value)}
+              className="
+                w-full
+                px-4 py-2.5
+                bg-slate-50
+                border border-slate-200
+                rounded-xl
+                text-sm text-slate-700
+                focus:outline-none
+                focus:border-[#0F766E]
+                focus:ring-4
+                focus:ring-[#0F766E]/10
+              "
+            >
+              <option value="">Selecciona una categoría</option>
+
+              <CategoriaOptions type="ingreso" />
+            </select>
           </div>
 
           {/* ACTIONS */}

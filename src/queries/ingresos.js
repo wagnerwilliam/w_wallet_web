@@ -1,5 +1,10 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { ObtenerIngresos, crearIngreso } from "../services/IngresosService";
+import {
+  ObtenerIngresos,
+  crearIngreso,
+  editarIngreso,
+  eliminarIngreso,
+} from "../services/IngresosService";
 
 export const UseIngresos = () => {
   return useQuery({
@@ -25,13 +30,13 @@ export const CrearIngresoMutation = () => {
   });
 };
 
-export const EditarCategoriaMutation = () => {
+export const EditarIngresoMutation = () => {
   return useMutation({
     mutationFn: async ({ _id, data }) => {
-      const response = await editarCategoria(_id, data);
+      const response = await editarIngreso(_id, data);
 
       if (!response.ok) {
-        throw new Error("Error al editar categoría");
+        throw new Error("Error al editar ingreso");
       }
 
       return true;
@@ -39,13 +44,13 @@ export const EditarCategoriaMutation = () => {
   });
 };
 
-export const EliminarCategoriaMutation = () => {
+export const EliminarIngresoMutation = () => {
   return useMutation({
     mutationFn: async (id) => {
-      const response = await eliminarCategoria(id);
+      const response = await eliminarIngreso(id);
 
       if (!response.ok) {
-        throw new Error("Error eliminando categoría");
+        throw new Error("Error eliminando ingreso");
       }
 
       return true;

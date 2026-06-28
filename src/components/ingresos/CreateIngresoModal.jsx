@@ -5,6 +5,7 @@ import Label from "../base/Label";
 import { useQueryClient } from "@tanstack/react-query";
 import { CrearIngresoMutation } from "../../queries/ingresos";
 import { UseCategoriasByType } from "../../queries/categorias";
+import Options from "../categorias/CategoriaOptions";
 
 const CreateIngresoModal = ({ onClose, categorias }) => {
   let [name, setName] = useState("");
@@ -124,16 +125,8 @@ const CreateIngresoModal = ({ onClose, categorias }) => {
             "
             >
               <option value="">Selecciona una categoría</option>
-              {categorias
-                .filter(
-                  (categoria) =>
-                    categoria.type === "ingreso" && categoria.is_active,
-                )
-                ?.map((categoria) => (
-                  <option key={categoria._id} value={categoria._id}>
-                    {categoria.name}
-                  </option>
-                ))}
+
+              <Options type="ingreso" />
             </select>
           </div>
 

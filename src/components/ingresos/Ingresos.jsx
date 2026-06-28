@@ -23,7 +23,6 @@ const Ingresos = () => {
   const { data: ingresos = [], isLoading, error } = UseIngresos();
   const { data: categorias } = UseCategoriasByType("ingreso");
 
-  console.log("categorias en ingresos" + categorias)
   //validar uso de useMemo
   const categoriasMap = Object.fromEntries(
     categorias?.map((c) => [c._id, c.name]),
@@ -93,10 +92,7 @@ const Ingresos = () => {
 
       {/* MODAL */}
       {modal === MODALS.CREATE && (
-        <CreateIngresoModal
-          onClose={() => closeModal()}
-          categorias={categorias}
-        />
+        <CreateIngresoModal onClose={() => closeModal()} />
       )}
       {modal === MODALS.DELETE && (
         <DeleteIngresoModal
@@ -105,7 +101,10 @@ const Ingresos = () => {
         />
       )}
       {modal === MODALS.UPDATE && (
-        <UpdateIngresoModal closeModal={() => closeModal()} ingreso={data[0]} />
+        <UpdateIngresoModal
+          closeModal={() => closeModal()}
+          ingreso={selectedtIngreso}
+        />
       )}
     </>
   );

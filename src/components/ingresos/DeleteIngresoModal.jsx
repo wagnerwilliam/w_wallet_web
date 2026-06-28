@@ -1,16 +1,17 @@
 import Button from "../base/Button";
 import { useQueryClient } from "@tanstack/react-query";
+import { EliminarIngresoMutation } from "../../queries/ingresos";
 
-const DeleteIngresoModal = ({ closeModal, categoria }) => {
-  // const eliminarCategoria = EliminarCategoriaMutation();
-  // const queryClient = useQueryClient();
-  // const handleDelete = () =>
-  //   eliminarCategoria.mutate(categoria._id, {
-  //     onSuccess: () => {
-  //       queryClient.invalidateQueries({ queryKey: ["Ingresos"] });
-  //       closeModal();
-  //     },
-  //   });
+const DeleteIngresoModal = ({ closeModal, ingreso }) => {
+  const eliminarIngreso = EliminarIngresoMutation();
+  const queryClient = useQueryClient();
+  const handleDelete = () =>
+    eliminarIngreso.mutate(ingreso._id, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["ingresos"] });
+        closeModal();
+      },
+    });
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -37,7 +38,7 @@ const DeleteIngresoModal = ({ closeModal, categoria }) => {
 
           <div>
             <h2 className="text-lg font-semibold text-slate-900 tracking-tight">
-              Eliminar categoría
+              Eliminar ingreso
             </h2>
 
             <p className="text-sm text-slate-500 mt-1">
@@ -48,10 +49,10 @@ const DeleteIngresoModal = ({ closeModal, categoria }) => {
 
         {/* CONTENT */}
         <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
-          <p className="text-xs text-slate-500">Categoría seleccionada</p>
+          <p className="text-xs text-slate-500">Ingreso seleccionado</p>
 
           <p className="text-sm font-semibold text-slate-900 mt-1">
-            {categoria?.name}
+            {ingreso?.name}
           </p>
         </div>
 
@@ -61,7 +62,9 @@ const DeleteIngresoModal = ({ closeModal, categoria }) => {
             Cancelar
           </Button>
 
-          <Button variant="danger">Sí, eliminar</Button>
+          <Button variant="danger" onClick={handleDelete}>
+            Sí, eliminar
+          </Button>
         </div>
       </div>
     </div>
