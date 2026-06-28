@@ -1,5 +1,5 @@
 import Button from "../base/Button";
-import { MODALS } from "../utils/modals";
+import { MODALS } from "../../utils/modals";
 import { useState } from "react";
 
 const IngresosRow = ({ obj, openModal, categoriasMap }) => {
@@ -35,7 +35,7 @@ const IngresosRow = ({ obj, openModal, categoriasMap }) => {
 
       {/* categoria */}
       <td className="px-4 py-2 text-xs text-slate-500">
-        {categoriasMap?.[category_id] || "sin categorisa"}
+        {categoriasMap?.[category_id] || "sin categoria"}
       </td>
 
       {/* ESTADO */}

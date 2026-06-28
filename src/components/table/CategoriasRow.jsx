@@ -1,5 +1,5 @@
 import Button from "../base/Button";
-import { MODALS } from "../utils/modals";
+import { MODALS } from "../../utils/modals";
 import { useState } from "react";
 import { EditarCategoriaMutation } from "../../queries/categorias";
 

@@ -2,7 +2,7 @@ import {
   baseButtonStyles,
   buttonVariants,
   buttonSizes,
-} from "../utils/buttonVariants";
+} from "../../utils/buttonVariants";
 
 const Button = ({
   width = "w-auto",

@@ -1,13 +1,13 @@
 import Search from "../base/Search";
 import Button from "../base/Button";
 import Table from "../table/Table";
-import { CategoriasTableHead } from "../utils/categorias/tablesHead.js";
+import { CategoriasTableHead } from "../../utils/categorias/tablesHead.js";
 import { useState } from "react";
 import CreateModal from "./CreateCategoriaModal";
 import { UseCategorias } from "../../queries/categorias.js";
 import DeleteCategoriaModal from "./DeleteCategoriaModal.jsx";
 import UpdateCategoriaModal from "./UpdateCategoriaModal.jsx";
-import { MODALS } from "../utils/modals.js";
+import { MODALS } from "../../utils/modals.js";
 import CategoriasRow from "../table/CategoriasRow";
 import NoRecords from "../base/NoRecords.jsx";
 import Loading from "../base/Loading.jsx";

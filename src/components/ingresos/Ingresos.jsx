@@ -1,9 +1,9 @@
 import Search from "../base/Search.jsx";
 import Button from "../base/Button.jsx";
 import Table from "../table/Table.jsx";
-import { IngresosTableHead } from "../utils/ingresos/tableHead.js";
+import { IngresosTableHead } from "../../utils/ingresos/tableHead.js";
 import { useState } from "react";
-import { MODALS } from "../utils/modals.js";
+import { MODALS } from "../../utils/modals.js";
 import IngresosRow from "../table/IngresosRow.jsx";
 import NoRecords from "../base/NoRecords.jsx";
 import Loading from "../base/Loading.jsx";
