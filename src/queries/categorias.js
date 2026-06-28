@@ -18,8 +18,6 @@ export const UseCategorias = () => {
 
 export const UseCategoriasByType = (type) => {
   const { data = [], ...rest } = UseCategorias();
-  console.log("data:", data);
-  console.log("¿Es array?", Array.isArray(data));
 
   const filtered = data?.filter((c) => c.type === type && c.is_active);
 
