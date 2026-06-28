@@ -2,7 +2,7 @@ import Button from "../base/Button";
 import { MODALS } from "../utils/modals";
 import { useState } from "react";
 
-const IngresosRow = ({ obj, openModal }) => {
+const IngresosRow = ({ obj, openModal, categoriasMap }) => {
   let { _id, name, value, is_active, created_at, category_id } = obj;
   let [currentActive, setActive] = useState(is_active);
 
@@ -34,7 +34,9 @@ const IngresosRow = ({ obj, openModal }) => {
       </td>
 
       {/* categoria */}
-      <td className="px-4 py-2 text-xs text-slate-500">{category_id}</td>
+      <td className="px-4 py-2 text-xs text-slate-500">
+        {categoriasMap?.[category_id] || "sin categorisa"}
+      </td>
 
       {/* ESTADO */}
       <td className="px-4 py-2 text-xs">{is_active ? "Activo" : "Inactivo"}</td>

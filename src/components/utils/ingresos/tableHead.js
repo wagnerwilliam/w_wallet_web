@@ -1,5 +1,5 @@
 export const IngresosTableHead = [
-  "Descripción",
+  "Concepto",
   "Monto",
   "Fecha",
   "Categoria",

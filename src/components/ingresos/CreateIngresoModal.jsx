@@ -3,33 +3,37 @@ import Button from "../base/Button";
 import Input from "../base/Input";
 import Label from "../base/Label";
 import { useQueryClient } from "@tanstack/react-query";
+import { CrearIngresoMutation } from "../../queries/ingresos";
+import { UseCategoriasByType } from "../../queries/categorias";
 
-const CreateIngresoModal = ({ onClose }) => {
+const CreateIngresoModal = ({ onClose, categorias }) => {
   let [name, setName] = useState("");
-  let [type, setType] = useState("");
-  let [color, setColor] = useState("");
-  const crearCategoria = CrearCategoriaMutation();
+  let [value, setValue] = useState("");
+  let [category_id, setCategoryId] = useState("");
+  let [user_id, setUserId] = useState("");
+
+  const crearIngreso = CrearIngresoMutation();
   const queryClient = useQueryClient();
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   crearCategoria.mutate(
-  //     {
-  //       name,
-  //       type,
-  //       color,
-  //       user_id: "1",
-  //     },
-  //     {
-  //       onSuccess: () => {
-  //         queryClient.invalidateQueries({ queryKey: ["Ingresos"] });
-  //         onClose();
-  //       },
-  //     },
-  //   );
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    crearIngreso.mutate(
+      {
+        name,
+        value,
+        category_id,
+        user_id: "1",
+      },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["ingresos"] });
+          onClose();
+        },
+      },
+    );
+  };
 
-  // crearCategoria.mutate({
+  // crearIngreso.mutate({
   //   data: {
   //     name,
   //     type,
@@ -64,46 +68,76 @@ const CreateIngresoModal = ({ onClose }) => {
         </div>
 
         {/* FORM */}
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           {/* NOMBRE */}
           <div className="space-y-2">
-            <Label text="Nombre" />
+            <Label text="Concepto" />
             <Input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Ej: Alimentación"
+              placeholder="Ej: Pago proyecto web"
               variant="filled"
             />
           </div>
 
-          {/* TIPO */}
-          <div>
-            <label className="text-xs font-medium text-slate-600">Tipo</label>
+          {/* VALOR */}
+          <div className="space-y-2">
+            <Label text="Monto" />
+
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
+                €
+              </span>
+
+              <Input
+                type="number"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                placeholder="0.00"
+                variant="filled"
+                min="0"
+                step="0.01"
+                className="pl-8"
+              />
+            </div>
+          </div>
+
+          {/* CATEGORIAS */}
+          <div className="space-y-2">
+            <Label text="Categoría" />
+
             <select
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              name="tipo"
+              value={category_id}
+              onChange={(e) => setCategoryId(e.target.value)}
               className="
-                mt-1 w-full
-                px-4 py-2.5
-                bg-slate-50
-                border border-slate-200
-                rounded-xl
-                text-sm text-slate-700
-                focus:outline-none
-                focus:border-[#0F766E]
-                focus:ring-4
-                focus:ring-[#0F766E]/10
-              "
+              w-full
+              px-4 py-2.5
+              bg-slate-50
+              border border-slate-200
+              rounded-xl
+              text-sm text-slate-700
+              focus:outline-none
+              focus:border-[#0F766E]
+              focus:ring-4
+              focus:ring-[#0F766E]/10
+            "
             >
-              <option selected>Seleccionar...</option>
-              <option value="ingreso">Ingreso</option>
-              <option value="gasto">Gasto</option>
+              <option value="">Selecciona una categoría</option>
+              {categorias
+                .filter(
+                  (categoria) =>
+                    categoria.type === "ingreso" && categoria.is_active,
+                )
+                .map((categoria) => (
+                  <option key={categoria._id} value={categoria._id}>
+                    {categoria.name}
+                  </option>
+                ))}
             </select>
           </div>
 
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <Label text="Color" />
 
             <Input
@@ -113,7 +147,7 @@ const CreateIngresoModal = ({ onClose }) => {
               defaultValue={color}
               onChange={(e) => setColor(e.target.value)}
             />
-          </div>
+          </div> */}
           {/* ACTIONS */}
           <div className="pt-4 flex justify-end gap-2">
             <Button variant="ghost" onClick={onClose}>
