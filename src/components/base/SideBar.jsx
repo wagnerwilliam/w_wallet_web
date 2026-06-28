@@ -1,6 +1,6 @@
 import SideBarLink from "./SideBarLink";
 import Logo from "./Logo";
-import { sidebarSections } from "../utils/sidebarSections";
+import { sidebarSections } from "../../utils/sidebarSections";
 
 const SideBar = ({ setIsMobileSidebarOpen }) => {
   return (

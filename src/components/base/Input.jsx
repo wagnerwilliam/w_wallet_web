@@ -1,4 +1,4 @@
-import { baseInputStyles, inputVariants } from "../utils/inputVariants";
+import { baseInputStyles, inputVariants } from "../../utils/inputVariants";
 
 const Input = ({
   type = "text",
