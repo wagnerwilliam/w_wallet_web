@@ -25,7 +25,7 @@ const Ingresos = () => {
 
   //validar uso de useMemo
   const categoriasMap = Object.fromEntries(
-    categorias.map((c) => [c._id, c.name]),
+    categorias?.map((c) => [c._id, c.name]),
   );
 
   const openModal = (type, categoria = null) => {

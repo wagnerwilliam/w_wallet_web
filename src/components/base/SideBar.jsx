@@ -55,7 +55,7 @@ const SideBar = ({ setIsMobileSidebarOpen }) => {
 
       {/* NAV */}
       <nav className="flex-1 px-3 py-4">
-        {sidebarSections.map((section) => (
+        {sidebarSections?.map((section) => (
           <div key={section.title} className="mb-8">
             <p
               className="
@@ -71,7 +71,7 @@ const SideBar = ({ setIsMobileSidebarOpen }) => {
             </p>
 
             <div className="space-y-1">
-              {section.items.map((item) => (
+              {section.items?.map((item) => (
                 <div
                   key={item.label}
                   onClick={() => setIsMobileSidebarOpen(false)}

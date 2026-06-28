@@ -129,7 +129,7 @@ const CreateIngresoModal = ({ onClose, categorias }) => {
                   (categoria) =>
                     categoria.type === "ingreso" && categoria.is_active,
                 )
-                .map((categoria) => (
+                ?.map((categoria) => (
                   <option key={categoria._id} value={categoria._id}>
                     {categoria.name}
                   </option>
