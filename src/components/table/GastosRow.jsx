@@ -5,11 +5,11 @@ import { UseCategoriasByType } from "../../queries/categorias";
 import { categoriasMap } from "../../utils/categoriasMap";
 import { formatDate, formatEUR } from "../../utils/formatters";
 
-const IngresosRow = ({ obj, openModal }) => {
+const GastosRow = ({ obj, openModal }) => {
   let { _id, name, value, is_active, created_at, category_id } = obj;
   let [currentActive, setActive] = useState(is_active);
 
-  const { data: categorias = [] } = UseCategoriasByType("ingreso");
+  const { data: categorias = [] } = UseCategoriasByType("gasto");
   const mapCategorias = categoriasMap(categorias);
 
   return (
@@ -55,4 +55,4 @@ const IngresosRow = ({ obj, openModal }) => {
   );
 };
 
-export default IngresosRow;
+export default GastosRow;

@@ -1,11 +1,11 @@
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-export const ObtenerIngresos = async () => {
-  return await fetch(`${BACKEND_URL}api/ingresos/`);
+export const obtenerGastos = async () => {
+  return await fetch(`${BACKEND_URL}api/gastos/`);
 };
 
-export const crearIngreso = async (data) => {
-  return await fetch(`${BACKEND_URL}api/ingresos/crear`, {
+export const crearGasto = async (data) => {
+  return await fetch(`${BACKEND_URL}api/gastos/crear`, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
@@ -14,8 +14,8 @@ export const crearIngreso = async (data) => {
   });
 };
 
-export const editarIngreso = async (id, data) => {
-  return await fetch(`${BACKEND_URL}api/ingresos/editar/${id}`, {
+export const editarGasto = async (id, data) => {
+  return await fetch(`${BACKEND_URL}api/gastos/editar/${id}`, {
     method: "PATCH",
     headers: {
       "Content-type": "application/json",
@@ -24,8 +24,8 @@ export const editarIngreso = async (id, data) => {
   });
 };
 
-export const eliminarIngreso = async (id) => {
-  return await fetch(`${BACKEND_URL}api/ingresos/eliminar/${id}`, {
+export const eliminarGasto = async (id) => {
+  return await fetch(`${BACKEND_URL}api/gastos/eliminar/${id}`, {
     method: "DELETE",
   });
 };

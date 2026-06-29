@@ -12,7 +12,6 @@ import CreateIngresoModal from "./CreateIngresoModal.jsx";
 import DeleteIngresoModal from "./DeleteIngresoModal.jsx";
 import UpdateIngresoModal from "./UpdateIngresoModal.jsx";
 import { UseIngresos } from "../../queries/ingresos.js";
-import { UseCategoriasByType } from "../../queries/categorias.js";
 
 const Ingresos = () => {
   let [modal, setModal] = useState(null);
@@ -21,15 +20,6 @@ const Ingresos = () => {
 
   // Queries
   const { data: ingresos = [], isLoading, error } = UseIngresos();
-  const { data: categorias } = UseCategoriasByType("ingreso");
-
-  console.log("error aqui " + error);
-  
-
-  //validar uso de useMemo
-  const categoriasMap = Object.fromEntries(
-    categorias?.map((c) => [c._id, c.name]),
-  );
 
   const openModal = (type, categoria = null) => {
     setModal(type);
@@ -70,7 +60,8 @@ const Ingresos = () => {
 
       {error && categorias.length > 0 && (
         <div className="mt-4 rounded-xl border border-yellow-300 bg-yellow-50 p-3 text-sm text-yellow-800">
-          No se pudieron actualizar los ingresos. Mostrando la última información disponible.
+          No se pudieron actualizar los ingresos. Mostrando la última
+          información disponible.
         </div>
       )}
 
@@ -95,7 +86,6 @@ const Ingresos = () => {
           th={IngresosTableHead}
           openModal={openModal}
           Row={IngresosRow}
-          extra={{ categoriasMap }}
         />
       </DataState>
 
