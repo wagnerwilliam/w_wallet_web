@@ -31,7 +31,12 @@ const Ingresos = () => {
     setSelectedIngreso(null);
   };
 
-  const filteredIngresos = [];
+  const filteredIngresos = ingresos?.filter(
+    (c) =>
+      c.name.toLowerCase().includes(search.toLowerCase()) ||
+      String(c.value).toLowerCase().includes(search.toLocaleLowerCase()),
+  );
+
   return (
     <>
       {/* HEADER */}
@@ -58,13 +63,6 @@ const Ingresos = () => {
         </Button>
       </div>
 
-      {error && categorias.length > 0 && (
-        <div className="mt-4 rounded-xl border border-yellow-300 bg-yellow-50 p-3 text-sm text-yellow-800">
-          No se pudieron actualizar los ingresos. Mostrando la última
-          información disponible.
-        </div>
-      )}
-
       {/* TABLE */}
       <DataState
         isLoading={isLoading}
@@ -82,7 +80,7 @@ const Ingresos = () => {
         }
       >
         <Table
-          data={ingresos ?? []}
+          data={filteredIngresos ?? []}
           th={IngresosTableHead}
           openModal={openModal}
           Row={IngresosRow}

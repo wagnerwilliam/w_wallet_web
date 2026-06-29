@@ -1,13 +1,12 @@
 import Button from "../base/Button";
 import { MODALS } from "../../utils/modals";
-import { useState } from "react";
+
 import { UseCategoriasByType } from "../../queries/categorias";
 import { categoriasMap } from "../../utils/categoriasMap";
 import { formatDate, formatEUR } from "../../utils/formatters";
 
 const IngresosRow = ({ obj, openModal }) => {
-  let { _id, name, value, is_active, created_at, category_id } = obj;
-  let [currentActive, setActive] = useState(is_active);
+  let { name, value, is_active, created_at, category_id } = obj;
 
   const { data: categorias = [] } = UseCategoriasByType("ingreso");
   const mapCategorias = categoriasMap(categorias);

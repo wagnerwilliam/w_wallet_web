@@ -10,7 +10,7 @@ import Loading from "../base/Loading.jsx";
 import DataState from "../base/DataState.jsx";
 
 import { UseGastos } from "../../queries/gastos.js";
-import { QueryClient } from "@tanstack/react-query";
+
 import CreateGastoModal from "./CreateGastoModal.jsx";
 import UpdateGastoModal from "./UpdateGastoModal.jsx";
 import DeleteGastoModal from "./DeleteGastoModal.jsx";
@@ -18,6 +18,7 @@ import DeleteGastoModal from "./DeleteGastoModal.jsx";
 const Gastos = () => {
   let [modal, setModal] = useState(null);
   let [selectedtGasto, setSelectedGasto] = useState(null);
+  let [search, setSearch] = useState("");
 
   const { data: gastos = [], isLoading, error } = UseGastos();
 
@@ -30,6 +31,12 @@ const Gastos = () => {
     setModal(null);
     setSelectedGasto(null);
   };
+
+  const filteredGastos = gastos?.filter(
+    (c) =>
+      c.name.toLowerCase().includes(search.toLowerCase()) ||
+      String(c.value).toLowerCase().includes(search.toLocaleLowerCase()),
+  );
 
   return (
     <>
@@ -46,19 +53,16 @@ const Gastos = () => {
 
       {/* ACTION BAR */}
       <div className="flex justify-between items-center mt-6">
-        <Search placeholder="Buscar gasto..." />
+        <Search
+          value={search}
+          onChange={() => setSearch(event.target.value)}
+          placeholder="Buscar gasto..."
+        />
 
         <Button width="ml-4" onClick={() => openModal(MODALS.CREATE)}>
           + Crear gasto
         </Button>
       </div>
-
-      {error && categorias.length > 0 && (
-        <div className="mt-4 rounded-xl border border-yellow-300 bg-yellow-50 p-3 text-sm text-yellow-800">
-          No se pudieron actualizar los ingresos. Mostrando la última
-          información disponible.
-        </div>
-      )}
 
       {/* TABLE */}
       <DataState
@@ -77,7 +81,7 @@ const Gastos = () => {
         }
       >
         <Table
-          data={gastos ?? []}
+          data={filteredGastos ?? []}
           th={GastosTableHead}
           openModal={openModal}
           Row={GastosRow}

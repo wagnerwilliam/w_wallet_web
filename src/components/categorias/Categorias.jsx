@@ -62,13 +62,6 @@ const Categorias = () => {
         </Button>
       </div>
 
-      {error && categorias.length > 0 && (
-        <div className="mt-4 rounded-xl border border-yellow-300 bg-yellow-50 p-3 text-sm text-yellow-800">
-          No se pudieron actualizar las categorías. Mostrando la última
-          información disponible.
-        </div>
-      )}
-
       {/* TABLE */}
       <DataState
         isLoading={isLoading}

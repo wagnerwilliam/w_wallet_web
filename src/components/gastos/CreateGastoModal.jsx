@@ -1,28 +1,31 @@
-import { useState } from "react";
 import Button from "../base/Button";
 import Input from "../base/Input";
 import Label from "../base/Label";
 import { useQueryClient } from "@tanstack/react-query";
 import { CrearGastoMutation } from "../../queries/gastos";
-import { UseCategoriasByType } from "../../queries/categorias";
-import CategoriaOptions from "../categorias/CategoriaOptions";
+import Options from "../categorias/CategoriaOptions";
+import Select from "../base/Select";
 
-const CreateGastoModal = ({ onClose, categorias }) => {
-  let [name, setName] = useState("");
-  let [value, setValue] = useState("");
-  let [category_id, setCategoryId] = useState("");
-  let [user_id, setUserId] = useState("");
+import { gastoSchema } from "./ZodSchema";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
+const CreateGastoModal = ({ onClose }) => {
   const crearGasto = CrearGastoMutation();
   const queryClient = useQueryClient();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(gastoSchema),
+  });
+
+  const onSubmit = (data) => {
     crearGasto.mutate(
       {
-        name,
-        value,
-        category_id,
+        ...data,
         user_id: "1",
       },
       {
@@ -64,27 +67,29 @@ const CreateGastoModal = ({ onClose, categorias }) => {
         {/* HEADER */}
         <div className="mb-5">
           <h2 className="text-lg font-semibold text-slate-900 tracking-tight">
-            Crear gasto
+            Crear Gasto
           </h2>
         </div>
 
         {/* FORM */}
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           {/* NOMBRE */}
           <div className="space-y-2">
-            <Label text="Concepto" />
+            <Label text="Concepto" required />
             <Input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Ej: Pago proyecto web"
+              placeholder="Ej: Pago de alquiler"
               variant="filled"
+              {...register("name")}
+              error={errors.name}
             />
+            {errors.name && (
+              <p className="text-xs text-red-500">{errors.name.message}</p>
+            )}
           </div>
 
           {/* VALOR */}
           <div className="space-y-2">
-            <Label text="Monto" />
+            <Label text="Monto" required />
 
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
@@ -93,50 +98,54 @@ const CreateGastoModal = ({ onClose, categorias }) => {
 
               <Input
                 type="number"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
                 placeholder="0.00"
                 variant="filled"
                 min="0"
                 step="0.01"
                 className="pl-8"
+                {...register("value")}
+                error={errors.value}
               />
             </div>
+            {errors.value && (
+              <p className="text-xs text-red-500">{errors.value.message}</p>
+            )}
           </div>
 
           {/* CATEGORIAS */}
           <div className="space-y-2">
-            <Label text="Categoría" />
+            <Label text="Categoría" required />
 
-            <select
-              value={category_id}
-              onChange={(e) => setCategoryId(e.target.value)}
-              className="
-              w-full
-              px-4 py-2.5
-              bg-slate-50
-              border border-slate-200
-              rounded-xl
-              text-sm text-slate-700
-              focus:outline-none
-              focus:border-[#0F766E]
-              focus:ring-4
-              focus:ring-[#0F766E]/10
-            "
-            >
+            <Select error={errors.category_id} {...register("category_id")}>
               <option value="">Selecciona una categoría</option>
 
-              <CategoriaOptions type="gasto" />
-            </select>
+              <Options type="gasto" />
+            </Select>
+            {errors.category_id && (
+              <p className="text-xs text-red-500">
+                {errors.category_id.message}
+              </p>
+            )}
           </div>
 
+          {/* <div className="space-y-2">
+            <Label text="Color" />
+
+            <Input
+              type="color"
+              variant="color"
+              name="color"
+              defaultValue={color}
+              onChange={(e) => setColor(e.target.value)}
+            />
+          </div> */}
           {/* ACTIONS */}
           <div className="pt-4 flex justify-end gap-2">
             <Button variant="ghost" onClick={onClose}>
               Cancelar
             </Button>
             <Button type="submit" variant="primary">
-              Crear categoría
+              Crear Ingreso
             </Button>
           </div>
         </form>

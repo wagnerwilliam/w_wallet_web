@@ -1,24 +1,30 @@
-import { useState } from "react";
 import Button from "../base/Button";
 import Input from "../base/Input";
 import Label from "../base/Label";
+import Select from "../base/Select";
 import { CrearCategoriaMutation } from "../../queries/categorias";
 import { useQueryClient } from "@tanstack/react-query";
 
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { categoriaSchema } from "./ZodSchema";
+
 const CreateModal = ({ onClose }) => {
-  let [name, setName] = useState("");
-  let [type, setType] = useState("");
-  let [color, setColor] = useState("");
   const crearCategoria = CrearCategoriaMutation();
   const queryClient = useQueryClient();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(categoriaSchema),
+  });
+
+  const onSubmit = (data) => {
     crearCategoria.mutate(
       {
-        name,
-        type,
-        color,
+        ...data,
         user_id: "1",
       },
       {
@@ -55,55 +61,40 @@ const CreateModal = ({ onClose }) => {
         </div>
 
         {/* FORM */}
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           {/* NOMBRE */}
           <div className="space-y-2">
-            <Label text="Nombre" />
+            <Label text="Nombre" required />
             <Input
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
               placeholder="Ej: Alimentación"
               variant="filled"
+              {...register("name")}
+              error={errors.name}
             />
+            {errors.name && (
+              <p className="text-xs text-red-500">{errors.name.message}</p>
+            )}
           </div>
 
           {/* TIPO */}
-          <div>
-            <label className="text-xs font-medium text-slate-600">Tipo</label>
-            <select
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              name="tipo"
-              className="
-                mt-1 w-full
-                px-4 py-2.5
-                bg-slate-50
-                border border-slate-200
-                rounded-xl
-                text-sm text-slate-700
-                focus:outline-none
-                focus:border-[#0F766E]
-                focus:ring-4
-                focus:ring-[#0F766E]/10
-              "
-            >
-              <option selected>Seleccionar...</option>
+          <div className="space-y-2">
+            <Label text="Tipo" required />
+            <Select error={errors.type} {...register("type")}>
+              <option value="">Seleccionar...</option>
               <option value="ingreso">Ingreso</option>
               <option value="gasto">Gasto</option>
-            </select>
+            </Select>
+
+            {errors.type && (
+              <p className="text-xs text-red-500">{errors.type.message}</p>
+            )}
           </div>
 
           <div className="space-y-2">
             <Label text="Color" />
 
-            <Input
-              type="color"
-              variant="color"
-              name="color"
-              defaultValue={color}
-              onChange={(e) => setColor(e.target.value)}
-            />
+            <Input type="color" variant="color" {...register("color")} />
           </div>
           {/* ACTIONS */}
           <div className="pt-4 flex justify-end gap-2">
