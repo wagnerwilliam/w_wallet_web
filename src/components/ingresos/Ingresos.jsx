@@ -23,7 +23,7 @@ const Ingresos = () => {
   const { data: ingresos = [], isLoading, error } = UseIngresos();
   const { data: categorias } = UseCategoriasByType("ingreso");
 
-  console.log(error);
+  console.log("error aqui " + error);
   
 
   //validar uso de useMemo
@@ -68,6 +68,12 @@ const Ingresos = () => {
         </Button>
       </div>
 
+      {error && categorias.length > 0 && (
+        <div className="mt-4 rounded-xl border border-yellow-300 bg-yellow-50 p-3 text-sm text-yellow-800">
+          No se pudieron actualizar los ingresos. Mostrando la última información disponible.
+        </div>
+      )}
+
       {/* TABLE */}
       <DataState
         isLoading={isLoading}
@@ -85,7 +91,7 @@ const Ingresos = () => {
         }
       >
         <Table
-          data={ingresos}
+          data={ingresos ?? []}
           th={IngresosTableHead}
           openModal={openModal}
           Row={IngresosRow}
