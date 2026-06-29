@@ -96,3 +96,24 @@ export const inputVariants = {
     focus:ring-[#0F766E]/10
   `,
 };
+
+export const inputStates = {
+  error: `
+    border-red-500
+    bg-red-50
+    focus:border-red-500
+    focus:ring-4 focus:ring-red-200
+  `,
+
+  success: `
+    border-green-500
+    focus:border-green-500
+    focus:ring-4 focus:ring-green-200
+  `,
+
+  disabled: `
+    bg-slate-100
+    text-slate-400
+    cursor-not-allowed
+  `,
+};

@@ -1,4 +1,8 @@
-import { baseInputStyles, inputVariants } from "../../utils/inputVariants";
+import {
+  baseInputStyles,
+  inputVariants,
+  inputStates,
+} from "../../utils/inputVariants";
 
 const Input = ({
   type = "text",
@@ -6,6 +10,8 @@ const Input = ({
   variant = "primary",
   value,
   onChange,
+  error,
+  disabled,
   className = "",
   ...props
 }) => {
@@ -18,6 +24,8 @@ const Input = ({
       className={`
         ${baseInputStyles}
         ${inputVariants[variant]}
+        ${error ? inputStates.error : ""}
+        ${disabled ? inputStates.disabled : ""}
         ${className}
       `}
       {...props}
