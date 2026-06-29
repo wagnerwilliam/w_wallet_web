@@ -3,22 +3,22 @@ import Button from "../base/Button";
 import Input from "../base/Input";
 import Label from "../base/Label";
 import { useQueryClient } from "@tanstack/react-query";
-import { CrearIngresoMutation } from "../../queries/ingresos";
+import { CrearGastoMutation } from "../../queries/gastos";
 import { UseCategoriasByType } from "../../queries/categorias";
-import Options from "../categorias/CategoriaOptions";
+import CategoriaOptions from "../categorias/CategoriaOptions";
 
-const CreateIngresoModal = ({ onClose, categorias }) => {
+const CreateGastoModal = ({ onClose, categorias }) => {
   let [name, setName] = useState("");
   let [value, setValue] = useState("");
   let [category_id, setCategoryId] = useState("");
   let [user_id, setUserId] = useState("");
 
-  const crearIngreso = CrearIngresoMutation();
+  const crearGasto = CrearGastoMutation();
   const queryClient = useQueryClient();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    crearIngreso.mutate(
+    crearGasto.mutate(
       {
         name,
         value,
@@ -27,7 +27,7 @@ const CreateIngresoModal = ({ onClose, categorias }) => {
       },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["ingresos"] });
+          queryClient.invalidateQueries({ queryKey: ["gastos"] });
           onClose();
         },
       },
@@ -64,7 +64,7 @@ const CreateIngresoModal = ({ onClose, categorias }) => {
         {/* HEADER */}
         <div className="mb-5">
           <h2 className="text-lg font-semibold text-slate-900 tracking-tight">
-            Crear categoría
+            Crear gasto
           </h2>
         </div>
 
@@ -126,21 +126,10 @@ const CreateIngresoModal = ({ onClose, categorias }) => {
             >
               <option value="">Selecciona una categoría</option>
 
-              <Options type="ingreso" />
+              <CategoriaOptions type="gasto" />
             </select>
           </div>
 
-          {/* <div className="space-y-2">
-            <Label text="Color" />
-
-            <Input
-              type="color"
-              variant="color"
-              name="color"
-              defaultValue={color}
-              onChange={(e) => setColor(e.target.value)}
-            />
-          </div> */}
           {/* ACTIONS */}
           <div className="pt-4 flex justify-end gap-2">
             <Button variant="ghost" onClick={onClose}>
@@ -156,4 +145,4 @@ const CreateIngresoModal = ({ onClose, categorias }) => {
   );
 };
 
-export default CreateIngresoModal;
+export default CreateGastoModal;

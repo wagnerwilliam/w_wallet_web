@@ -4,16 +4,16 @@ import Input from "../base/Input";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import CategoriaOptions from "../categorias/CategoriaOptions";
-import { EditarIngresoMutation } from "../../queries/ingresos";
+import { EditarGastoMutation } from "../../queries/gastos";
 
-const UpdateIngresoModal = ({ closeModal, ingreso }) => {
-  let { _id, name, value, category_id } = ingreso;
+const UpdateGastoModal = ({ closeModal, gasto }) => {
+  let { _id, name, value, category_id } = gasto;
 
   let [currentName, setName] = useState(name);
   let [currentValue, setValue] = useState(value);
   let [currentCategory, setCategoryId] = useState(category_id);
 
-  const editarIngreso = EditarIngresoMutation();
+  const editarGasto = EditarGastoMutation();
   const queryClient = useQueryClient();
 
   const handleUpdate = (e) => {
@@ -26,14 +26,14 @@ const UpdateIngresoModal = ({ closeModal, ingreso }) => {
       : null;
     if (Object.keys(data).length === 0) return;
 
-    editarIngreso.mutate(
+    editarGasto.mutate(
       {
         _id,
         data,
       },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["ingresos"] });
+          queryClient.invalidateQueries({ queryKey: ["gastos"] });
           closeModal();
         },
       },
@@ -62,11 +62,11 @@ const UpdateIngresoModal = ({ closeModal, ingreso }) => {
         {/* HEADER */}
         <div className="mb-6">
           <h2 className="text-lg font-semibold text-slate-900 tracking-tight">
-            Editar ingreso
+            Editar gasto
           </h2>
 
           <p className="mt-1 text-sm text-slate-500">
-            Actualiza la información de este ingreso.
+            Actualiza la información de este gasto.
           </p>
         </div>
 
@@ -125,7 +125,7 @@ const UpdateIngresoModal = ({ closeModal, ingreso }) => {
             >
               <option value="">Selecciona una categoría</option>
 
-              <CategoriaOptions type="ingreso" />
+              <CategoriaOptions type="gasto" />
             </select>
           </div>
 
@@ -145,4 +145,4 @@ const UpdateIngresoModal = ({ closeModal, ingreso }) => {
   );
 };
 
-export default UpdateIngresoModal;
+export default UpdateGastoModal;

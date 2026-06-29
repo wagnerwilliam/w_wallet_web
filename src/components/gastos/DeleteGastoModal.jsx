@@ -1,14 +1,14 @@
 import Button from "../base/Button";
 import { useQueryClient } from "@tanstack/react-query";
-import { EliminarIngresoMutation } from "../../queries/ingresos";
+import { EliminarGastoMutation } from "../../queries/gastos";
 
-const DeleteIngresoModal = ({ closeModal, ingreso }) => {
-  const eliminarIngreso = EliminarIngresoMutation();
+const DeleteGastoModal = ({ closeModal, gasto }) => {
+  const eliminarGasto = EliminarGastoMutation();
   const queryClient = useQueryClient();
   const handleDelete = () =>
-    eliminarIngreso.mutate(ingreso._id, {
+    eliminarGasto.mutate(gasto._id, {
       onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["ingresos"] });
+        queryClient.invalidateQueries({ queryKey: ["gastos"] });
         closeModal();
       },
     });
@@ -38,7 +38,7 @@ const DeleteIngresoModal = ({ closeModal, ingreso }) => {
 
           <div>
             <h2 className="text-lg font-semibold text-slate-900 tracking-tight">
-              Eliminar ingreso
+              Eliminar gasto
             </h2>
 
             <p className="text-sm text-slate-500 mt-1">
@@ -49,10 +49,10 @@ const DeleteIngresoModal = ({ closeModal, ingreso }) => {
 
         {/* CONTENT */}
         <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
-          <p className="text-xs text-slate-500">Ingreso seleccionado</p>
+          <p className="text-xs text-slate-500">Gasto seleccionado</p>
 
           <p className="text-sm font-semibold text-slate-900 mt-1">
-            {ingreso?.name}
+            {gasto?.name}
           </p>
         </div>
 
@@ -71,4 +71,4 @@ const DeleteIngresoModal = ({ closeModal, ingreso }) => {
   );
 };
 
-export default DeleteIngresoModal;
+export default DeleteGastoModal;

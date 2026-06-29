@@ -1,4 +1,4 @@
-const Table = ({ th, data, openModal, Row, extra }) => {
+const Table = ({ th, data, openModal, Row }) => {
   return (
     <div className="mt-6 bg-white border border-slate-200 rounded-2xl overflow-x-auto">
       <table className="w-full min-w-160 text-sm">
@@ -19,7 +19,7 @@ const Table = ({ th, data, openModal, Row, extra }) => {
 
         <tbody className="divide-y divide-slate-100">
           {data?.map((obj) => (
-            <Row key={obj._id} obj={obj} openModal={openModal} {...extra} />
+            <Row key={obj._id} obj={obj} openModal={openModal} />
           ))}
         </tbody>
       </table>
