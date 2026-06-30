@@ -32,7 +32,8 @@ const Gastos = () => {
     setSelectedGasto(null);
   };
 
-  const filteredGastos = gastos?.filter(
+  // TODO:Solucion momentanea se debe buscar mejor forma de filtrar.
+  const filteredGastos = (Array.isArray(gastos) ? gastos : []).filter(
     (c) =>
       c.name.toLowerCase().includes(search.toLowerCase()) ||
       String(c.value).toLowerCase().includes(search.toLocaleLowerCase()),

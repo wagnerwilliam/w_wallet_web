@@ -31,10 +31,11 @@ const Ingresos = () => {
     setSelectedIngreso(null);
   };
 
-  const filteredIngresos = ingresos?.filter(
+  // TODO:Solucion momentanea se debe buscar mejor forma de filtrar.
+  const filteredIngresos = (Array.isArray(ingresos) ? ingresos : []).filter(
     (c) =>
       c.name.toLowerCase().includes(search.toLowerCase()) ||
-      String(c.value).toLowerCase().includes(search.toLocaleLowerCase()),
+      String(c.value).toLowerCase().includes(search.toLowerCase()),
   );
 
   return (
