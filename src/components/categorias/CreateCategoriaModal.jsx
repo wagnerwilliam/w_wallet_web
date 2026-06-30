@@ -25,7 +25,7 @@ const CreateModal = ({ onClose }) => {
     crearCategoria.mutate(
       {
         ...data,
-        user_id: "1",
+        user_id: "6a4183c2fc249d8e995c77a3",
       },
       {
         onSuccess: () => {

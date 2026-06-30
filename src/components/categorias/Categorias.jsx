@@ -30,10 +30,13 @@ const Categorias = () => {
     setSelectedCategoria(null);
   };
 
-  const filteredCategorias = categorias?.filter(
+  // TODO:Solucion momentanea se debe buscar mejor forma de filtrar.
+  const filteredCategorias = (
+    Array.isArray(categorias) ? categorias : []
+  ).filter(
     (c) =>
       c.name.toLowerCase().includes(search.toLowerCase()) ||
-      c.type.toLowerCase().includes(search.toLocaleLowerCase()),
+      String(c.value).toLowerCase().includes(search.toLocaleLowerCase()),
   );
 
   return (

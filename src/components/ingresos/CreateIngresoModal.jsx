@@ -27,7 +27,7 @@ const CreateIngresoModal = ({ onClose }) => {
     crearIngreso.mutate(
       {
         ...data,
-        user_id: "1",
+        user_id: "6a4183c2fc249d8e995c77a3",
       },
       {
         onSuccess: () => {
@@ -111,6 +111,22 @@ const CreateIngresoModal = ({ onClose }) => {
             </div>
             {errors.value && (
               <p className="text-xs text-red-500">{errors.value.message}</p>
+            )}
+          </div>
+
+          {/* Fecha */}
+          <div className="space-y-2">
+            <Label text="Fecha del ingreso" />
+
+            <Input
+              type="date"
+              variant="filled"
+              error={errors.date}
+              {...register("created_at")}
+            />
+
+            {errors.date && (
+              <p className="text-xs text-red-500">{errors.date.message}</p>
             )}
           </div>
 
