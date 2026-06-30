@@ -14,26 +14,26 @@ const GastosRow = ({ obj, openModal }) => {
   return (
     <tr className="border-t border-slate-100 hover:bg-slate-50 transition">
       {/* NAME */}
-      <td className="px-4 py-2 text-xs font-medium text-slate-900">{name}</td>
+      <td className="px-3 py-2 text-xs font-medium text-slate-900">{name}</td>
 
       {/* value */}
-      <td className="px-4 py-2 text-xs text-slate-500">{formatEUR(value)}</td>
+      <td className="px-3 py-2 text-xs text-slate-500">{formatEUR(value)}</td>
 
-      <td className="px-4 py-2 text-xs text-slate-500">
+      <td className="px-3 py-2 text-xs text-slate-500">
         {formatDate(created_at)}
       </td>
 
       {/* categoria */}
-      <td className="px-4 py-2 text-xs text-slate-500">
+      <td className="px-3 py-2 text-xs text-slate-500">
         {mapCategorias?.[category_id] || "sin categoria"}
       </td>
 
       {/* ESTADO */}
-      <td className="px-4 py-2 text-xs">{is_active ? "Activo" : "Inactivo"}</td>
+      <td className="px-3 py-2 text-xs">{is_active ? "Activo" : "Inactivo"}</td>
 
       {/* ACTIONS */}
-      <td className="px-4 py-2 text-right">
-        <div className="flex items-center justify-end gap-1">
+      <td className="px-3 sm:px-4 py-2 text-right">
+        <div className="flex items-center justify-end">
           <Button
             variant="secondary"
             size="sm"
@@ -41,6 +41,7 @@ const GastosRow = ({ obj, openModal }) => {
           >
             Editar
           </Button>
+
           <Button
             variant="logout"
             size="sm"
