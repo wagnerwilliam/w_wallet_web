@@ -50,85 +50,83 @@ const Register = () => {
   };
 
   return (
-    <div className="max-w-md w-full mx-auto">
-      <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 lg:p-8">
-        <AuthHeader
-          title="Crear cuenta"
-          subtitle="Empieza a controlar tus finanzas"
-        />
+    <>
+      <AuthHeader
+        title="Crear cuenta"
+        subtitle="Empieza a controlar tus finanzas"
+      />
 
-        <form className="mt-6 space-y-4" onSubmit={handleSubmit(onSubmit)}>
-          {/* USERNAME */}
-          <div className="space-y-1">
-            <Input
-              type="text"
-              placeholder="Nombre de usuario"
-              px="px-4"
-              {...register("username")}
-              error={errors.username}
-            />
-            {errors.username && (
-              <p className="text-xs text-red-500">{errors.username.message}</p>
-            )}
-          </div>
-
-          {/* EMAIL */}
-          <div className="space-y-1">
-            <Input
-              type="email"
-              placeholder="Correo electrónico"
-              px="px-4"
-              {...register("email")}
-              error={errors.email}
-            />
-            {errors.email && (
-              <p className="text-xs text-red-500">{errors.email.message}</p>
-            )}
-          </div>
-
-          {/* PASSWORD */}
-          <div className="space-y-1">
-            <Input
-              type="password"
-              placeholder="Contraseña"
-              px="px-4"
-              {...register("password")}
-              error={errors.password}
-            />
-            {errors.password && (
-              <p className="text-xs text-red-500">{errors.password.message}</p>
-            )}
-          </div>
-
-          {/* CONFIRM PASSWORD */}
-          <div className="space-y-1">
-            <Input
-              type="password"
-              placeholder="Confirmar contraseña"
-              px="px-4"
-              {...register("confirm_password")}
-              error={errors.confirm_password}
-            />
-            {errors.confirm_password && (
-              <p className="text-xs text-red-500">
-                {errors.confirm_password.message}
-              </p>
-            )}
-          </div>
-
-          {/* BUTTON */}
-          <Button width="w-full" type="submit">
-            Crear cuenta
-          </Button>
-
-          <AuthFooter
-            text="¿Ya tienes cuenta?"
-            linkText="Inicia sesión"
-            to="/login"
+      <form className="mt-6 space-y-4" onSubmit={handleSubmit(onSubmit)}>
+        {/* USERNAME */}
+        <div className="space-y-1">
+          <Input
+            type="text"
+            placeholder="Nombre de usuario"
+            px="px-4"
+            {...register("username")}
+            error={errors.username}
           />
-        </form>
-      </div>
-    </div>
+          {errors.username && (
+            <p className="text-xs text-red-500">{errors.username.message}</p>
+          )}
+        </div>
+
+        {/* EMAIL */}
+        <div className="space-y-1">
+          <Input
+            type="email"
+            placeholder="Correo electrónico"
+            px="px-4"
+            {...register("email")}
+            error={errors.email}
+          />
+          {errors.email && (
+            <p className="text-xs text-red-500">{errors.email.message}</p>
+          )}
+        </div>
+
+        {/* PASSWORD */}
+        <div className="space-y-1">
+          <Input
+            type="password"
+            placeholder="Contraseña"
+            px="px-4"
+            {...register("password")}
+            error={errors.password}
+          />
+          {errors.password && (
+            <p className="text-xs text-red-500">{errors.password.message}</p>
+          )}
+        </div>
+
+        {/* CONFIRM PASSWORD */}
+        <div className="space-y-1">
+          <Input
+            type="password"
+            placeholder="Confirmar contraseña"
+            px="px-4"
+            {...register("confirm_password")}
+            error={errors.confirm_password}
+          />
+          {errors.confirm_password && (
+            <p className="text-xs text-red-500">
+              {errors.confirm_password.message}
+            </p>
+          )}
+        </div>
+
+        {/* BUTTON */}
+        <Button width="w-full" type="submit">
+          Crear cuenta
+        </Button>
+
+        <AuthFooter
+          text="¿Ya tienes cuenta?"
+          linkText="Inicia sesión"
+          to="/login"
+        />
+      </form>
+    </>
   );
 };
 
