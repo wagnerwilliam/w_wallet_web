@@ -13,6 +13,7 @@ export const UseCategorias = () => {
       const response = await ObtenerCategorias();
 
       if (!response.ok) {
+        // puede mejorarse esta respuest del backend.
         throw new Error("Error al obtener categorías");
       }
       return response.json();
@@ -36,6 +37,7 @@ export const CrearCategoriaMutation = () => {
       const response = await crearCategoria(data);
 
       if (!response.ok) {
+        // puede mejorarse esta respuest del backend.
         throw new Error("Error al crear categoría");
       }
 
@@ -50,6 +52,7 @@ export const EditarCategoriaMutation = () => {
       const response = await editarCategoria(_id, data);
 
       if (!response.ok) {
+        // puede mejorarse esta respuest del backend.
         throw new Error("Error al editar categoría");
       }
 
@@ -64,6 +67,7 @@ export const EliminarCategoriaMutation = () => {
       const response = await eliminarCategoria(id);
 
       if (!response.ok) {
+        // puede mejorarse esta respuest del backend.
         throw new Error("Error eliminando categoría");
       }
 
