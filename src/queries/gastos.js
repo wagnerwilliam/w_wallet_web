@@ -22,6 +22,7 @@ export const CrearGastoMutation = () => {
       const response = await crearGasto(data);
 
       if (!response.ok) {
+        // puede mejorarse esta respuest del backend.
         throw new Error("Error al crear gasto");
       }
 
@@ -36,6 +37,7 @@ export const EditarGastoMutation = () => {
       const response = await editarGasto(_id, data);
 
       if (!response.ok) {
+        // puede mejorarse esta respuest del backend.
         throw new Error("Error al editar gasto");
       }
 
@@ -50,6 +52,7 @@ export const EliminarGastoMutation = () => {
       const response = await eliminarGasto(id);
 
       if (!response.ok) {
+        // puede mejorarse esta respuest del backend.
         throw new Error("Error eliminando gasto");
       }
 
