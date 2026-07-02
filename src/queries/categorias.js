@@ -6,11 +6,11 @@ import {
   editarCategoria,
 } from "../services/CategoriasService";
 
-export const UseCategorias = () => {
+export const UseCategorias = (token) => {
   return useQuery({
     queryKey: ["categorias"],
     queryFn: async () => {
-      const response = await ObtenerCategorias();
+      const response = await ObtenerCategorias(token);
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.
@@ -21,8 +21,8 @@ export const UseCategorias = () => {
   });
 };
 
-export const UseCategoriasByType = (type) => {
-  const { data = [], ...rest } = UseCategorias();
+export const UseCategoriasByType = (type, token) => {
+  const { data = [], ...rest } = UseCategorias(token);
   const filtered = data?.filter((c) => c.type === type && c.is_active);
 
   return {
@@ -33,8 +33,8 @@ export const UseCategoriasByType = (type) => {
 
 export const CrearCategoriaMutation = () => {
   return useMutation({
-    mutationFn: async (data) => {
-      const response = await crearCategoria(data);
+    mutationFn: async ({ token, ...data }) => {
+      const response = await crearCategoria(data, token);
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.
@@ -48,8 +48,8 @@ export const CrearCategoriaMutation = () => {
 
 export const EditarCategoriaMutation = () => {
   return useMutation({
-    mutationFn: async ({ _id, data }) => {
-      const response = await editarCategoria(_id, data);
+    mutationFn: async ({ _id, data, token }) => {
+      const response = await editarCategoria(_id, data, token);
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.
@@ -63,8 +63,8 @@ export const EditarCategoriaMutation = () => {
 
 export const EliminarCategoriaMutation = () => {
   return useMutation({
-    mutationFn: async (id) => {
-      const response = await eliminarCategoria(id);
+    mutationFn: async ({ id, token }) => {
+      const response = await eliminarCategoria(id, token);
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.

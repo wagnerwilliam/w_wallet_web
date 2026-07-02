@@ -1,10 +1,26 @@
 import { useMutation } from "@tanstack/react-query";
-import { registrarUsurio } from "../services/AuthService";
+import { Register, Login } from "../services/AuthService";
 
 export const RegistrarUsuarioMutation = () => {
   return useMutation({
     mutationFn: async (data) => {
-      const response = await registrarUsurio(data);
+      const response = await Register(data);
+      const result = await response.json();
+
+      if (!response.ok) {
+        // puede mejorarse esta respuest del backend.
+        throw result;
+      }
+
+      return result;
+    },
+  });
+};
+
+export const LoginMutation = () => {
+  return useMutation({
+    mutationFn: async (data) => {
+      const response = await Login(data);
       const result = await response.json();
 
       if (!response.ok) {

@@ -10,8 +10,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ingresoSchema } from "./ZodSchema";
 
+import { useContext } from "react";
+import Context from "../../context/Context";
+
 const UpdateIngresoModal = ({ closeModal, ingreso }) => {
   let { _id, name, value, category_id } = ingreso;
+  const { token } = useContext(Context);
 
   const editarIngreso = EditarIngresoMutation();
   const queryClient = useQueryClient();
@@ -37,6 +41,7 @@ const UpdateIngresoModal = ({ closeModal, ingreso }) => {
       {
         _id,
         data,
+        token,
       },
       {
         onSuccess: () => {

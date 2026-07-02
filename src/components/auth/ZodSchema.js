@@ -4,11 +4,11 @@ const USERNAME_REGEX = /^[a-zA-Z0-9_]{3,30}$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
-export const authSchema = z
+export const registerSchema = z
   .object({
     username: z
       .string()
-      .min(1, "El username es obligatorio")
+      .min(1, "El nombre de usuario es obligatorio")
       .regex(
         USERNAME_REGEX,
         "Debe tener entre 3 y 30 caracteres y solo puede contener letras, números y guiones bajos (_)",
@@ -33,3 +33,20 @@ export const authSchema = z
     message: "Las contraseñas no coinciden",
     path: ["confirm_password"],
   });
+
+export const loginSchema = z.object({
+  username: z
+    .string()
+    .min(1, "El nombre de usuario es obligatorio")
+    .regex(
+      USERNAME_REGEX,
+      "Debe tener entre 3 y 30 caracteres y solo puede contener letras, números y guiones bajos (_)",
+    ),
+  password: z
+    .string()
+    .min(1, "La contraseña es obligatoria")
+    .regex(
+      PASSWORD_REGEX,
+      "Debe tener mínimo 8 caracteres, una mayúscula, una minúscula y un número",
+    ),
+});
