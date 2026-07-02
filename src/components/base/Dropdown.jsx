@@ -1,6 +1,21 @@
 import Button from "./Button";
+import { useContext } from "react";
+import Context from "../../context/Context.jsx";
+import toast from "react-hot-toast";
 
 const DropDown = () => {
+  const { setToken } = useContext(Context);
+  const onClick = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+    toast.success("Has cerrado sesión correctamente.");
+    // setTimeout(() => {
+    //   navigate("/login", {
+    //     replace: true,
+    //   })
+    // }, 1000);
+  };
+
   return (
     <div
       className="
@@ -57,7 +72,7 @@ const DropDown = () => {
       <div className="border-t border-slate-100" />
 
       {/* ACTION */}
-      <Button width="w-full" variant="logout">
+      <Button width="w-full" variant="logout" onClick={onClick}>
         Cerrar sesión
       </Button>
     </div>

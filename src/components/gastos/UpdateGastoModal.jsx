@@ -10,12 +10,15 @@ import { EditarGastoMutation } from "../../queries/gastos";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { gastoSchema } from "./ZodSchema";
+import { useContext } from "react";
+import Context from "../../context/Context";
 
 const UpdateGastoModal = ({ closeModal, gasto }) => {
   let { _id, name, value, category_id } = gasto;
 
   const editarGasto = EditarGastoMutation();
   const queryClient = useQueryClient();
+  const { token } = useContext(Context);
 
   const {
     register,
@@ -38,6 +41,7 @@ const UpdateGastoModal = ({ closeModal, gasto }) => {
       {
         _id,
         data,
+        token,
       },
       {
         onSuccess: () => {

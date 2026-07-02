@@ -2,16 +2,24 @@ import Button from "../base/Button";
 import { useQueryClient } from "@tanstack/react-query";
 import { EliminarIngresoMutation } from "../../queries/ingresos";
 
+import { useContext } from "react";
+import Context from "../../context/Context";
+
 const DeleteIngresoModal = ({ closeModal, ingreso }) => {
   const eliminarIngreso = EliminarIngresoMutation();
   const queryClient = useQueryClient();
+  const { token } = useContext(Context);
+
   const handleDelete = () =>
-    eliminarIngreso.mutate(ingreso._id, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["ingresos"] });
-        closeModal();
+    eliminarIngreso.mutate(
+      { id: ingreso._id, token },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["ingresos"] });
+          closeModal();
+        },
       },
-    });
+    );
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">

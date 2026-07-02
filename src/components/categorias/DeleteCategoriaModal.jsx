@@ -1,17 +1,24 @@
 import Button from "../base/Button";
 import { useQueryClient } from "@tanstack/react-query";
 import { EliminarCategoriaMutation } from "../../queries/categorias";
+import { useContext } from "react";
+import Context from "../../context/Context";
 
 const DeleteCategoriaModal = ({ closeModal, categoria }) => {
   const eliminarCategoria = EliminarCategoriaMutation();
   const queryClient = useQueryClient();
+  let { token } = useContext(Context);
+
   const handleDelete = () =>
-    eliminarCategoria.mutate(categoria._id, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["categorias"] });
-        closeModal();
+    eliminarCategoria.mutate(
+      { id: categoria._id, token },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["categorias"] });
+          closeModal();
+        },
       },
-    });
+    );
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">

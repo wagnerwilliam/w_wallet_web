@@ -8,10 +8,13 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { categoriaSchema } from "./ZodSchema";
+import { useContext } from "react";
+import Context from "../../context/Context";
 
 const CreateModal = ({ onClose }) => {
   const crearCategoria = CrearCategoriaMutation();
   const queryClient = useQueryClient();
+  let { token } = useContext(Context);
 
   const {
     register,
@@ -25,7 +28,7 @@ const CreateModal = ({ onClose }) => {
     crearCategoria.mutate(
       {
         ...data,
-        user_id: "6a4183c2fc249d8e995c77a3",
+        token,
       },
       {
         onSuccess: () => {

@@ -15,12 +15,16 @@ import CreateGastoModal from "./CreateGastoModal.jsx";
 import UpdateGastoModal from "./UpdateGastoModal.jsx";
 import DeleteGastoModal from "./DeleteGastoModal.jsx";
 
+import { useContext } from "react";
+import Context from "../../context/Context.jsx";
+
 const Gastos = () => {
   let [modal, setModal] = useState(null);
   let [selectedtGasto, setSelectedGasto] = useState(null);
   let [search, setSearch] = useState("");
+  let { token } = useContext(Context);
 
-  const { data: gastos = [], isLoading, error } = UseGastos();
+  const { data: gastos = [], isLoading, error } = UseGastos(token);
 
   const openModal = (type, gasto = null) => {
     setModal(type);

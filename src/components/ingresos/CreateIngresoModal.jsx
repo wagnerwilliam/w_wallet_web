@@ -10,10 +10,13 @@ import Select from "../base/Select";
 import { ingresoSchema } from "./ZodSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useContext } from "react";
+import Context from "../../context/Context";
 
 const CreateIngresoModal = ({ onClose }) => {
   const crearIngreso = CrearIngresoMutation();
   const queryClient = useQueryClient();
+  const { token } = useContext(Context);
 
   const {
     register,
@@ -27,7 +30,7 @@ const CreateIngresoModal = ({ onClose }) => {
     crearIngreso.mutate(
       {
         ...data,
-        user_id: "6a4183c2fc249d8e995c77a3",
+        token,
       },
       {
         onSuccess: () => {
@@ -37,16 +40,6 @@ const CreateIngresoModal = ({ onClose }) => {
       },
     );
   };
-
-  // crearIngreso.mutate({
-  //   data: {
-  //     name,
-  //     type,
-  //     color,
-  //     user_id: "1",
-  //   },
-  //   token,
-  // });
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
