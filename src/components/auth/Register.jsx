@@ -18,7 +18,7 @@ import toast from "react-hot-toast";
 const Register = () => {
   const regitrarUsuario = RegistrarUsuarioMutation();
   const navigate = useNavigate();
-  let { token } = useContext(Context);
+  let { accessToken } = useContext(Context);
 
   const {
     register,
@@ -54,7 +54,7 @@ const Register = () => {
 
   return (
     <>
-      {token ? (
+      {accessToken ? (
         <Navigate to="/home" />
       ) : (
         <>

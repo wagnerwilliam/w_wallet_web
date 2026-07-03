@@ -6,11 +6,11 @@ import {
   editarCategoria,
 } from "../services/CategoriasService";
 
-export const UseCategorias = (token) => {
+export const UseCategorias = (accessToken) => {
   return useQuery({
     queryKey: ["categorias"],
     queryFn: async () => {
-      const response = await ObtenerCategorias(token);
+      const response = await ObtenerCategorias(accessToken);
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.
@@ -33,8 +33,8 @@ export const UseCategoriasByType = (type, token) => {
 
 export const CrearCategoriaMutation = () => {
   return useMutation({
-    mutationFn: async ({ token, ...data }) => {
-      const response = await crearCategoria(data, token);
+    mutationFn: async ({ accessToken, ...data }) => {
+      const response = await crearCategoria(data, accessToken);
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.
@@ -48,8 +48,8 @@ export const CrearCategoriaMutation = () => {
 
 export const EditarCategoriaMutation = () => {
   return useMutation({
-    mutationFn: async ({ _id, data, token }) => {
-      const response = await editarCategoria(_id, data, token);
+    mutationFn: async ({ _id, data, accessToken }) => {
+      const response = await editarCategoria(_id, data, accessToken);
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.
@@ -63,8 +63,8 @@ export const EditarCategoriaMutation = () => {
 
 export const EliminarCategoriaMutation = () => {
   return useMutation({
-    mutationFn: async ({ id, token }) => {
-      const response = await eliminarCategoria(id, token);
+    mutationFn: async ({ id, accessToken }) => {
+      const response = await eliminarCategoria(id, accessToken);
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.

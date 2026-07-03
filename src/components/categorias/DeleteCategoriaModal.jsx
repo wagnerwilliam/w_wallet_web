@@ -7,11 +7,11 @@ import Context from "../../context/Context";
 const DeleteCategoriaModal = ({ closeModal, categoria }) => {
   const eliminarCategoria = EliminarCategoriaMutation();
   const queryClient = useQueryClient();
-  let { token } = useContext(Context);
+  let { accessToken } = useContext(Context);
 
   const handleDelete = () =>
     eliminarCategoria.mutate(
-      { id: categoria._id, token },
+      { id: categoria._id, accessToken },
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["categorias"] });

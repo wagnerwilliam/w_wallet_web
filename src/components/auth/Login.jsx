@@ -19,7 +19,7 @@ import toast from "react-hot-toast";
 const Login = () => {
   const iconClass =
     "absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#0F766E]";
-  let { token, setToken } = useContext(Context);
+  let { accessToken, setAccessToken } = useContext(Context);
 
   const Login = LoginMutation();
   const navigate = useNavigate();
@@ -35,10 +35,10 @@ const Login = () => {
 
   const onSubmit = (data) => {
     Login.mutate(data, {
-      onSuccess: ({ token }) => {
-        setToken(token);
+      onSuccess: ({ accessToken }) => {
+        setAccessToken(accessToken);
         toast.success("Has iniciado sesión correctamente.");
-        localStorage.setItem("token", token);
+        localStorage.setItem("accessToken", accessToken);
         setTimeout(() => {
           navigate("/home");
         }, 1000);
@@ -58,7 +58,7 @@ const Login = () => {
 
   return (
     <>
-      {token ? (
+      {accessToken ? (
         <Navigate to="/home" />
       ) : (
         <>

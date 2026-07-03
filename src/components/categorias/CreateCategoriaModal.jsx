@@ -14,7 +14,7 @@ import Context from "../../context/Context";
 const CreateModal = ({ onClose }) => {
   const crearCategoria = CrearCategoriaMutation();
   const queryClient = useQueryClient();
-  let { token } = useContext(Context);
+  let { accessToken } = useContext(Context);
 
   const {
     register,
@@ -28,7 +28,7 @@ const CreateModal = ({ onClose }) => {
     crearCategoria.mutate(
       {
         ...data,
-        token,
+        accessToken,
       },
       {
         onSuccess: () => {

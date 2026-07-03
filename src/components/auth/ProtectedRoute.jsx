@@ -3,9 +3,9 @@ import { useContext } from "react";
 import Context from "../../context/Context";
 
 const ProtectedRoute = () => {
-  let { token, setToken } = useContext(Context);
+  let { accessToken } = useContext(Context);
 
-  if (!token) {
+  if (!accessToken) {
     return <Navigate to="/login" replace />;
   }
 
