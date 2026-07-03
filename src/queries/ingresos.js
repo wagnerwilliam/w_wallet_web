@@ -6,11 +6,11 @@ import {
   eliminarIngreso,
 } from "../services/IngresosService";
 
-export const UseIngresos = (token) => {
+export const UseIngresos = () => {
   return useQuery({
     queryKey: ["ingresos"],
     queryFn: async () => {
-      const response = await ObtenerIngresos(token);
+      const response = await ObtenerIngresos();
       return response.json();
     },
   });
@@ -18,8 +18,8 @@ export const UseIngresos = (token) => {
 
 export const CrearIngresoMutation = () => {
   return useMutation({
-    mutationFn: async ({ token, ...data }) => {
-      const response = await crearIngreso(data, token);
+    mutationFn: async (data) => {
+      const response = await crearIngreso(data);
 
       if (!response.ok) {
         throw new Error("Error al crear ingreso");
@@ -32,8 +32,8 @@ export const CrearIngresoMutation = () => {
 
 export const EditarIngresoMutation = () => {
   return useMutation({
-    mutationFn: async ({ _id, data, token }) => {
-      const response = await editarIngreso(_id, data, token);
+    mutationFn: async ({ _id, data }) => {
+      const response = await editarIngreso(_id, data);
 
       if (!response.ok) {
         throw new Error("Error al editar ingreso");
@@ -46,8 +46,8 @@ export const EditarIngresoMutation = () => {
 
 export const EliminarIngresoMutation = () => {
   return useMutation({
-    mutationFn: async ({ id, token }) => {
-      const response = await eliminarIngreso(id, token);
+    mutationFn: async (id) => {
+      const response = await eliminarIngreso(id);
 
       if (!response.ok) {
         throw new Error("Error eliminando ingreso");

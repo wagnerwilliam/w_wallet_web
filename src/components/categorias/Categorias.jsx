@@ -12,21 +12,13 @@ import CategoriasRow from "../table/CategoriasRow";
 import NoRecords from "../base/NoRecords.jsx";
 import Loading from "../base/Loading.jsx";
 import DataState from "../base/DataState.jsx";
-import { useContext } from "react";
-import Context from "../../context/Context.jsx";
 
 const Categorias = () => {
   let [modal, setModal] = useState(null);
   let [selectedCategoria, setSelectedCategoria] = useState(null);
   let [search, setSearch] = useState("");
 
-  let { accessToken } = useContext(Context);
-
-  const {
-    data: categorias = [],
-    isLoading,
-    error,
-  } = UseCategorias(accessToken);
+  const { data: categorias = [], isLoading, error } = UseCategorias();
 
   const openModal = (type, categoria = null) => {
     setModal(type);

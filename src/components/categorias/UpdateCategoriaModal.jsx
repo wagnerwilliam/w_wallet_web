@@ -9,12 +9,9 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { categoriaSchema } from "./ZodSchema";
-import { useContext } from "react";
-import Context from "../../context/Context";
 
 const UpdateCategoriaModal = ({ closeModal, categoria }) => {
   let { _id, name, type, color } = categoria;
-  let { accessToken } = useContext(Context);
 
   const editarCategoria = EditarCategoriaMutation();
   const queryClient = useQueryClient();
@@ -40,7 +37,6 @@ const UpdateCategoriaModal = ({ closeModal, categoria }) => {
       {
         _id,
         data,
-        accessToken,
       },
       {
         onSuccess: () => {

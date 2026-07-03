@@ -6,11 +6,11 @@ import {
   eliminarGasto,
 } from "../services/GastoService";
 
-export const UseGastos = (accessToken) => {
+export const UseGastos = () => {
   return useQuery({
     queryKey: ["gastos"],
     queryFn: async () => {
-      const response = await obtenerGastos(accessToken);
+      const response = await obtenerGastos();
       return response.json();
     },
   });
@@ -18,8 +18,8 @@ export const UseGastos = (accessToken) => {
 
 export const CrearGastoMutation = () => {
   return useMutation({
-    mutationFn: async ({ accessToken, ...data }) => {
-      const response = await crearGasto(data, accessToken);
+    mutationFn: async (data) => {
+      const response = await crearGasto(data);
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.
@@ -33,8 +33,8 @@ export const CrearGastoMutation = () => {
 
 export const EditarGastoMutation = () => {
   return useMutation({
-    mutationFn: async ({ _id, data, accessToken }) => {
-      const response = await editarGasto(_id, data, accessToken);
+    mutationFn: async ({ _id, data }) => {
+      const response = await editarGasto(_id, data);
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.
@@ -48,8 +48,8 @@ export const EditarGastoMutation = () => {
 
 export const EliminarGastoMutation = () => {
   return useMutation({
-    mutationFn: async ({ id, accessToken }) => {
-      const response = await eliminarGasto(id, accessToken);
+    mutationFn: async (id) => {
+      const response = await eliminarGasto(id);
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.

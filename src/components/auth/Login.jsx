@@ -3,7 +3,7 @@ import Button from "../base/Button";
 import { UserIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import Icon from "../base/Icon";
 import { useContext } from "react";
-import Context from "../../context/Context";
+import AuthContext from "../../context/AuthContext";
 import AuthHeader from "./AuthHeader";
 import AuthFooter from "./AuthFooter";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,7 @@ import toast from "react-hot-toast";
 const Login = () => {
   const iconClass =
     "absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#0F766E]";
-  let { accessToken, setAccessToken } = useContext(Context);
+  let { accessToken, login } = useContext(AuthContext);
 
   const Login = LoginMutation();
   const navigate = useNavigate();
@@ -36,12 +36,11 @@ const Login = () => {
   const onSubmit = (data) => {
     Login.mutate(data, {
       onSuccess: ({ accessToken }) => {
-        setAccessToken(accessToken);
+        login(accessToken);
         toast.success("Has iniciado sesión correctamente.");
-        localStorage.setItem("accessToken", accessToken);
-        setTimeout(() => {
-          navigate("/home");
-        }, 1000);
+        navigate("/home", {
+          replace: true,
+        });
       },
       onError: (error) => {
         if (error.details) {

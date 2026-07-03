@@ -1,10 +1,7 @@
 import { UseCategoriasByType } from "../../queries/categorias";
-import { useContext } from "react";
-import Context from "../../context/Context";
 
 const CategoriaOptions = ({ type }) => {
-  const { token } = useContext(Context);
-  const { data: categorias } = UseCategoriasByType(type, token);
+  const { data: categorias } = UseCategoriasByType(type);
 
   return (
     <>

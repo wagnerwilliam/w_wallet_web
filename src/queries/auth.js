@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { Register, Login } from "../services/AuthService";
+import { Register, Login, Logout } from "../services/AuthService";
 
 export const RegistrarUsuarioMutation = () => {
   return useMutation({
@@ -29,6 +29,21 @@ export const LoginMutation = () => {
       }
 
       return result;
+    },
+  });
+};
+
+export const LogoutMutation = () => {
+  return useMutation({
+    mutationFn: async () => {
+      const response = await Logout();
+
+      if (!response.ok) {
+        // puede mejorarse esta respuest del backend.
+        throw new Error("Error al hacer peticion logout");
+      }
+
+      return true;
     },
   });
 };
