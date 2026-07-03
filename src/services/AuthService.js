@@ -15,6 +15,7 @@ export const Register = async (data) => {
 export const Login = async (data) => {
   return await fetch(`${BACKEND_URL}api/auth/login`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-type": "application/json",
       "client-key": CLIENT_KEY,
