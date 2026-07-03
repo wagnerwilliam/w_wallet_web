@@ -29,6 +29,7 @@ export const refreshAccessToken = async () => {
     method: "POST",
     credentials: "include",
     headers: {
+      "Content-type": "application/json",
       "client-key": CLIENT_KEY,
     },
   });
@@ -41,8 +42,6 @@ export const refreshAccessToken = async () => {
  * 
  * refresh
  * 
- * eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTQ2N2JjMWY5Yzg2NjE3YjY0YjBiZWIiLCJpYXQiOjE3ODMwODA3MTksImV4cCI6MTc4NTY3MjcxOX0.9mqrXtnTlJNq22mgmzVkDpu40WnKS-qVan16FkLpFug
- * 
- * 
+ * eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTQ2N2JjMWY5Yzg2NjE3YjY0YjBiZWIiLCJpYXQiOjE3ODMwODEwMjksImV4cCI6MTc4MzA4MTE0OX0.u81l7rx4FHUcZ7LXqJgzE7YE5K5lKb704-znh2zBxac
  * 
  */
