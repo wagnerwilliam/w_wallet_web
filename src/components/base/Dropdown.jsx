@@ -4,10 +4,10 @@ import Context from "../../context/Context.jsx";
 import toast from "react-hot-toast";
 
 const DropDown = () => {
-  const { setToken } = useContext(Context);
+  const { setAccessToken } = useContext(Context);
   const onClick = () => {
-    localStorage.removeItem("token");
-    setToken(null);
+    localStorage.removeItem("accessToken");
+    setAccessToken(null);
     toast.success("Has cerrado sesión correctamente.");
     // setTimeout(() => {
     //   navigate("/login", {

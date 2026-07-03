@@ -8,11 +8,11 @@ import Context from "../../context/Context";
 const DeleteGastoModal = ({ closeModal, gasto }) => {
   const eliminarGasto = EliminarGastoMutation();
   const queryClient = useQueryClient();
-  const { token } = useContext(Context);
+  const { accessToken } = useContext(Context);
 
   const handleDelete = () =>
     eliminarGasto.mutate(
-      { id: gasto._id, token },
+      { id: gasto._id, accessToken },
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["gastos"] });

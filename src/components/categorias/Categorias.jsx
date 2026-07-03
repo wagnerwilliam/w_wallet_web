@@ -20,9 +20,13 @@ const Categorias = () => {
   let [selectedCategoria, setSelectedCategoria] = useState(null);
   let [search, setSearch] = useState("");
 
-  let { token } = useContext(Context);
+  let { accessToken } = useContext(Context);
 
-  const { data: categorias = [], isLoading, error } = UseCategorias(token);
+  const {
+    data: categorias = [],
+    isLoading,
+    error,
+  } = UseCategorias(accessToken);
 
   const openModal = (type, categoria = null) => {
     setModal(type);

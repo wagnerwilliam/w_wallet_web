@@ -7,9 +7,11 @@ import { Toaster } from "react-hot-toast";
 import { toasterOptions } from "./utils/toaster";
 
 const App = () => {
-  let [token, setToken] = useState(localStorage.getItem("token"));
+  let [accessToken, setAccessToken] = useState(
+    localStorage.getItem("accessToken"),
+  );
   return (
-    <Context.Provider value={{ token, setToken }}>
+    <Context.Provider value={{ accessToken, setAccessToken }}>
       <Toaster {...toasterOptions} />
       <RouterProvider router={router} />
     </Context.Provider>

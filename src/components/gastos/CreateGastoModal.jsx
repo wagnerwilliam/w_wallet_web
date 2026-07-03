@@ -16,7 +16,7 @@ import Context from "../../context/Context";
 const CreateGastoModal = ({ onClose }) => {
   const crearGasto = CrearGastoMutation();
   const queryClient = useQueryClient();
-  const { token } = useContext(Context);
+  const { accessToken } = useContext(Context);
 
   const {
     register,
@@ -30,7 +30,7 @@ const CreateGastoModal = ({ onClose }) => {
     crearGasto.mutate(
       {
         ...data,
-        token,
+        accessToken,
       },
       {
         onSuccess: () => {

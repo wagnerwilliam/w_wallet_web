@@ -18,7 +18,7 @@ const UpdateGastoModal = ({ closeModal, gasto }) => {
 
   const editarGasto = EditarGastoMutation();
   const queryClient = useQueryClient();
-  const { token } = useContext(Context);
+  const { accessToken } = useContext(Context);
 
   const {
     register,
@@ -41,7 +41,7 @@ const UpdateGastoModal = ({ closeModal, gasto }) => {
       {
         _id,
         data,
-        token,
+        accessToken,
       },
       {
         onSuccess: () => {

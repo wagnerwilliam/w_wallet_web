@@ -22,9 +22,9 @@ const Gastos = () => {
   let [modal, setModal] = useState(null);
   let [selectedtGasto, setSelectedGasto] = useState(null);
   let [search, setSearch] = useState("");
-  let { token } = useContext(Context);
+  let { accessToken } = useContext(Context);
 
-  const { data: gastos = [], isLoading, error } = UseGastos(token);
+  const { data: gastos = [], isLoading, error } = UseGastos(accessToken);
 
   const openModal = (type, gasto = null) => {
     setModal(type);
