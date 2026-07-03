@@ -31,15 +31,15 @@ export const apiFetch = async (url, accessToken, options = {}) => {
     throw new Error("No se pudo renovar el token");
   }
 
-  let { accessToken } = await response.json();
+  let { newAccessToken } = await response.json();
 
-  localStorage.setItem("accessToken", accessToken);
+  localStorage.setItem("accessToken", accesnewAccessTokensToken);
 
   return fetch(url, {
     ...options,
     headers: {
       ...options.headers,
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `Bearer ${newAccessToken}`,
       "client-key": CLIENT_KEY,
     },
   });
