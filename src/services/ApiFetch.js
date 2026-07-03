@@ -33,7 +33,7 @@ export const apiFetch = async (url, accessToken, options = {}) => {
 
   let { newAccessToken } = await res.json();
 
-  localStorage.setItem("accessToken", accesnewAccessTokensToken);
+  localStorage.setItem("accessToken", newAccessToken);
 
   return fetch(url, {
     ...options,
