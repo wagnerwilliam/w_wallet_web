@@ -1,12 +1,12 @@
 const CLIENT_KEY = import.meta.env.VITE_APP_CLIENT_KEY;
 import { refreshAccessToken } from "./AuthService";
 
-export const apiFetch = async (url, accesToken, options = {}) => {
+export const apiFetch = async (url, accessToken, options = {}) => {
   let response = await fetch(url, {
     ...options,
     headers: {
       ...options.headers,
-      Authorization: `Bearer ${accesToken}`,
+      Authorization: `Bearer ${accessToken}`,
       "client-key": CLIENT_KEY,
     },
   });
@@ -26,11 +26,11 @@ export const apiFetch = async (url, accesToken, options = {}) => {
   const newAccessToken = await refreshAccessToken();
 
   if (!newAccessToken) {
-    localStorage.removeItem("token");
+    localStorage.removeItem("accessToken");
     throw new Error("Sesión expirada");
   }
 
-  localStorage.setItem("accesToken", newAccessToken);
+  localStorage.setItem("accessToken", newAccessToken);
 
   return fetch(url, {
     ...options,
