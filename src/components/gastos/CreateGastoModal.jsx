@@ -10,13 +10,9 @@ import { gastoSchema } from "./ZodSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useContext } from "react";
-import Context from "../../context/Context";
-
 const CreateGastoModal = ({ onClose }) => {
   const crearGasto = CrearGastoMutation();
   const queryClient = useQueryClient();
-  const { accessToken } = useContext(Context);
 
   const {
     register,
@@ -27,18 +23,12 @@ const CreateGastoModal = ({ onClose }) => {
   });
 
   const onSubmit = (data) => {
-    crearGasto.mutate(
-      {
-        ...data,
-        accessToken,
+    crearGasto.mutate(data, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["gastos"] });
+        onClose();
       },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["gastos"] });
-          onClose();
-        },
-      },
-    );
+    });
   };
 
   return (

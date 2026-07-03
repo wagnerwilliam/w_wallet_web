@@ -10,13 +10,10 @@ import Select from "../base/Select";
 import { ingresoSchema } from "./ZodSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useContext } from "react";
-import Context from "../../context/Context";
 
 const CreateIngresoModal = ({ onClose }) => {
   const crearIngreso = CrearIngresoMutation();
   const queryClient = useQueryClient();
-  const { token } = useContext(Context);
 
   const {
     register,
@@ -27,18 +24,12 @@ const CreateIngresoModal = ({ onClose }) => {
   });
 
   const onSubmit = (data) => {
-    crearIngreso.mutate(
-      {
-        ...data,
-        token,
+    crearIngreso.mutate(data, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["ingresos"] });
+        onClose();
       },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["ingresos"] });
-          onClose();
-        },
-      },
-    );
+    });
   };
 
   return (

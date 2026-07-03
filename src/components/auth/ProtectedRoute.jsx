@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useContext } from "react";
-import Context from "../../context/Context";
+import AuthContext from "../../context/AuthContext";
 
 const ProtectedRoute = () => {
-  let { accessToken } = useContext(Context);
+  let { accessToken } = useContext(AuthContext);
 
   if (!accessToken) {
     return <Navigate to="/login" replace />;

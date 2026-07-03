@@ -8,13 +8,10 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { categoriaSchema } from "./ZodSchema";
-import { useContext } from "react";
-import Context from "../../context/Context";
 
 const CreateModal = ({ onClose }) => {
   const crearCategoria = CrearCategoriaMutation();
   const queryClient = useQueryClient();
-  let { accessToken } = useContext(Context);
 
   const {
     register,
@@ -25,18 +22,12 @@ const CreateModal = ({ onClose }) => {
   });
 
   const onSubmit = (data) => {
-    crearCategoria.mutate(
-      {
-        ...data,
-        accessToken,
+    crearCategoria.mutate(data, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["categorias"] });
+        onClose();
       },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["categorias"] });
-          onClose();
-        },
-      },
-    );
+    });
   };
 
   return (

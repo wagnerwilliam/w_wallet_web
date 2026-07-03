@@ -6,11 +6,11 @@ import {
   editarCategoria,
 } from "../services/CategoriasService";
 
-export const UseCategorias = (accessToken) => {
+export const UseCategorias = () => {
   return useQuery({
     queryKey: ["categorias"],
     queryFn: async () => {
-      const response = await ObtenerCategorias(accessToken);
+      const response = await ObtenerCategorias();
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.
@@ -21,8 +21,8 @@ export const UseCategorias = (accessToken) => {
   });
 };
 
-export const UseCategoriasByType = (type, token) => {
-  const { data = [], ...rest } = UseCategorias(token);
+export const UseCategoriasByType = (type) => {
+  const { data = [], ...rest } = UseCategorias();
   const filtered = data?.filter((c) => c.type === type && c.is_active);
 
   return {
@@ -33,8 +33,8 @@ export const UseCategoriasByType = (type, token) => {
 
 export const CrearCategoriaMutation = () => {
   return useMutation({
-    mutationFn: async ({ accessToken, ...data }) => {
-      const response = await crearCategoria(data, accessToken);
+    mutationFn: async (data) => {
+      const response = await crearCategoria(data);
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.
@@ -48,8 +48,8 @@ export const CrearCategoriaMutation = () => {
 
 export const EditarCategoriaMutation = () => {
   return useMutation({
-    mutationFn: async ({ _id, data, accessToken }) => {
-      const response = await editarCategoria(_id, data, accessToken);
+    mutationFn: async ({ _id, data }) => {
+      const response = await editarCategoria(_id, data);
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.
@@ -63,8 +63,8 @@ export const EditarCategoriaMutation = () => {
 
 export const EliminarCategoriaMutation = () => {
   return useMutation({
-    mutationFn: async ({ id, accessToken }) => {
-      const response = await eliminarCategoria(id, accessToken);
+    mutationFn: async (id) => {
+      const response = await eliminarCategoria(id);
 
       if (!response.ok) {
         // puede mejorarse esta respuest del backend.

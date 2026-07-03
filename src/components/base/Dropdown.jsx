@@ -1,19 +1,29 @@
 import Button from "./Button";
 import { useContext } from "react";
-import Context from "../../context/Context.jsx";
+import AuthContext from "../../context/AuthContext";
 import toast from "react-hot-toast";
+import { LogoutMutation } from "../../queries/auth";
+import { useNavigate } from "react-router-dom";
 
 const DropDown = () => {
-  const { setAccessToken } = useContext(Context);
+  const { logout } = useContext(AuthContext);
+  const logoutMutation = LogoutMutation();
+  const navigate = useNavigate();
   const onClick = () => {
-    localStorage.removeItem("accessToken");
-    setAccessToken(null);
-    toast.success("Has cerrado sesión correctamente.");
-    // setTimeout(() => {
-    //   navigate("/login", {
-    //     replace: true,
-    //   })
-    // }, 1000);
+    logoutMutation.mutate(
+      {},
+      {
+        onSuccess: () => {
+          console.log("entraaa");
+
+          toast.success("Has cerrado sesión correctamente.");
+          logout();
+          navigate("/login", {
+            replace: true,
+          });
+        },
+      },
+    );
   };
 
   return (

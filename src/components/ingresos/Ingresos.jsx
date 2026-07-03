@@ -12,17 +12,14 @@ import CreateIngresoModal from "./CreateIngresoModal.jsx";
 import DeleteIngresoModal from "./DeleteIngresoModal.jsx";
 import UpdateIngresoModal from "./UpdateIngresoModal.jsx";
 import { UseIngresos } from "../../queries/ingresos.js";
-import { useContext } from "react";
-import Context from "../../context/Context.jsx";
 
 const Ingresos = () => {
   let [modal, setModal] = useState(null);
   let [selectedtIngreso, setSelectedIngreso] = useState(null);
   let [search, setSearch] = useState("");
-  const { token } = useContext(Context);
 
   // Queries
-  const { data: ingresos = [], isLoading, error } = UseIngresos(token);
+  const { data: ingresos = [], isLoading, error } = UseIngresos();
 
   const openModal = (type, categoria = null) => {
     setModal(type);
