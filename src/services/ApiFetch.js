@@ -23,14 +23,17 @@ export const apiFetch = async (url, accessToken, options = {}) => {
   //
   // new refresh token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTQ2N2JjMWY5Yzg2NjE3YjY0YjBiZWIiLCJpYXQiOjE3ODMwNzg1MDYsImV4cCI6MTc4NTY3MDUwNn0.5KBDJjwjygOV1jugLyAJJPTtZRUMUNJFHeShJguJdyM
   // Intentar renovar el access token
-  const newAccessToken = await refreshAccessToken();
-
-  if (!newAccessToken) {
+  
+  const res = await refreshAccessToken();
+    
+  if (!res.ok) {
     localStorage.removeItem("accessToken");
-    throw new Error("Sesión expirada");
+    throw new Error("No se pudo renovar el token");
   }
 
-  localStorage.setItem("accessToken", newAccessToken);
+  let { newAccessToken } = await res.json();
+
+  localStorage.setItem("accessToken", accesnewAccessTokensToken);
 
   return fetch(url, {
     ...options,
