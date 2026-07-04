@@ -4,7 +4,7 @@ import AuthHeader from "./AuthHeader";
 import AuthFooter from "./AuthFooter";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import Context from "../../context/Context";
+import AuthContext from "../../context/AuthContext";
 import { Navigate } from "react-router-dom";
 
 import { RegistrarUsuarioMutation } from "../../queries/auth";
@@ -18,7 +18,7 @@ import toast from "react-hot-toast";
 const Register = () => {
   const regitrarUsuario = RegistrarUsuarioMutation();
   const navigate = useNavigate();
-  let { accessToken } = useContext(Context);
+  let { accessToken } = useContext(AuthContext);
 
   const {
     register,

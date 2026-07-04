@@ -14,8 +14,6 @@ const DropDown = () => {
       {},
       {
         onSuccess: () => {
-          console.log("entraaa");
-
           toast.success("Has cerrado sesión correctamente.");
           logout();
           navigate("/login", {
