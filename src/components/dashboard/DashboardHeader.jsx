@@ -4,7 +4,7 @@ const DashboardHeader = ({ period, setPeriod }) => {
   return (
     <section className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
       <div className="min-w-0">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+        <h1 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
           Resumen financiero
         </h1>
 

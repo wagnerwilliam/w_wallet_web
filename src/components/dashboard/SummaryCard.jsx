@@ -9,7 +9,7 @@ const SummaryCard = ({ title, value, icon: Icon }) => {
             {title}
           </p>
 
-          <h2 className="mt-1 wrap-break-words text-xl font-bold tracking-tight text-slate-900 sm:mt-2 sm:text-2xl lg:text-[1.65rem]">
+          <h2 className="mt-1 wrap-break-words text-xl font-semibold tracking-tight text-slate-900 sm:mt-2 sm:text-2xl lg:text-[1.5rem]">
             {formatEUR(value ?? 0)}
           </h2>
         </div>
