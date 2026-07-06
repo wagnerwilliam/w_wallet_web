@@ -5,9 +5,11 @@ const SummaryCard = ({ title, value, icon: Icon }) => {
     <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md sm:p-5 lg:p-6">
       <div className="flex items-center justify-between">
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-medium text-slate-500">{title}</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500 sm:text-sm">
+            {title}
+          </p>
 
-          <h2 className="mt-2 wrap-break-words text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 className="mt-1 wrap-break-words text-xl font-bold tracking-tight text-slate-900 sm:mt-2 sm:text-2xl lg:text-[1.65rem]">
             {formatEUR(value ?? 0)}
           </h2>
         </div>
