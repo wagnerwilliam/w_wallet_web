@@ -1,6 +1,6 @@
 import RecentRecordRow from "./RecentRecordRow";
 
-const RecentRecords = () => {
+const RecentRecords = ({ recentRecords = [] }) => {
   return (
     <section className="rounded-2xl border border-slate-200 bg-white shadow-sm">
       <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
@@ -19,31 +19,23 @@ const RecentRecords = () => {
         </button>
       </div>
 
-      {/* Body */}
       <div className="divide-y divide-slate-100">
-        <RecentRecordRow
-          name="Salario"
-          category="Trabajo"
-          amount={2500000}
-          date="Hoy"
-          type="income"
-        />
-
-        <RecentRecordRow
-          name="Netflix"
-          category="Entretenimiento"
-          amount={35000}
-          date="Ayer"
-          type="expense"
-        />
-
-        <RecentRecordRow
-          name="Mercado Éxito"
-          category="Alimentación"
-          amount={180000}
-          date="2 Jul"
-          type="expense"
-        />
+        {recentRecords.length === 0 ? (
+          <div className="px-6 py-10 text-center text-sm text-slate-500">
+            No hay movimientos para este período.
+          </div>
+        ) : (
+          recentRecords.map((record) => (
+            <RecentRecordRow
+              key={record._id}
+              name={record.name}
+              category={record.category_id}
+              amount={record.amount}
+              date={record.created_at}
+              type={record.type}
+            />
+          ))
+        )}
       </div>
     </section>
   );
