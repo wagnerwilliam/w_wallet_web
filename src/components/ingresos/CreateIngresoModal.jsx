@@ -117,6 +117,7 @@ const CreateIngresoModal = ({ onClose }) => {
           {/* CATEGORIAS */}
           <div className="space-y-2">
             <Label text="Categoría" required />
+            {/* Quiza mostrar la categoria no sea necesario mejor buscar un mecanismo para que se envie automaticamente */}
 
             <Select error={errors.category_id} {...register("category_id")}>
               <option value="">Selecciona una categoría</option>

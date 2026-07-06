@@ -145,7 +145,7 @@ const CreateGastoModal = ({ onClose }) => {
               Cancelar
             </Button>
             <Button type="submit" variant="primary">
-              Crear Ingreso
+              Crear Gasto
             </Button>
           </div>
         </form>
