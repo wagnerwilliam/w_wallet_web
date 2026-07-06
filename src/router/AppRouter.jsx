@@ -9,6 +9,7 @@ import Gastos from "../components/gastos/Gastos";
 import MetasAhorro from "../components/metas_ahorro/MetasAhorro";
 import Resumen from "../components/resumen/Resumen";
 import ProtectedRoute from "../components/auth/ProtectedRoute";
+import Dashboard from "../components/dashboard/Dashboard";
 
 const router = createBrowserRouter([
   // Rutas publicas.
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "/home",
+            element: <Dashboard />,
           },
           {
             path: "/ingresos",
