@@ -6,6 +6,21 @@ export const formatDate = (dateString) => {
   }).format(new Date(dateString));
 };
 
+export const formatRelativeDate = (date) => {
+  const today = new Date();
+  const value = new Date(date);
+
+  const diff = Math.floor((today - value) / (1000 * 60 * 60 * 24));
+
+  if (diff === 0) return "Hoy";
+  if (diff === 1) return "Ayer";
+
+  return value.toLocaleDateString("es-ES", {
+    day: "numeric",
+    month: "short",
+  });
+};
+
 export const formatEUR = (value) => {
   return new Intl.NumberFormat("es-ES", {
     style: "currency",

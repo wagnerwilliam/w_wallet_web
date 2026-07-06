@@ -2,6 +2,7 @@ import {
   ArrowTrendingUpIcon,
   ArrowTrendingDownIcon,
 } from "@heroicons/react/24/outline";
+import { formatRelativeDate, formatEUR } from "../../utils/formatters";
 
 const RecentRecordRow = ({ name, amount, date, type }) => {
   const income = type === "income";
@@ -24,7 +25,7 @@ const RecentRecordRow = ({ name, amount, date, type }) => {
         <div>
           <p className="font-medium text-slate-900">{name}</p>
 
-          <p className="text-sm text-slate-500">{date}</p>
+          <p className="text-sm text-slate-500">{formatRelativeDate(date)}</p>
         </div>
       </div>
 
@@ -33,7 +34,8 @@ const RecentRecordRow = ({ name, amount, date, type }) => {
           income ? "text-emerald-600" : "text-rose-600"
         }`}
       >
-        {income ? "+" : "-"}${amount.toLocaleString()}
+        {income ? "+" : "-"}
+        {formatEUR(amount)}
       </p>
     </div>
   );
