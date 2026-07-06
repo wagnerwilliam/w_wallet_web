@@ -9,7 +9,7 @@ const PeriodSelector = ({ value, onChange }) => {
   ];
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+    <div className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm sm:w-auto sm:min-w-47.5">
       <label className="block text-xs font-medium uppercase tracking-wide text-slate-400">
         Período
       </label>
@@ -18,7 +18,7 @@ const PeriodSelector = ({ value, onChange }) => {
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full appearance-none bg-transparent pr-8 text-sm font-semibold text-slate-700 outline-none cursor-pointer"
+          className="w-full cursor-pointer appearance-none bg-transparent pr-8 text-sm font-semibold text-slate-700 outline-none"
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
