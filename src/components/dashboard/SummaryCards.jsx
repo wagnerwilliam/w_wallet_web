@@ -1,6 +1,6 @@
 import SummaryCard from "./SummaryCard";
 import { UseDashboard } from "../../queries/dashboard";
-import { getSummaryCards } from "../../utils/dashboard/SummaryCards";
+import { getSummaryCards } from "../../utils/dashboard/summaryCards";
 
 const SummaryCards = ({ period }) => {
   const { data: resumen = [], isLoading, error } = UseDashboard(period);
