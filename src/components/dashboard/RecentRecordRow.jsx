@@ -36,7 +36,7 @@ const RecentRecordRow = ({ name, category, amount, date, type }) => {
 
       <div className="ml-3 shrink-0 text-right sm:ml-4">
         <p
-          className={`text-sm font-semibold sm:text-base ${
+          className={`text-sm font-medium sm:text-base ${
             income ? "text-emerald-600" : "text-rose-600"
           }`}
         >
