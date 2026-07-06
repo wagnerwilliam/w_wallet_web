@@ -2,41 +2,46 @@ import {
   ArrowTrendingUpIcon,
   ArrowTrendingDownIcon,
 } from "@heroicons/react/24/outline";
+
 import { formatRelativeDate, formatEUR } from "../../utils/formatters";
 
-const RecentRecordRow = ({ name, amount, date, type }) => {
+const RecentRecordRow = ({ name, category, amount, date, type }) => {
   const income = type === "income";
 
   return (
-    <div className="flex items-center justify-between px-6 py-4 transition-colors hover:bg-slate-50">
-      <div className="flex items-center gap-4">
+    <div className="flex items-center justify-between px-4 py-4 transition-colors hover:bg-slate-50 sm:px-6">
+      <div className="flex min-w-0 items-center gap-4">
         <div
-          className={`flex h-11 w-11 items-center justify-center rounded-xl ${
+          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${
             income ? "bg-emerald-50" : "bg-rose-50"
           }`}
         >
           {income ? (
-            <ArrowTrendingUpIcon className="h-5 w-5 text-emerald-600" />
+            <ArrowTrendingUpIcon className="h-6 w-6 text-emerald-600" />
           ) : (
-            <ArrowTrendingDownIcon className="h-5 w-5 text-rose-600" />
+            <ArrowTrendingDownIcon className="h-6 w-6 text-rose-600" />
           )}
         </div>
 
-        <div>
-          <p className="font-medium text-slate-900">{name}</p>
+        <div className="min-w-0">
+          <p className="truncate font-medium text-slate-900">{name}</p>
 
-          <p className="text-sm text-slate-500">{formatRelativeDate(date)}</p>
+          <p className="truncate text-sm text-slate-500">
+            {formatRelativeDate(date)}
+          </p>
         </div>
       </div>
 
-      <p
-        className={`text-base font-semibold ${
-          income ? "text-emerald-600" : "text-rose-600"
-        }`}
-      >
-        {income ? "+" : "-"}
-        {formatEUR(amount)}
-      </p>
+      <div className="ml-4 shrink-0 text-right">
+        <p
+          className={`text-lg font-semibold ${
+            income ? "text-emerald-600" : "text-rose-600"
+          }`}
+        >
+          {income ? "+" : "-"}
+          {formatEUR(amount)}
+        </p>
+      </div>
     </div>
   );
 };
