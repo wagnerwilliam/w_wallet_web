@@ -2,8 +2,6 @@ import Input from "../base/Input";
 import Button from "../base/Button";
 import { UserIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import Icon from "../base/Icon";
-import { useContext } from "react";
-import AuthContext from "../../context/AuthContext";
 import AuthHeader from "./AuthHeader";
 import AuthFooter from "./AuthFooter";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +11,8 @@ import { LoginMutation } from "../../queries/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { loginSchema } from "./ZodSchema";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext";
 
 import toast from "react-hot-toast";
 
@@ -35,7 +35,7 @@ const Login = () => {
 
   const onSubmit = (data) => {
     Login.mutate(data, {
-      onSuccess: ({ accessToken }) => {
+      onSuccess: ({ accessToken, usuario }) => {
         login(accessToken);
         toast.success("Has iniciado sesión correctamente.");
         navigate("/home", {

@@ -111,9 +111,6 @@ export const inputStates = {
     focus:ring-4 focus:ring-green-200
   `,
 
-  disabled: `
-    bg-slate-100
-    text-slate-400
-    cursor-not-allowed
-  `,
+  disabled:
+    "bg-slate-50 border-slate-200 text-slate-500 shadow-none cursor-default opacity-100",
 };

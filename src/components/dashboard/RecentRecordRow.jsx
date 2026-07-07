@@ -5,38 +5,36 @@ import {
 
 import { formatRelativeDate, formatEUR } from "../../utils/formatters";
 
-const RecentRecordRow = ({ name, category, amount, date, type }) => {
+const RecentRecordRow = ({ name, amount, date, type }) => {
   const income = type === "income";
 
   return (
-    <div className="flex items-center justify-between px-4 py-3 transition-colors hover:bg-slate-50 sm:px-6 sm:py-4">
-      <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4">
+    <div className="flex items-center justify-between px-4 py-3 transition-colors duration-150 hover:bg-slate-50 sm:px-5 sm:py-3.5">
+      <div className="flex min-w-0 flex-1 items-center gap-3">
         <div
-          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl sm:h-11 sm:w-11 lg:h-12 lg:w-12 ${
+          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
             income ? "bg-emerald-50" : "bg-rose-50"
           }`}
         >
           {income ? (
-            <ArrowTrendingUpIcon className="h-5 w-5 text-emerald-600 sm:h-6 sm:w-6" />
+            <ArrowTrendingUpIcon className="h-5 w-5 text-emerald-600" />
           ) : (
-            <ArrowTrendingDownIcon className="h-5 w-5 text-rose-600 sm:h-6 sm:w-6" />
+            <ArrowTrendingDownIcon className="h-5 w-5 text-rose-600" />
           )}
         </div>
 
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-medium text-slate-900 sm:text-base">
-            {name}
-          </p>
+          <p className="truncate text-sm font-medium text-slate-900">{name}</p>
 
-          <p className="truncate text-xs text-slate-500 sm:text-sm">
-            {formatRelativeDate(date)}
-          </p>
+          <div className="mt-0.5 flex items-center gap-2 text-xs text-slate-500">
+            <span>{formatRelativeDate(date)}</span>
+          </div>
         </div>
       </div>
 
-      <div className="ml-3 shrink-0 text-right sm:ml-4">
+      <div className="ml-4 shrink-0 text-right">
         <p
-          className={`text-sm font-medium sm:text-base ${
+          className={`text-sm font-semibold lg:text-base ${
             income ? "text-emerald-600" : "text-rose-600"
           }`}
         >

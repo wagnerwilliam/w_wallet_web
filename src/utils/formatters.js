@@ -10,7 +10,19 @@ export const formatRelativeDate = (date) => {
   const today = new Date();
   const value = new Date(date);
 
-  const diff = Math.floor((today - value) / (1000 * 60 * 60 * 24));
+  const todayDate = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate(),
+  );
+
+  const valueDate = new Date(
+    value.getFullYear(),
+    value.getMonth(),
+    value.getDate(),
+  );
+
+  const diff = (todayDate - valueDate) / (1000 * 60 * 60 * 24);
 
   if (diff === 0) return "Hoy";
   if (diff === 1) return "Ayer";

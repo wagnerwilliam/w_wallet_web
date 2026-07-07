@@ -2,10 +2,12 @@ import { useState, useRef } from "react";
 import DropDown from "./Dropdown";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import useClickOutside from "../../custom_hooks/useClickOutside";
+import { DetalleUsuarioMutation } from "../../queries/usuarios";
 
 const Header = ({ setIsMobileSidebarOpen }) => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const menuRef = useRef(null);
+  const { data: usuario = {}, isLoading, error } = DetalleUsuarioMutation();
 
   useClickOutside(menuRef, () => {
     setOpenDropdown(false);
@@ -79,16 +81,16 @@ const Header = ({ setIsMobileSidebarOpen }) => {
             {/* INFO */}
             <div className="hidden sm:flex flex-col text-left leading-tight">
               <span className="text-sm font-semibold text-slate-900 tracking-tight">
-                Usuario
+                {usuario.username}
               </span>
-              <span className="text-xs text-slate-500 font-medium">
+              {/* <span className="text-xs text-slate-500 font-medium">
                 Administrador
-              </span>
+              </span> */}
             </div>
           </button>
 
           {/* DROPDOWN */}
-          {openDropdown && <DropDown />}
+          {openDropdown && <DropDown usuario={usuario} />}
         </div>
       </nav>
     </header>

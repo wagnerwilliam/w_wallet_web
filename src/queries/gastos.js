@@ -6,11 +6,11 @@ import {
   eliminarGasto,
 } from "../services/GastoService";
 
-export const UseGastos = () => {
+export const UseGastos = (period) => {
   return useQuery({
-    queryKey: ["gastos"],
+    queryKey: ["gastos", period],
     queryFn: async () => {
-      const response = await obtenerGastos();
+      const response = await obtenerGastos(period);
       return response.json();
     },
   });

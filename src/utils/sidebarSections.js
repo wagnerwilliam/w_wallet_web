@@ -5,6 +5,7 @@ import {
   Squares2X2Icon,
   TrophyIcon,
   ChartPieIcon,
+  ChartBarIcon,
 } from "@heroicons/react/24/outline";
 
 export const sidebarSections = [
@@ -16,6 +17,11 @@ export const sidebarSections = [
         path: "/home",
         icon: HomeIcon,
       },
+      // {
+      //   label: "Analisis",
+      //   path: "/analisis",
+      //   icon: ChartBarIcon,
+      // },
     ],
   },
 

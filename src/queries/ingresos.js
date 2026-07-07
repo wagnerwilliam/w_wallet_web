@@ -6,11 +6,11 @@ import {
   eliminarIngreso,
 } from "../services/IngresosService";
 
-export const UseIngresos = () => {
+export const UseIngresos = (period) => {
   return useQuery({
-    queryKey: ["ingresos"],
+    queryKey: ["ingresos", period],
     queryFn: async () => {
-      const response = await ObtenerIngresos();
+      const response = await ObtenerIngresos(period);
       return response.json();
     },
   });
