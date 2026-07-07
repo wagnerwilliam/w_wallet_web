@@ -1,23 +1,34 @@
 import DashboardHeader from "./DashboardHeader";
 import SummaryCards from "./SummaryCards";
-import IncomeExpenseChart from "./IncomeExpenseChart";
 import RecentRecords from "./RecentRecords";
+
+import SummaryCardsSkeleton from "./SummaryCardsSkeleton";
+import RecentRecordsSkeleton from "./RecentRecordsSkeleton";
 import { useState } from "react";
 import { UseDashboard } from "../../queries/dashboard";
 
 const Dashboard = () => {
   const [period, setPeriod] = useState("month");
-  const { data: resumen = [], isLoading, error } = UseDashboard(period);
+
+  const { data: resumen = {}, isLoading } = UseDashboard(period);
 
   return (
     <div className="space-y-8">
       <DashboardHeader period={period} setPeriod={setPeriod} />
 
-      {/* SummaryCards */}
-      <SummaryCards resumen={resumen} />
+      {isLoading ? (
+        <>
+          <SummaryCardsSkeleton />
 
-      {/* RecentTransactions */}
-      <RecentRecords recentRecords={resumen.recentRecords} />
+          <RecentRecordsSkeleton />
+        </>
+      ) : (
+        <>
+          <SummaryCards resumen={resumen} />
+
+          <RecentRecords recentRecords={resumen.recentRecords} />
+        </>
+      )}
     </div>
   );
 };

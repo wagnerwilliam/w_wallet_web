@@ -12,14 +12,16 @@ import CreateIngresoModal from "./CreateIngresoModal.jsx";
 import DeleteIngresoModal from "./DeleteIngresoModal.jsx";
 import UpdateIngresoModal from "./UpdateIngresoModal.jsx";
 import { UseIngresos } from "../../queries/ingresos.js";
+import PeriodSelector from "../dashboard/PeriodSelector.jsx";
 
 const Ingresos = () => {
   let [modal, setModal] = useState(null);
   let [selectedtIngreso, setSelectedIngreso] = useState(null);
   let [search, setSearch] = useState("");
+  let [period, setPeriod] = useState("month");
 
   // Queries
-  const { data: ingresos = [], isLoading, error } = UseIngresos();
+  const { data: ingresos = [], isLoading, error } = UseIngresos(period);
 
   const openModal = (type, categoria = null) => {
     setModal(type);
@@ -41,16 +43,19 @@ const Ingresos = () => {
   return (
     <>
       {/* HEADER */}
-      <div>
-        <h1 className="text-xl font-semibold text-slate-900 tracking-tight">
-          Ingresos
-        </h1>
+      <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <h1 className="text-xl font-semibold text-slate-900 tracking-tight">
+            Ingresos
+          </h1>
 
-        <p className="text-sm text-slate-500 mt-1">
-          Registra y administra todos tus ingresos.
-        </p>
+          <p className="text-sm text-slate-500 mt-1">
+            Registra y administra todos tus ingresos.
+          </p>
+        </div>
+
+        <PeriodSelector value={period} onChange={setPeriod} />
       </div>
-
       {/* ACTION BAR */}
       <div className="flex justify-between items-center mt-6">
         <Search

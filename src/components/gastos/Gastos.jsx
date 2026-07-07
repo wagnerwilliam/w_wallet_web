@@ -14,13 +14,15 @@ import { UseGastos } from "../../queries/gastos.js";
 import CreateGastoModal from "./CreateGastoModal.jsx";
 import UpdateGastoModal from "./UpdateGastoModal.jsx";
 import DeleteGastoModal from "./DeleteGastoModal.jsx";
+import PeriodSelector from "../dashboard/PeriodSelector.jsx";
 
 const Gastos = () => {
   let [modal, setModal] = useState(null);
   let [selectedtGasto, setSelectedGasto] = useState(null);
   let [search, setSearch] = useState("");
+  let [period, setPeriod] = useState("month");
 
-  const { data: gastos = [], isLoading, error } = UseGastos();
+  const { data: gastos = [], isLoading, error } = UseGastos(period);
 
   const openModal = (type, gasto = null) => {
     setModal(type);
@@ -42,14 +44,18 @@ const Gastos = () => {
   return (
     <>
       {/* HEADER */}
-      <div>
-        <h1 className="text-xl font-semibold text-slate-900 tracking-tight">
-          Gastos
-        </h1>
+      <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <h1 className="text-xl font-semibold text-slate-900 tracking-tight">
+            Gastos
+          </h1>
 
-        <p className="text-sm text-slate-500 mt-1">
-          Registra y administra todos tus gastos.
-        </p>
+          <p className="text-sm text-slate-500 mt-1">
+            Registra y administra todos tus gastos.
+          </p>
+        </div>
+
+        <PeriodSelector value={period} onChange={setPeriod} />
       </div>
 
       {/* ACTION BAR */}

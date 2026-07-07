@@ -1,8 +1,8 @@
 import { apiFetch } from "./ApiFetch";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-export const ObtenerIngresos = async () => {
-  return await apiFetch(`${BACKEND_URL}api/ingresos/`, {
+export const ObtenerIngresos = async (period) => {
+  return await apiFetch(`${BACKEND_URL}api/ingresos?period=${period}`, {
     headers: {
       "Content-type": "application/json",
     },

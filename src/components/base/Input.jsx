@@ -12,12 +12,14 @@ const Input = ({
   onChange,
   error,
   disabled,
+  readOnly,
   className = "",
   ...props
 }) => {
   return (
     <input
       type={type}
+      readOnly={readOnly}
       placeholder={placeholder}
       value={value}
       onChange={onChange}

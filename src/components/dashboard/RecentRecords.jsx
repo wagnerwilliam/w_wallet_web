@@ -3,20 +3,20 @@ import RecentRecordRow from "./RecentRecordRow";
 const RecentRecords = ({ recentRecords = [] }) => {
   return (
     <section className="rounded-2xl border border-slate-200 bg-white shadow-sm">
-      <div className="flex flex-col gap-4 border-b border-slate-200 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-5">
+      <div className="flex flex-col gap-4 border-b border-slate-200 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5 sm:py-4">
         <div>
-          <h2 className="text-lg font-semibold text-slate-900">
+          <h2 className="text-base font-semibold text-slate-900 lg:text-[17px]">
             Actividad reciente
           </h2>
 
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-xs text-slate-500 lg:text-sm">
             Últimos ingresos y gastos registrados.
           </p>
         </div>
 
-        <button className="hidden text-sm font-medium text-[#0F766E] transition hover:underline sm:block">
+        {/* <button className="hidden text-sm font-medium text-[#0F766E] transition-colors hover:text-[#115E59] sm:block">
           Ver todos
-        </button>
+        </button> */}
       </div>
 
       <div className="min-h-90 divide-y divide-slate-100">

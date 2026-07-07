@@ -4,8 +4,9 @@ import AuthContext from "../../context/AuthContext";
 import toast from "react-hot-toast";
 import { LogoutMutation } from "../../queries/auth";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const DropDown = () => {
+const DropDown = ({ usuario }) => {
   const { logout } = useContext(AuthContext);
   const logoutMutation = LogoutMutation();
   const navigate = useNavigate();
@@ -42,13 +43,13 @@ const DropDown = () => {
         <p className="text-sm font-semibold tracking-tighttext-slate-900">
           Mi cuenta
         </p>
-        <p className="text-xs text-slate-500 mt-0.5">usuario@email.com</p>
+        <p className="text-xs text-slate-500 mt-0.5">{usuario.email}</p>
       </div>
 
       {/* ITEMS */}
       <div className="py-1">
-        <a
-          href="#"
+        <Link
+          to="/perfil"
           className="
             block px-4 py-2.5 text-sm
             text-slate-600
@@ -59,21 +60,7 @@ const DropDown = () => {
           "
         >
           Perfil
-        </a>
-
-        <a
-          href="#"
-          className="
-            block px-4 py-2.5 text-sm
-            text-slate-600
-            hover:bg-slate-50
-            hover:text-[#0F766E]
-            transition-colors
-            font-medium
-          "
-        >
-          Ajustes
-        </a>
+        </Link>
       </div>
 
       {/* DIVIDER */}
