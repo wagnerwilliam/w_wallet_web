@@ -10,6 +10,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { categoriaSchema } from "./ZodSchema";
 
+import toast from "react-hot-toast";
+
 const UpdateCategoriaModal = ({ closeModal, categoria }) => {
   let { _id, name, type, color } = categoria;
 
@@ -41,6 +43,7 @@ const UpdateCategoriaModal = ({ closeModal, categoria }) => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["categorias"] });
+          toast.success("Categoría actualizada correctamente.");
           closeModal();
         },
       },
@@ -50,7 +53,10 @@ const UpdateCategoriaModal = ({ closeModal, categoria }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* BACKDROP */}
-      <div onClick={closeModal} className="absolute inset-0 bg-black/40" />
+      <div
+        onClick={closeModal}
+        className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
+      />
 
       {/* MODAL */}
       <div

@@ -2,6 +2,8 @@ import Button from "../base/Button";
 import { useQueryClient } from "@tanstack/react-query";
 import { EliminarGastoMutation } from "../../queries/gastos";
 
+import toast from "react-hot-toast";
+
 const DeleteGastoModal = ({ closeModal, gasto }) => {
   const eliminarGasto = EliminarGastoMutation();
   const queryClient = useQueryClient();
@@ -10,6 +12,7 @@ const DeleteGastoModal = ({ closeModal, gasto }) => {
     eliminarGasto.mutate(gasto._id, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["gastos"] });
+        toast.success("Gasto eliminado correctamente.");
         closeModal();
       },
     });
@@ -17,7 +20,10 @@ const DeleteGastoModal = ({ closeModal, gasto }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* BACKDROP */}
-      <div onClick={closeModal} className="absolute inset-0 bg-black/40" />
+      <div
+        onClick={closeModal}
+        className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
+      />
 
       {/* MODAL */}
       <div

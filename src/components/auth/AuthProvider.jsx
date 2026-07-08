@@ -7,7 +7,6 @@ const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(
     localStorage.getItem("accessToken"),
   );
-  const [usuario, setUsuario] = useState({});
 
   const login = (accessToken) => {
     localStorage.setItem("accessToken", accessToken);
@@ -25,8 +24,6 @@ const AuthProvider = ({ children }) => {
         accessToken,
         login,
         logout,
-        usuario,
-        setUsuario,
       }}
     >
       {children}

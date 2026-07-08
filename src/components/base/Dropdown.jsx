@@ -4,9 +4,8 @@ import AuthContext from "../../context/AuthContext";
 import toast from "react-hot-toast";
 import { LogoutMutation } from "../../queries/auth";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 
-const DropDown = ({ usuario }) => {
+const DropDown = ({ usuario, openModal }) => {
   const { logout } = useContext(AuthContext);
   const logoutMutation = LogoutMutation();
   const navigate = useNavigate();
@@ -48,8 +47,7 @@ const DropDown = ({ usuario }) => {
 
       {/* ITEMS */}
       <div className="py-1">
-        <Link
-          to="/perfil"
+        <button
           className="
             block px-4 py-2.5 text-sm
             text-slate-600
@@ -58,9 +56,10 @@ const DropDown = ({ usuario }) => {
             transition-colors
             font-medium
           "
+          onClick={openModal}
         >
           Perfil
-        </Link>
+        </button>
       </div>
 
       {/* DIVIDER */}
