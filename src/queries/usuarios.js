@@ -1,7 +1,7 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { detalleUsuario, editarUsuario } from "../services/UsuariosService";
 
-export const DetalleUsuarioMutation = () => {
+export const DetalleUsuario = () => {
   return useQuery({
     queryKey: ["usuarios"],
     queryFn: async () => {
@@ -19,9 +19,8 @@ export const DetalleUsuarioMutation = () => {
 
 export const EditarUsuarioMutation = () => {
   return useMutation({
-    mutationFn: async (data) => {
-      console.log(data);
-      const response = await editarUsuario(data);
+    mutationFn: async (formData) => {
+      const response = await editarUsuario(formData);
 
       if (!response.ok) {
         throw new Error("Error al editar usuario");

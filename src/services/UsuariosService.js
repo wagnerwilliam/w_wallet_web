@@ -10,12 +10,9 @@ export const detalleUsuario = async () => {
   });
 };
 
-export const editarUsuario = async (data) => {
+export const editarUsuario = async (formData) => {
   return await apiFetch(`${BACKEND_URL}api/usuarios/editar`, {
     method: "PATCH",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(data),
+    body: formData,
   });
 };

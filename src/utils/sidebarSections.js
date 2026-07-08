@@ -5,7 +5,6 @@ import {
   Squares2X2Icon,
   TrophyIcon,
   ChartPieIcon,
-  ChartBarIcon,
 } from "@heroicons/react/24/outline";
 
 export const sidebarSections = [
