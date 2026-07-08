@@ -67,7 +67,7 @@ const PerfilModal = ({ closeModal, usuario }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* BACKDROP */}
       <div
         onClick={closeModal}
@@ -79,17 +79,22 @@ const PerfilModal = ({ closeModal, usuario }) => {
         className="
           relative
           w-full
-          max-w-2xl
-          overflow-hidden
+          max-w-lg
+          sm:max-w-xl
+          lg:max-w-2xl
+
+          max-h-[95vh]
+          overflow-y-auto
+
           rounded-2xl
-          border border-slate-200
+          border
+          border-slate-200
           bg-white
           shadow-2xl
-          font-sans
         "
       >
         {/* HEADER */}
-        <div className="border-b border-slate-200 px-8 py-6">
+        <div className="border-b border-slate-200 px-5 py-5 sm:px-8 sm:py-6">
           <h2 className="text-xl font-semibold text-slate-900">Mi perfil</h2>
 
           <p className="mt-1 text-sm text-slate-500">
@@ -99,13 +104,15 @@ const PerfilModal = ({ closeModal, usuario }) => {
 
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           {/* FOTO */}
-          <div className="flex flex-col items-center border-b border-slate-100 px-8 py-8">
+          <div className="flex flex-col items-center border-b border-slate-100 px-5 py-6 sm:px-8 sm:py-8">
             <label className="group relative cursor-pointer">
               <div
                 className="
                   flex
-                  h-32
-                  w-32
+                  h-24
+                  w-24
+                  sm:h-32
+                  sm:w-32
                   items-center
                   justify-center
                   overflow-hidden
@@ -124,7 +131,7 @@ const PerfilModal = ({ closeModal, usuario }) => {
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <UserCircleIcon className="h-20 w-20 text-slate-400" />
+                  <UserCircleIcon className="h-16 w-16 sm:h-20 sm:w-20 text-slate-400" />
                 )}
               </div>
 
@@ -158,8 +165,8 @@ const PerfilModal = ({ closeModal, usuario }) => {
               />
             </label>
             {errors.photo && (
-              <div className="mt-4 rounded-xl bg-white/15 px-4 py-2 backdrop-blur-sm">
-                <p className="text-sm font-medium text-red-500">
+              <div className="mt-3 max-w-xs rounded-lg bg-red-50 px-4 py-2">
+                <p className="text-center text-xs font-medium text-red-600">
                   {errors.photo.message}
                 </p>
               </div>
@@ -175,7 +182,7 @@ const PerfilModal = ({ closeModal, usuario }) => {
           </div>
 
           {/* FORM */}
-          <div className="grid gap-5 p-8 md:grid-cols-2">
+          <div className="grid gap-5 p-5 sm:p-8 md:grid-cols-2">
             <div className="space-y-2">
               <Label text="Nombre completo" />
               <Input
@@ -230,7 +237,22 @@ const PerfilModal = ({ closeModal, usuario }) => {
           </div>
 
           {/* ACTIONS */}
-          <div className="flex justify-end gap-3 border-t border-slate-200 px-8 py-5">
+          <div
+            className="flex
+              flex-col-reverse
+              gap-3
+
+              sm:flex-row
+              sm:justify-end
+
+              border-t
+              border-slate-200
+
+              px-5
+              py-5
+
+              sm:px-8"
+          >
             <Button variant="ghost" type="button" onClick={closeModal}>
               Cancelar
             </Button>
