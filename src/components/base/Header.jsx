@@ -62,13 +62,13 @@ const Header = ({ setIsMobileSidebarOpen }) => {
             {/* AVATAR */}
             <div
               className="
-                w-10 h-10
-                overflow-hidden
-                rounded-full
-                border border-slate-200
-                ring-2 ring-transparent
-                hover:ring-[#0F766E]/20
-                transition
+              flex h-10 w-10 items-center justify-center
+              overflow-hidden rounded-full
+              border border-slate-200
+              bg-slate-100
+              ring-2 ring-transparent
+              transition
+              hover:ring-[#0F766E]/20
               "
             >
               {usuario.photo ? (
