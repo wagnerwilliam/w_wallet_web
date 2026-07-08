@@ -35,7 +35,7 @@ const Login = () => {
 
   const onSubmit = (data) => {
     Login.mutate(data, {
-      onSuccess: ({ accessToken, usuario }) => {
+      onSuccess: ({ accessToken }) => {
         login(accessToken);
         toast.success("Has iniciado sesión correctamente.");
         navigate("/home", {

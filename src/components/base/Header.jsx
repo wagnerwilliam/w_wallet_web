@@ -2,12 +2,12 @@ import { useState, useRef } from "react";
 import DropDown from "./Dropdown";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import useClickOutside from "../../custom_hooks/useClickOutside";
-import { DetalleUsuarioMutation } from "../../queries/usuarios";
+import { DetalleUsuario } from "../../queries/usuarios";
 
 const Header = ({ setIsMobileSidebarOpen }) => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const menuRef = useRef(null);
-  const { data: usuario = {}, isLoading, error } = DetalleUsuarioMutation();
+  const { data: usuario = {}, isLoading, error } = DetalleUsuario();
 
   useClickOutside(menuRef, () => {
     setOpenDropdown(false);
@@ -72,7 +72,7 @@ const Header = ({ setIsMobileSidebarOpen }) => {
               "
             >
               <img
-                src="https://images.unsplash.com/photo-1517841905240-472988babdf9"
+                src={usuario.photo}
                 className="object-cover w-full h-full"
                 alt="avatar"
               />

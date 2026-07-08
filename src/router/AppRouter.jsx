@@ -10,7 +10,6 @@ import MetasAhorro from "../components/metas_ahorro/MetasAhorro";
 import Resumen from "../components/resumen/Resumen";
 import ProtectedRoute from "../components/auth/ProtectedRoute";
 import Dashboard from "../components/dashboard/Dashboard";
-import IncomeExpenseChart from "../components/analisis/IncomeExpenseChart";
 import Perfil from "../components/perfil/Perfil";
 
 const router = createBrowserRouter([

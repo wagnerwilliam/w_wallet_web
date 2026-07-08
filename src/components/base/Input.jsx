@@ -23,6 +23,8 @@ const Input = ({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      disabled={disabled}
+      tabIndex={disabled ? -1 : undefined}
       className={`
         ${baseInputStyles}
         ${inputVariants[variant]}

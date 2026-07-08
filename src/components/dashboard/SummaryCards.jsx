@@ -1,5 +1,4 @@
 import SummaryCard from "./SummaryCard";
-import { UseDashboard } from "../../queries/dashboard";
 import { getSummaryCards } from "../../utils/dashboard/summaryCards";
 
 const SummaryCards = ({ resumen }) => {
