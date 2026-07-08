@@ -10,6 +10,8 @@ import { gastoSchema } from "./ZodSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import toast from "react-hot-toast";
+
 const CreateGastoModal = ({ onClose }) => {
   const crearGasto = CrearGastoMutation();
   const queryClient = useQueryClient();
@@ -26,6 +28,7 @@ const CreateGastoModal = ({ onClose }) => {
     crearGasto.mutate(data, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["gastos"] });
+        toast.success("Gasto creado correctamente.");
         onClose();
       },
     });
@@ -34,7 +37,10 @@ const CreateGastoModal = ({ onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* BACKDROP */}
-      <div onClick={onClose} className="absolute inset-0 bg-black/40" />
+      <div
+        onClick={onClose}
+        className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
+      />
 
       {/* MODAL */}
       <div

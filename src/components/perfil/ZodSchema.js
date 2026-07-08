@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2 MB
+const MAX_FILE_SIZE = 2 * 1024 * 1024;
 
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
@@ -16,16 +16,33 @@ export const profileSchema = z.object({
       (value) => !Number.isNaN(Date.parse(value)),
       "La fecha de nacimiento no es válida.",
     ),
+
   photo: z
     .any()
     .optional()
-    .transform((files) => (files?.length ? files[0] : undefined))
+    .transform((value) => {
+      // No seleccionó nada
+      if (!value) return undefined;
+
+      // FileList vacío
+      if (value instanceof FileList) {
+        if (value.length === 0) return undefined;
+        return value[0];
+      }
+
+      // Ya es un File
+      if (value instanceof File) {
+        return value;
+      }
+
+      return undefined;
+    })
     .refine(
-      (file) => !file || file.size <= MAX_FILE_SIZE,
+      (file) => file === undefined || file.size <= MAX_FILE_SIZE,
       "La imagen debe pesar máximo 2 MB",
     )
     .refine(
-      (file) => !file || ACCEPTED_TYPES.includes(file.type),
+      (file) => file === undefined || ACCEPTED_TYPES.includes(file.type),
       "Solo se permiten imágenes JPG, PNG o WEBP",
     ),
 });

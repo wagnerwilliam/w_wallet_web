@@ -11,6 +11,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { gastoSchema } from "./ZodSchema";
 
+import toast from "react-hot-toast";
+
 const UpdateGastoModal = ({ closeModal, gasto }) => {
   let { _id, name, value, category_id } = gasto;
 
@@ -42,6 +44,7 @@ const UpdateGastoModal = ({ closeModal, gasto }) => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["gastos"] });
+          toast.success("Gasto actualizado correctamente.");
           closeModal();
         },
       },
@@ -51,7 +54,10 @@ const UpdateGastoModal = ({ closeModal, gasto }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* BACKDROP */}
-      <div onClick={closeModal} className="absolute inset-0 bg-black/40" />
+      <div
+        onClick={closeModal}
+        className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
+      />
 
       {/* MODAL */}
       <div

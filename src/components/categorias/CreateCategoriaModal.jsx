@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { categoriaSchema } from "./ZodSchema";
 
+import toast from "react-hot-toast";
+
 const CreateModal = ({ onClose }) => {
   const crearCategoria = CrearCategoriaMutation();
   const queryClient = useQueryClient();
@@ -25,6 +27,7 @@ const CreateModal = ({ onClose }) => {
     crearCategoria.mutate(data, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["categorias"] });
+        toast.success("Categoría creada correctamente.");
         onClose();
       },
     });
@@ -33,7 +36,10 @@ const CreateModal = ({ onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* BACKDROP */}
-      <div onClick={onClose} className="absolute inset-0 bg-black/40" />
+      <div
+        onClick={onClose}
+        className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
+      />
 
       {/* MODAL */}
       <div

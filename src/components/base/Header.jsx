@@ -2,12 +2,10 @@ import { useState, useRef } from "react";
 import DropDown from "./Dropdown";
 import { Bars3Icon, UserCircleIcon } from "@heroicons/react/24/outline";
 import useClickOutside from "../../custom_hooks/useClickOutside";
-import { DetalleUsuario } from "../../queries/usuarios";
 
-const Header = ({ setIsMobileSidebarOpen }) => {
+const Header = ({ setIsMobileSidebarOpen, openModal, usuario }) => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const menuRef = useRef(null);
-  const { data: usuario = {}, isLoading, error } = DetalleUsuario();
 
   useClickOutside(menuRef, () => {
     setOpenDropdown(false);
@@ -94,7 +92,7 @@ const Header = ({ setIsMobileSidebarOpen }) => {
           </button>
 
           {/* DROPDOWN */}
-          {openDropdown && <DropDown usuario={usuario} />}
+          {openDropdown && <DropDown usuario={usuario} openModal={openModal} />}
         </div>
       </nav>
     </header>
