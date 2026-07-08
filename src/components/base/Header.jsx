@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import DropDown from "./Dropdown";
-import { Bars3Icon } from "@heroicons/react/24/outline";
+import { Bars3Icon, UserCircleIcon } from "@heroicons/react/24/outline";
 import useClickOutside from "../../custom_hooks/useClickOutside";
 import { DetalleUsuario } from "../../queries/usuarios";
 
@@ -71,11 +71,15 @@ const Header = ({ setIsMobileSidebarOpen }) => {
                 transition
               "
             >
-              <img
-                src={usuario.photo}
-                className="object-cover w-full h-full"
-                alt="avatar"
-              />
+              {usuario.photo ? (
+                <img
+                  src={usuario.photo}
+                  alt={usuario.username}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <UserCircleIcon className="h-8 w-8 text-slate-400" />
+              )}
             </div>
 
             {/* INFO */}
