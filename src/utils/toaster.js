@@ -2,7 +2,7 @@ export const toasterOptions = {
   position: "top-center",
   reverseOrder: false,
   toastOptions: {
-    duration: 5000,
+    duration: 5000, // quiza sea mucho validar y cambiar si hace falta.
 
     style: {
       borderRadius: "12px",

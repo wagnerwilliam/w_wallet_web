@@ -7,7 +7,7 @@ import {
 
 export const getSummaryCards = (summary = {}) => [
   {
-    title: "Saldo actual",
+    title: "Disponible",
     value: summary.saldo ?? 0,
     icon: WalletIcon,
   },
@@ -22,7 +22,7 @@ export const getSummaryCards = (summary = {}) => [
     icon: ArrowTrendingDownIcon,
   },
   {
-    title: "Ahorro",
+    title: "Destinado a Metas",
     value: summary.ahorro ?? 0,
     icon: BanknotesIcon,
   },

@@ -14,11 +14,15 @@ import { registerSchema } from "./ZodSchema";
 import { useForm } from "react-hook-form";
 
 import toast from "react-hot-toast";
+import { useState } from "react";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 const Register = () => {
   const regitrarUsuario = RegistrarUsuarioMutation();
   const navigate = useNavigate();
   let { accessToken } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const {
     register,
@@ -96,13 +100,35 @@ const Register = () => {
 
             {/* PASSWORD */}
             <div className="space-y-1">
-              <Input
-                type="password"
-                placeholder="Contraseña"
-                px="px-4"
-                {...register("password")}
-                error={errors.password}
-              />
+              <div className="relative group">
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Contraseña"
+                  {...register("password")}
+                  error={errors.password}
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="
+                    absolute
+                    right-3
+                    top-1/2
+                    -translate-y-1/2
+                    text-slate-400
+                    hover:text-[#0F766E]
+                    transition-colors
+                  "
+                >
+                  {showPassword ? (
+                    <EyeSlashIcon className="h-5 w-5" />
+                  ) : (
+                    <EyeIcon className="h-5 w-5" />
+                  )}
+                </button>
+              </div>
+
               {errors.password && (
                 <p className="text-xs text-red-500">
                   {errors.password.message}
@@ -112,13 +138,35 @@ const Register = () => {
 
             {/* CONFIRM PASSWORD */}
             <div className="space-y-1">
-              <Input
-                type="password"
-                placeholder="Confirmar contraseña"
-                px="px-4"
-                {...register("confirm_password")}
-                error={errors.confirm_password}
-              />
+              <div className="relative group">
+                <Input
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="Confirmar contraseña"
+                  {...register("confirm_password")}
+                  error={errors.confirm_password}
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="
+                    absolute
+                    right-3
+                    top-1/2
+                    -translate-y-1/2
+                    text-slate-400
+                    hover:text-[#0F766E]
+                    transition-colors
+                  "
+                >
+                  {showConfirmPassword ? (
+                    <EyeSlashIcon className="h-5 w-5" />
+                  ) : (
+                    <EyeIcon className="h-5 w-5" />
+                  )}
+                </button>
+              </div>
+
               {errors.confirm_password && (
                 <p className="text-xs text-red-500">
                   {errors.confirm_password.message}

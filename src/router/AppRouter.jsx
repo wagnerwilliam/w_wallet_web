@@ -10,6 +10,7 @@ import MetasAhorro from "../components/metas_ahorro/MetasAhorro";
 import Resumen from "../components/resumen/Resumen";
 import ProtectedRoute from "../components/auth/ProtectedRoute";
 import Dashboard from "../components/dashboard/Dashboard";
+import MetasAhorroDetalle from "../components/metas_ahorro/MetasAhorroDetalle";
 
 const router = createBrowserRouter([
   // Rutas publicas.
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
           {
             path: "/resumen",
             element: <Resumen />,
+          },
+          {
+            path: "/metas/detalle/:id",
+            element: <MetasAhorroDetalle />,
           },
         ],
       },
