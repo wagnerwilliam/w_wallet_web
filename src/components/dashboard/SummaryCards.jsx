@@ -1,5 +1,6 @@
 import SummaryCard from "./SummaryCard";
 import { getSummaryCards } from "../../utils/dashboard/summaryCards";
+import { formatEUR } from "../../utils/formatters";
 
 const SummaryCards = ({ resumen }) => {
   const cards = getSummaryCards(resumen.summary);
@@ -12,6 +13,7 @@ const SummaryCards = ({ resumen }) => {
           title={card.title}
           value={card.value}
           icon={card.icon}
+          formatter={formatEUR}
         />
       ))}
     </section>

@@ -108,50 +108,78 @@ const PerfilModal = ({ closeModal, usuario }) => {
             <label className="group relative cursor-pointer">
               <div
                 className="
-                  flex
-                  h-24
-                  w-24
-                  sm:h-32
-                  sm:w-32
-                  items-center
-                  justify-center
-                  overflow-hidden
-                  rounded-full
-                  border-4
-                  border-slate-200
-                  bg-slate-100
-                  transition
-                  group-hover:border-teal-600
-                "
+      relative
+      flex
+      h-24
+      w-24
+      sm:h-32
+      sm:w-32
+      items-center
+      justify-center
+      overflow-hidden
+      rounded-full
+      border-4
+      border-slate-200
+      bg-slate-200
+    "
               >
                 {preview ? (
                   <img
                     src={preview}
                     alt="Perfil"
-                    className="h-full w-full object-cover"
+                    className="
+          h-full
+          w-full
+          object-cover
+          transition
+          duration-300
+          group-hover:brightness-75
+        "
                   />
                 ) : (
-                  <UserCircleIcon className="h-16 w-16 sm:h-20 sm:w-20 text-slate-400" />
+                  <UserCircleIcon className="h-16 w-16 text-slate-500 sm:h-20 sm:w-20" />
                 )}
+
+                {/* Overlay */}
+                <div
+                  className="
+        absolute
+        inset-0
+        flex
+        items-center
+        justify-center
+        rounded-full
+        bg-black/40
+        opacity-0
+        transition
+        duration-300
+        group-hover:opacity-100
+      "
+                >
+                  <span className="text-sm font-medium text-white">
+                    Cambiar foto
+                  </span>
+                </div>
               </div>
 
+              {/* Botón cámara */}
               <div
                 className="
-                  absolute
-                  bottom-1
-                  right-1
-                  flex
-                  h-10
-                  w-10
-                  items-center
-                  justify-center
-                  rounded-full
-                  bg-teal-700
-                  text-white
-                  shadow-lg
-                  transition
-                  group-hover:scale-110
-                "
+      absolute
+      bottom-1
+      right-1
+      flex
+      h-10
+      w-10
+      items-center
+      justify-center
+      rounded-full
+      bg-teal-700
+      text-white
+      shadow-lg
+      transition
+      group-hover:scale-110
+    "
               >
                 <CameraIcon className="h-5 w-5" />
               </div>
@@ -161,7 +189,6 @@ const PerfilModal = ({ closeModal, usuario }) => {
                 accept="image/png,image/jpeg,image/webp"
                 className="hidden"
                 {...register("photo")}
-                error={errors.photo}
               />
             </label>
             {errors.photo && (
@@ -171,14 +198,6 @@ const PerfilModal = ({ closeModal, usuario }) => {
                 </p>
               </div>
             )}
-
-            <p className="mt-4 text-sm font-medium text-slate-700">
-              Cambiar fotografía
-            </p>
-
-            <p className="mt-1 text-xs text-slate-500">
-              JPG, PNG o WEBP • Máximo 2 MB
-            </p>
           </div>
 
           {/* FORM */}

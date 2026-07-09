@@ -1,6 +1,11 @@
 import Input from "../base/Input";
 import Button from "../base/Button";
-import { UserIcon, LockClosedIcon } from "@heroicons/react/24/outline";
+import {
+  UserIcon,
+  LockClosedIcon,
+  EyeIcon,
+  EyeSlashIcon,
+} from "@heroicons/react/24/outline";
 import Icon from "../base/Icon";
 import AuthHeader from "./AuthHeader";
 import AuthFooter from "./AuthFooter";
@@ -13,13 +18,14 @@ import { useForm } from "react-hook-form";
 import { loginSchema } from "./ZodSchema";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
-
+import { useState } from "react";
 import toast from "react-hot-toast";
 
 const Login = () => {
   const iconClass =
     "absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#0F766E]";
   let { accessToken, login } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
 
   const Login = LoginMutation();
   const navigate = useNavigate();
@@ -94,13 +100,34 @@ const Login = () => {
                 <Icon icon={LockClosedIcon} className={iconClass} />
 
                 <Input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="Contraseña"
-                  className="px-11"
+                  className="px-11 pr-11"
                   {...register("password")}
                   error={errors.password}
                 />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="
+                    absolute
+                    right-3
+                    top-1/2
+                    -translate-y-1/2
+                    text-slate-400
+                    hover:text-[#0F766E]
+                    transition-colors
+                  "
+                >
+                  {showPassword ? (
+                    <EyeSlashIcon className="h-5 w-5" />
+                  ) : (
+                    <EyeIcon className="h-5 w-5" />
+                  )}
+                </button>
               </div>
+
               {errors.password && (
                 <p className="text-xs text-red-500">
                   {errors.password.message}

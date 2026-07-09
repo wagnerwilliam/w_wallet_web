@@ -69,7 +69,7 @@ const CreateIngresoModal = ({ onClose }) => {
             <Label text="Concepto" required />
             <Input
               type="text"
-              placeholder="Ej: Pago proyecto web"
+              placeholder="Ej: Pago de nómina"
               variant="filled"
               {...register("name")}
               error={errors.name}
