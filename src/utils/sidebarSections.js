@@ -55,11 +55,11 @@ export const sidebarSections = [
         path: "/metas-ahorro",
         icon: TrophyIcon,
       },
-      {
-        label: "Resumen",
-        path: "/resumen",
-        icon: ChartPieIcon,
-      },
+      // {
+      //   label: "Resumen",
+      //   path: "/resumen",
+      //   icon: ChartPieIcon,
+      // },
     ],
   },
 ];
