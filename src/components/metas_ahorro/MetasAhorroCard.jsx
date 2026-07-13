@@ -2,13 +2,15 @@ import {
   CalendarDaysIcon,
   CursorArrowRaysIcon,
 } from "@heroicons/react/24/outline";
+import { useNavigate } from "react-router-dom";
 
-import { formatEUR } from "../../utils/formatters";
+import { formatEUR, formatDate } from "../../utils/formatters";
 import Button from "../base/Button";
 
-const MetasAhorroCard = ({ goal, onView }) => {
+const MetasAhorroCard = ({ meta }) => {
+  const navigate = useNavigate();
   const percentage = Math.min(
-    Math.round((goal.saved / goal.target) * 100),
+    Math.round((meta.saved / meta.target) * 100),
     100,
   );
 
@@ -22,7 +24,7 @@ const MetasAhorroCard = ({ goal, onView }) => {
 
         <div className="min-w-0">
           <h3 className="truncate text-base font-semibold text-slate-900">
-            {goal.name}
+            {meta.name}
           </h3>
 
           <p className="text-xs text-slate-500">{percentage}% completado</p>
@@ -45,7 +47,7 @@ const MetasAhorroCard = ({ goal, onView }) => {
           <p className="text-xs text-slate-500">Objetivo</p>
 
           <p className="mt-1 text-sm font-semibold text-slate-900">
-            {formatEUR(goal.target)}
+            {formatEUR(meta.target)}
           </p>
         </div>
 
@@ -53,7 +55,7 @@ const MetasAhorroCard = ({ goal, onView }) => {
           <p className="text-xs text-slate-500">Ahorrado</p>
 
           <p className="mt-1 text-sm font-semibold text-emerald-600">
-            {formatEUR(goal.saved)}
+            {formatEUR(meta.saved)}
           </p>
         </div>
 
@@ -61,7 +63,7 @@ const MetasAhorroCard = ({ goal, onView }) => {
           <p className="text-xs text-slate-500">Restante</p>
 
           <p className="mt-1 text-sm font-semibold text-slate-900">
-            {formatEUR(goal.target - goal.saved)}
+            {formatEUR(meta.target - meta.saved)}
           </p>
         </div>
       </div>
@@ -71,10 +73,13 @@ const MetasAhorroCard = ({ goal, onView }) => {
         <div className="flex items-center gap-2 text-xs text-slate-500">
           <CalendarDaysIcon className="h-4 w-4" />
 
-          {goal.targetDate}
+          {formatDate(meta.target_date)}
         </div>
 
-        <Button variant="ghost" onClick={onView}>
+        <Button
+          variant="ghost"
+          onClick={() => navigate(`/metas/detalle/${meta._id}`)}
+        >
           Ver detalle
         </Button>
       </div>

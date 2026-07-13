@@ -1,7 +1,7 @@
 import { PlusIcon, CursorArrowRaysIcon } from "@heroicons/react/24/outline";
 import Button from "../base/Button";
 
-const MetasAhorroHeader = ({ onCreate }) => {
+const MetasAhorroHeader = ({ openModal }) => {
   return (
     <section className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
       <div className="min-w-0">
@@ -22,7 +22,7 @@ const MetasAhorroHeader = ({ onCreate }) => {
         </div>
       </div>
 
-      <Button onClick={onCreate}>
+      <Button onClick={openModal}>
         <PlusIcon className="h-5 w-5" />
         Nueva meta
       </Button>

@@ -1,23 +1,35 @@
 import MetasAhorroHeader from "./MetasAhorroHeader";
 import MetasAhorroResumen from "./MetasAhorroResumen";
 import MetasAhorroLista from "./MetasAhorroLista";
+import CreateMetaModal from "./CreateMetaModal";
+import { useState } from "react";
+import { UseMetas } from "../../queries/metas";
 
 const MetasAhorro = () => {
-  let goals = [
-    { name: "william", target: 50, saved: 15, targetDate: "2020-11-23" },
-    { name: "prueba 2", target: 1100, saved: 450, targetDate: "2020-11-23" },
-    { name: "prueba 3", target: 50, saved: 45, targetDate: "2020-11-23" },
-  ];
+  const { data: metas = [], isLoading, error } = UseMetas();
+
+  let [modal, setModal] = useState(false);
+
+  const openModal = () => {
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
   return (
     <div className="space-y-8">
       {/* Header */}
-      <MetasAhorroHeader />
+      <MetasAhorroHeader openModal={openModal} />
 
       {/* Resumen */}
       <MetasAhorroResumen />
 
       {/* Metas */}
-      <MetasAhorroLista goals={goals} />
+      <MetasAhorroLista metas={metas} />
+
+      {modal && <CreateMetaModal closeModal={closeModal} />}
     </div>
   );
 };
