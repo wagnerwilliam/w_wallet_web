@@ -25,7 +25,7 @@ const CreateMetaModal = ({ closeModal }) => {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["metas"] });
         toast.success("Meta creada correctamente.");
-        onClose();
+        closeModal();
       },
     });
   };
@@ -83,7 +83,7 @@ const CreateMetaModal = ({ closeModal }) => {
 
           {/* Fecha */}
           <div className="space-y-2">
-            <Label text="Fecha objetivo" />
+            <Label text="Fecha objetivo" required />
             <Input
               type="date"
               variant="filled"

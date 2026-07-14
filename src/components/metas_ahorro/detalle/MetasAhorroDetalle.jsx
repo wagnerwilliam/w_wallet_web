@@ -1,6 +1,6 @@
-import GoalHeader from "./GoalHeader";
-import GoalProgress from "./GoalProgress";
-import GoalStats from "./GoalStats";
+import MetaHeader from "./MetaHeader";
+import MetaProgress from "./MetaProgress";
+import GoalStats from "./MetaStats";
 import MetaActions from "./MetaActions";
 import { UseMeta } from "../../../queries/metas";
 import { useParams } from "react-router-dom";
@@ -33,11 +33,11 @@ const MetasAhorroDetalle = () => {
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
-      <GoalHeader goal={meta} />
+      <MetaHeader meta={meta} />
 
-      <GoalProgress goal={meta} />
+      <MetaProgress meta={meta} />
 
-      <GoalStats goal={meta} />
+      <GoalStats meta={meta} />
 
       <MetaActions openAhorroModal={openAhorroModal} openEdit={openEdit} />
 

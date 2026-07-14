@@ -27,7 +27,11 @@ const MetasAhorro = () => {
       <MetasAhorroResumen />
 
       {/* Metas */}
-      <MetasAhorroLista metas={metas} />
+      <MetasAhorroLista
+        metas={metas}
+        isLoading={isLoading}
+        openModal={openModal}
+      />
 
       {modal && <CreateMetaModal closeModal={closeModal} />}
     </div>

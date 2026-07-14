@@ -3,6 +3,7 @@ import {
   ObtenerMetas,
   crearMeta,
   ObtenerMeta,
+  ObtenerResumenMetas,
   editarMeta,
   agregarAhorro,
 } from "../services/MetasService";
@@ -12,6 +13,16 @@ export const UseMetas = () => {
     queryKey: ["metas"],
     queryFn: async () => {
       const response = await ObtenerMetas();
+      return response.json();
+    },
+  });
+};
+
+export const UseResumenMetas = () => {
+  return useQuery({
+    queryKey: ["resumenMetas"],
+    queryFn: async () => {
+      const response = await ObtenerResumenMetas();
       return response.json();
     },
   });

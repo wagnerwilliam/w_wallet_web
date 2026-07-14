@@ -1,25 +1,8 @@
 import { formatEUR } from "../../../utils/formatters";
+import { getStats } from "../../../utils/metas_ahorro/stats";
 
-const GoalStats = ({ goal }) => {
-  const stats = [
-    {
-      title: "Objetivo",
-      value: formatEUR(goal.target),
-    },
-    {
-      title: "Ahorrado",
-      value: formatEUR(goal.saved),
-      color: "text-emerald-600",
-    },
-    {
-      title: "Restante",
-      value: formatEUR(goal.target - goal.saved),
-    },
-    {
-      title: "Aportes",
-      value: goal.totalMovements,
-    },
-  ];
+const MetaStats = ({ meta }) => {
+  const stats = getStats(meta);
 
   return (
     <section className="grid gap-4 md:grid-cols-4">
@@ -45,4 +28,4 @@ const GoalStats = ({ goal }) => {
   );
 };
 
-export default GoalStats;
+export default MetaStats;

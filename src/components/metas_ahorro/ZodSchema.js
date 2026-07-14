@@ -19,10 +19,13 @@ export const metasSchema = z.object({
       message: "Solo se permiten hasta 2 decimales",
     }),
 
-  target_date: z.preprocess(
-    (value) => (value === "" ? undefined : value),
-    z.coerce.date().optional(),
-  ),
+  target_date: z
+    .string()
+    .min(1, "La fecha objetivo es obligatoria")
+    .refine(
+      (date) => new Date(date) >= new Date(new Date().toDateString()),
+      "La fecha objetivo no puede ser anterior a hoy",
+    ),
 
   color: z
     .string()

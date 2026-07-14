@@ -23,7 +23,7 @@ export const getSummaryCards = (summary = {}) => [
   },
   {
     title: "Destinado a Metas",
-    value: summary.ahorro ?? 0,
+    value: summary.destinado_metas ?? 0,
     icon: BanknotesIcon,
   },
 ];

@@ -6,27 +6,34 @@ import {
 } from "@heroicons/react/24/outline";
 
 import SummaryCard from "../dashboard/SummaryCard";
+import { formatEUR } from "../../utils/formatters";
 
-const MetasAhorroResumen = ({ summary = {} }) => {
+import { UseResumenMetas } from "../../queries/metas";
+
+const MetasAhorroResumen = () => {
+  const { data: rersumenMetas = [], isLoading, error } = UseResumenMetas();
+
   const cards = [
     {
       title: "Metas activas",
-      value: summary.activeGoals ?? 0,
+      value: rersumenMetas.activeGoals ?? 0,
       icon: CursorArrowRaysIcon,
     },
     {
       title: "Ahorrado",
-      value: summary.savedAmount ?? 0,
+      value: rersumenMetas.savedAmount ?? 0,
       icon: BanknotesIcon,
+      formatter: formatEUR,
     },
     {
       title: "Pendiente",
-      value: summary.remainingAmount ?? 0,
+      value: rersumenMetas.remainingAmount ?? 0,
       icon: ClockIcon,
+      formatter: formatEUR,
     },
     {
       title: "Completadas",
-      value: summary.completedGoals ?? 0,
+      value: rersumenMetas.completedGoals ?? 0,
       icon: CheckBadgeIcon,
     },
   ];
@@ -35,6 +42,7 @@ const MetasAhorroResumen = ({ summary = {} }) => {
     <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {cards.map((card) => (
         <SummaryCard
+          formatter={card.formatter}
           key={card.title}
           title={card.title}
           value={card.value}

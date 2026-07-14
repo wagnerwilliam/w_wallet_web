@@ -2,7 +2,7 @@ import MetasAhorroCard from "./MetasAhorroCard";
 import MetasVacias from "./MetasVacias";
 import MetaSkeleton from "./MetaSkeleton";
 
-const MetasAhorroLista = ({ metas = [], isLoading = false, onView }) => {
+const MetasAhorroLista = ({ metas = [], isLoading = false, openModal }) => {
   if (isLoading) {
     return (
       <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -14,7 +14,7 @@ const MetasAhorroLista = ({ metas = [], isLoading = false, onView }) => {
   }
 
   if (!metas.length) {
-    return <MetasVacias />;
+    return <MetasVacias openModal={openModal} />;
   }
 
   return (

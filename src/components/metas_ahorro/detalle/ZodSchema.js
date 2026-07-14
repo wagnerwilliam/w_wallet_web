@@ -1,25 +1,21 @@
 import { z } from "zod";
 
-export const ahorroSchema = z.object({
-  saved: z.coerce
-    .number({
-      invalid_type_error: "La cantidad debe ser un número",
-    })
-    .positive("La cantidad debe ser mayor que 0")
-    .refine((val) => Number.isFinite(val), {
-      message: "La cantidad debe ser un número válido",
-    })
-    .refine((val) => /^\d+(\.\d{1,2})?$/.test(val.toString()), {
-      message: "La cantidad solo puede tener hasta 2 decimales",
-    }),
+export const ahorroSchema = (available) =>
+  z.object({
+    saved: z.coerce
+      .number({
+        invalid_type_error: "El monto debe ser un número",
+      })
+      .positive("El monto debe ser mayor que 0")
+      .max(available, `No puedes ahorrar más de ${available.toFixed(2)} €`),
 
-  description: z
-    .string()
-    .trim()
-    .max(120, "La descripción no puede superar los 120 caracteres")
-    .optional()
-    .or(z.literal("")),
-});
+    description: z
+      .string()
+      .trim()
+      .max(150, "La nota no puede superar los 150 caracteres")
+      .optional()
+      .or(z.literal("")),
+  });
 
 export const editarMetaSchema = z.object({
   name: z
