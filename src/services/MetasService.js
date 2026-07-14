@@ -17,6 +17,14 @@ export const ObtenerMeta = async (id) => {
   });
 };
 
+export const ObtenerResumenMetas = async () => {
+  return await apiFetch(`${BACKEND_URL}api/metas/resumen`, {
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+};
+
 export const crearMeta = async (data) => {
   return await apiFetch(`${BACKEND_URL}api/metas/crear`, {
     method: "POST",

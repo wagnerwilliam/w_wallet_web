@@ -6,7 +6,9 @@ import {
 import { formatDate } from "../../../utils/formatters";
 import { useNavigate } from "react-router-dom";
 
-const GoalHeader = ({ goal }) => {
+const MetaHeader = ({ meta }) => {
+  let { color, name, target_date } = meta;
+
   const navigate = useNavigate();
 
   return (
@@ -24,23 +26,18 @@ const GoalHeader = ({ goal }) => {
           <div
             className="flex h-14 w-14 items-center justify-center rounded-2xl"
             style={{
-              backgroundColor: `${goal.color}20`,
+              backgroundColor: `${color}20`,
             }}
           >
-            <CursorArrowRaysIcon
-              className="h-7 w-7"
-              style={{ color: goal.color }}
-            />
+            <CursorArrowRaysIcon className="h-7 w-7" style={{ color: color }} />
           </div>
 
           <div>
-            <h1 className="text-2xl font-semibold text-slate-900">
-              {goal.name}
-            </h1>
+            <h1 className="text-2xl font-semibold text-slate-900">{name}</h1>
 
             <div className="mt-1 flex items-center gap-2 text-sm text-slate-500">
               <CalendarDaysIcon className="h-4 w-4" />
-              {formatDate(goal.target_date)}
+              {formatDate(target_date)}
             </div>
           </div>
         </div>
@@ -49,4 +46,4 @@ const GoalHeader = ({ goal }) => {
   );
 };
 
-export default GoalHeader;
+export default MetaHeader;

@@ -30,7 +30,7 @@ const RecentRecords = ({ recentRecords = [] }) => {
           recentRecords.map((record) => (
             <RecentRecordRow
               key={record._id}
-              name={record.name}
+              name={record.name || record.description}
               category={record.category_id}
               amount={record.amount}
               date={record.created_at}

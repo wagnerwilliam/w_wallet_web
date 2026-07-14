@@ -6,17 +6,23 @@ import { useQueryClient } from "@tanstack/react-query";
 import { ahorroSchema } from "./ZodSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { UseDashboard } from "../../../queries/dashboard";
+import { formatEUR } from "../../../utils/formatters";
 
 const AgregarAhorroModal = ({ closeModal, id }) => {
   const agregarAhorro = AgregarAhorroMutation();
+  const { data: dashboard } = UseDashboard("month");
   const queryClient = useQueryClient();
+
+  const available = dashboard?.summary?.saldo ?? 0;
 
   const {
     register,
     handleSubmit,
     formState: { errors, isDirty },
   } = useForm({
-    resolver: zodResolver(ahorroSchema),
+    resolver: zodResolver(ahorroSchema(available)),
     defaultValues: {
       amount: "",
       description: "",
@@ -33,6 +39,9 @@ const AgregarAhorroModal = ({ closeModal, id }) => {
       },
       {
         onSuccess: () => {
+          queryClient.invalidateQueries({
+            queryKey: ["dashboard"],
+          });
           queryClient.invalidateQueries({ queryKey: ["metas"] });
           toast.success("Ahorro agregado correctamente.");
           closeModal();
@@ -57,6 +66,21 @@ const AgregarAhorroModal = ({ closeModal, id }) => {
           <p className="mt-1 text-sm text-slate-500">
             Registra un nuevo aporte para esta meta.
           </p>
+
+          <div className="mt-4 rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3">
+            <p className="text-xs font-medium uppercase tracking-wide text-cyan-700">
+              Saldo disponible
+            </p>
+
+            <p className="mt-1 text-2xl font-bold text-cyan-800">
+              {formatEUR(dashboard?.summary?.saldo ?? 0)}
+            </p>
+
+            <p className="mt-1 text-xs text-cyan-700">
+              Este es el dinero disponible para destinar a tus metas este
+              período.
+            </p>
+          </div>
         </div>
 
         <form className="space-y-5 p-6" onSubmit={handleSubmit(onSubmit)}>
