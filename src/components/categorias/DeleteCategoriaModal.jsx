@@ -1,9 +1,15 @@
-import Button from "../base/Button";
 import { useQueryClient } from "@tanstack/react-query";
-import { EliminarCategoriaMutation } from "../../queries/categorias";
-
 import toast from "react-hot-toast";
 
+import { EliminarCategoriaMutation } from "../../queries/categorias";
+import Button from "../base/Button";
+
+/**
+ * Modal de confirmación para eliminar una categoría.
+ *
+ * Solicita la confirmación del usuario antes de eliminar la categoría
+ * seleccionada y actualiza el listado al finalizar la operación.
+ */
 const DeleteCategoriaModal = ({ closeModal, categoria }) => {
   const eliminarCategoria = EliminarCategoriaMutation();
   const queryClient = useQueryClient();

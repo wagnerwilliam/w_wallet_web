@@ -1,5 +1,10 @@
 import { UseCategoriasByType } from "../../queries/categorias";
 
+/**
+ * Renderiza las opciones de un selector de categorías,
+ * mostrando únicamente las categorías activas del tipo solicitado.
+ */
+
 const CategoriaOptions = ({ type }) => {
   const { data: categorias } = UseCategoriasByType(type);
 

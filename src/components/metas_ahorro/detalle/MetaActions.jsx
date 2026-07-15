@@ -1,4 +1,4 @@
-import { PlusCircleIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import { PencilSquareIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
 
 import Button from "../../base/Button";
 

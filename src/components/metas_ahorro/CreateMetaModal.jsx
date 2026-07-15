@@ -1,12 +1,13 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+
+import { CrearMetaMutation } from "../../queries/metas";
 import Button from "../base/Button";
 import Input from "../base/Input";
 import Label from "../base/Label";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { metasSchema } from "./ZodSchema";
-import { CrearMetaMutation } from "../../queries/metas";
-import { useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 
 const CreateMetaModal = ({ closeModal }) => {
   const crearMeta = CrearMetaMutation();

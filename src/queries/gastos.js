@@ -1,11 +1,24 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+
 import {
-  obtenerGastos,
   crearGasto,
   editarGasto,
   eliminarGasto,
+  obtenerGastos,
 } from "../services/GastoService";
 
+/**
+ * Hooks de React Query para la gestión de gastos.
+ *
+ * Incluye consultas y mutaciones para listar, crear,
+ * actualizar y eliminar gastos.
+ */
+
+/**
+ * Obtiene el listado de gastos según el período seleccionado.
+ *
+ * @param {string} period Período de consulta (day, week, month, year, etc.).
+ */
 export const UseGastos = (period) => {
   return useQuery({
     queryKey: ["gastos", period],
@@ -16,6 +29,9 @@ export const UseGastos = (period) => {
   });
 };
 
+/**
+ * Crea un nuevo gasto.
+ */
 export const CrearGastoMutation = () => {
   return useMutation({
     mutationFn: async (data) => {
@@ -31,6 +47,9 @@ export const CrearGastoMutation = () => {
   });
 };
 
+/**
+ * Actualiza un gasto existente.
+ */
 export const EditarGastoMutation = () => {
   return useMutation({
     mutationFn: async ({ _id, data }) => {
@@ -46,6 +65,9 @@ export const EditarGastoMutation = () => {
   });
 };
 
+/**
+ * Elimina un gasto.
+ */
 export const EliminarGastoMutation = () => {
   return useMutation({
     mutationFn: async (id) => {

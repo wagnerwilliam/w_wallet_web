@@ -1,4 +1,3 @@
-import { formatEUR } from "../../../utils/formatters";
 import { getStats } from "../../../utils/metas_ahorro/stats";
 
 const MetaStats = ({ meta }) => {

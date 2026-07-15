@@ -1,24 +1,29 @@
-import Input from "../base/Input";
-import Button from "../base/Button";
-import AuthHeader from "./AuthHeader";
-import AuthFooter from "./AuthFooter";
-import { useNavigate } from "react-router-dom";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";
-import AuthContext from "../../context/AuthContext";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
+import AuthContext from "../../context/AuthContext";
 import { RegistrarUsuarioMutation } from "../../queries/auth";
-
-import { zodResolver } from "@hookform/resolvers/zod";
+import Button from "../base/Button";
+import Input from "../base/Input";
+import AuthFooter from "./AuthFooter";
+import AuthHeader from "./AuthHeader";
 import { registerSchema } from "./ZodSchema";
-import { useForm } from "react-hook-form";
 
-import toast from "react-hot-toast";
-import { useState } from "react";
-import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-
+/**
+ * Vista de registro de usuarios.
+ *
+ * Permite crear una nueva cuenta, validar los datos del formulario
+ * y redirigir al inicio de sesión cuando el registro se completa
+ * correctamente.
+ */
 const Register = () => {
-  const regitrarUsuario = RegistrarUsuarioMutation();
+  const registrarUsuarioMutation = RegistrarUsuarioMutation();
   const navigate = useNavigate();
   let { accessToken } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
@@ -34,7 +39,7 @@ const Register = () => {
   });
 
   const onSubmit = (data) => {
-    regitrarUsuario.mutate(data, {
+    registrarUsuarioMutation.mutate(data, {
       onSuccess: () => {
         toast.success(
           "¡Cuenta creada correctamente! Ya puedes iniciar sesión.",

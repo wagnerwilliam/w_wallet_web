@@ -1,17 +1,18 @@
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+
+import { UseMeta } from "../../../queries/metas";
+import AgregarAhorroModal from "./AgregarAhorroModal";
+import EditarMetaModal from "./EditarMetaModal";
+import MetaActions from "./MetaActions";
 import MetaHeader from "./MetaHeader";
 import MetaProgress from "./MetaProgress";
 import GoalStats from "./MetaStats";
-import MetaActions from "./MetaActions";
-import { UseMeta } from "../../../queries/metas";
-import { useParams } from "react-router-dom";
-import AgregarAhorroModal from "./AgregarAhorroModal";
-import { useState } from "react";
-import EditarMetaModal from "./EditarMetaModal";
 
 const MetasAhorroDetalle = () => {
   let { id } = useParams();
 
-  const { data: meta = [], isLoading, error } = UseMeta(id);
+  const { data: meta = [] } = UseMeta(id);
   const [modal, setModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
 

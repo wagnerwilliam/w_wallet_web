@@ -1,13 +1,24 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+
 import {
-  ObtenerMetas,
-  crearMeta,
-  ObtenerMeta,
-  ObtenerResumenMetas,
-  editarMeta,
   agregarAhorro,
+  crearMeta,
+  editarMeta,
+  ObtenerMeta,
+  ObtenerMetas,
+  ObtenerResumenMetas,
 } from "../services/MetasService";
 
+/**
+ * Hooks de React Query para la gestión de metas de ahorro.
+ *
+ * Incluye consultas y mutaciones para administrar metas,
+ * registrar ahorros y obtener información resumida.
+ */
+
+/**
+ * Obtiene el listado de metas del usuario.
+ */
 export const UseMetas = () => {
   return useQuery({
     queryKey: ["metas"],
@@ -18,6 +29,9 @@ export const UseMetas = () => {
   });
 };
 
+/**
+ * Obtiene el resumen general de las metas de ahorro.
+ */
 export const UseResumenMetas = () => {
   return useQuery({
     queryKey: ["resumenMetas"],
@@ -28,6 +42,9 @@ export const UseResumenMetas = () => {
   });
 };
 
+/**
+ * Crea una nueva meta de ahorro.
+ */
 export const CrearMetaMutation = () => {
   return useMutation({
     mutationFn: async (data) => {
@@ -43,6 +60,9 @@ export const CrearMetaMutation = () => {
   });
 };
 
+/**
+ * Actualiza la información de una meta existente.
+ */
 export const EditarMetaMutation = () => {
   return useMutation({
     mutationFn: async ({ _id, data }) => {
@@ -57,6 +77,9 @@ export const EditarMetaMutation = () => {
   });
 };
 
+/**
+ * Registra un nuevo ahorro en una meta existente.
+ */
 export const AgregarAhorroMutation = () => {
   return useMutation({
     mutationFn: async ({ id, data }) => {
@@ -71,9 +94,14 @@ export const AgregarAhorroMutation = () => {
   });
 };
 
+/**
+ * Obtiene el detalle de una meta por su identificador.
+ *
+ * @param {string} id Identificador de la meta.
+ */
 export const UseMeta = (id) => {
   return useQuery({
-    queryKey: ["metas"],
+    queryKey: ["metas", id],
     queryFn: async () => {
       const response = await ObtenerMeta(id);
       return response.json();

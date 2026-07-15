@@ -1,11 +1,24 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+
 import {
-  ObtenerIngresos,
   crearIngreso,
   editarIngreso,
   eliminarIngreso,
+  ObtenerIngresos,
 } from "../services/IngresosService";
 
+/**
+ * Hooks de React Query para la gestión de ingresos.
+ *
+ * Incluye consultas y mutaciones para listar, crear,
+ * actualizar y eliminar ingresos.
+ */
+
+/**
+ * Obtiene el listado de ingresos según el período seleccionado.
+ *
+ * @param {string} period Período de consulta (day, week, month, year, etc.).
+ */
 export const UseIngresos = (period) => {
   return useQuery({
     queryKey: ["ingresos", period],
@@ -16,6 +29,9 @@ export const UseIngresos = (period) => {
   });
 };
 
+/**
+ * Crea un nuevo ingreso.
+ */
 export const CrearIngresoMutation = () => {
   return useMutation({
     mutationFn: async (data) => {
@@ -30,6 +46,9 @@ export const CrearIngresoMutation = () => {
   });
 };
 
+/**
+ * Actualiza un ingreso existente.
+ */
 export const EditarIngresoMutation = () => {
   return useMutation({
     mutationFn: async ({ _id, data }) => {
@@ -44,6 +63,9 @@ export const EditarIngresoMutation = () => {
   });
 };
 
+/**
+ * Elimina un ingreso.
+ */
 export const EliminarIngresoMutation = () => {
   return useMutation({
     mutationFn: async (id) => {

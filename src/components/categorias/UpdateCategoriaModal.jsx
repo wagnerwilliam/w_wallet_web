@@ -1,17 +1,21 @@
-import Label from "../base/Label";
-import Button from "../base/Button";
-import Input from "../base/Input";
-import Select from "../base/Select";
-
-import { EditarCategoriaMutation } from "../../queries/categorias";
-import { useQueryClient } from "@tanstack/react-query";
-
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { categoriaSchema } from "./ZodSchema";
-
+import { useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
+import { EditarCategoriaMutation } from "../../queries/categorias";
+import Button from "../base/Button";
+import Input from "../base/Input";
+import Label from "../base/Label";
+import Select from "../base/Select";
+import { categoriaSchema } from "./ZodSchema";
+
+/**
+ * Modal para editar una categoría.
+ *
+ * Permite actualizar la información de una categoría existente y
+ * refresca el listado al guardar los cambios.
+ */
 const UpdateCategoriaModal = ({ closeModal, categoria }) => {
   let { _id, name, type, color } = categoria;
 

@@ -1,9 +1,15 @@
-import Button from "../base/Button";
 import { useQueryClient } from "@tanstack/react-query";
-import { EliminarGastoMutation } from "../../queries/gastos";
-
 import toast from "react-hot-toast";
 
+import { EliminarGastoMutation } from "../../queries/gastos";
+import Button from "../base/Button";
+
+/**
+ * Modal de confirmación para eliminar un gasto.
+ *
+ * Solicita la confirmación del usuario antes de eliminar el gasto
+ * seleccionado y actualiza el listado al finalizar la operación.
+ */
 const DeleteGastoModal = ({ closeModal, gasto }) => {
   const eliminarGasto = EliminarGastoMutation();
   const queryClient = useQueryClient();

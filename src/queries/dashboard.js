@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { ObtenerResumen } from "../services/DashboardService";
 
 export const UseDashboard = (period) => {

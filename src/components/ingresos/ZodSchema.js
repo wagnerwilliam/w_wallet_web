@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+/**
+ * Esquema de validación para el registro y edición de ingresos.
+ */
 export const ingresoSchema = z.object({
   name: z.string().min(1, "El concepto es obligatorio"),
   value: z.coerce

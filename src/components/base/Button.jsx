@@ -1,7 +1,7 @@
 import {
   baseButtonStyles,
-  buttonVariants,
   buttonSizes,
+  buttonVariants,
 } from "../../utils/buttonVariants";
 
 const Button = ({

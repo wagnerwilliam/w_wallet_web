@@ -1,9 +1,10 @@
-import Button from "./Button";
 import { useContext } from "react";
-import AuthContext from "../../context/AuthContext";
 import toast from "react-hot-toast";
-import { LogoutMutation } from "../../queries/auth";
 import { useNavigate } from "react-router-dom";
+
+import AuthContext from "../../context/AuthContext";
+import { LogoutMutation } from "../../queries/auth";
+import Button from "./Button";
 
 const DropDown = ({ usuario, openModal }) => {
   const { logout } = useContext(AuthContext);

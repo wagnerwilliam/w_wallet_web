@@ -1,7 +1,7 @@
 import {
   baseSelectStyles,
-  selectVariants,
   selectStates,
+  selectVariants,
 } from "../../utils/selectVariants";
 
 const Select = ({

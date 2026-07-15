@@ -1,16 +1,21 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+
+import { CrearCategoriaMutation } from "../../queries/categorias";
 import Button from "../base/Button";
 import Input from "../base/Input";
 import Label from "../base/Label";
 import Select from "../base/Select";
-import { CrearCategoriaMutation } from "../../queries/categorias";
-import { useQueryClient } from "@tanstack/react-query";
-
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { categoriaSchema } from "./ZodSchema";
 
-import toast from "react-hot-toast";
-
+/**
+ * Modal para crear una nueva categoría.
+ *
+ * Permite registrar una categoría de ingreso o gasto y actualizar
+ * automáticamente el listado tras su creación.
+ */
 const CreateModal = ({ onClose }) => {
   const crearCategoria = CrearCategoriaMutation();
   const queryClient = useQueryClient();

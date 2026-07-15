@@ -1,7 +1,7 @@
 import {
   baseInputStyles,
-  inputVariants,
   inputStates,
+  inputVariants,
 } from "../../utils/inputVariants";
 
 const Input = ({

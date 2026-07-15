@@ -1,6 +1,17 @@
 import { useMutation } from "@tanstack/react-query";
-import { Register, Login, Logout } from "../services/AuthService";
 
+import { Login, Logout, Register } from "../services/AuthService";
+
+/**
+ * Hooks de React Query para la autenticación.
+ *
+ * Centralizan las operaciones de registro, inicio de sesión y cierre
+ * de sesión, gestionando el estado de las mutaciones.
+ */
+
+/**
+ * Registra un nuevo usuario.
+ */
 export const RegistrarUsuarioMutation = () => {
   return useMutation({
     mutationFn: async (data) => {
@@ -17,6 +28,9 @@ export const RegistrarUsuarioMutation = () => {
   });
 };
 
+/**
+ * Inicia sesión y devuelve el token de acceso.
+ */
 export const LoginMutation = () => {
   return useMutation({
     mutationFn: async (data) => {
@@ -33,6 +47,9 @@ export const LoginMutation = () => {
   });
 };
 
+/**
+ * Cierra la sesión del usuario autenticado.
+ */
 export const LogoutMutation = () => {
   return useMutation({
     mutationFn: async () => {

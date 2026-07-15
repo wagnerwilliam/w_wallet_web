@@ -1,5 +1,9 @@
 import { z } from "zod";
 
+/**
+ * Define las reglas de validación para los formularios de creación
+ * y edición de gastos.
+ */
 export const gastoSchema = z.object({
   name: z.string().min(1, "El concepto es obligatorio"),
   value: z.coerce

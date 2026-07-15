@@ -1,15 +1,14 @@
 import {
-  ArrowTrendingUpIcon,
   ArrowTrendingDownIcon,
+  ArrowTrendingUpIcon,
   BanknotesIcon,
 } from "@heroicons/react/24/outline";
 
-import { formatRelativeDate, formatEUR } from "../../utils/formatters";
+import { formatEUR, formatRelativeDate } from "../../utils/formatters";
 
 const RecentRecordRow = ({ name, amount, date, type }) => {
   const income = type === "income";
   const expense = type === "expense";
-  const saving = type === "saving";
 
   const Icon = income
     ? ArrowTrendingUpIcon

@@ -1,8 +1,8 @@
-import Button from "../base/Button";
 import { useQueryClient } from "@tanstack/react-query";
-import { EliminarIngresoMutation } from "../../queries/ingresos";
-
 import toast from "react-hot-toast";
+
+import { EliminarIngresoMutation } from "../../queries/ingresos";
+import Button from "../base/Button";
 
 const DeleteIngresoModal = ({ closeModal, ingreso }) => {
   const eliminarIngreso = EliminarIngresoMutation();

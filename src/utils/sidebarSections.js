@@ -1,10 +1,9 @@
 import {
-  HomeIcon,
-  ArrowTrendingUpIcon,
   ArrowTrendingDownIcon,
+  ArrowTrendingUpIcon,
+  HomeIcon,
   Squares2X2Icon,
   TrophyIcon,
-  ChartPieIcon,
 } from "@heroicons/react/24/outline";
 
 export const sidebarSections = [

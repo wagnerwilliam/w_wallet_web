@@ -1,12 +1,13 @@
-import MetasAhorroHeader from "./MetasAhorroHeader";
-import MetasAhorroResumen from "./MetasAhorroResumen";
-import MetasAhorroLista from "./MetasAhorroLista";
-import CreateMetaModal from "./CreateMetaModal";
 import { useState } from "react";
+
 import { UseMetas } from "../../queries/metas";
+import CreateMetaModal from "./CreateMetaModal";
+import MetasAhorroHeader from "./MetasAhorroHeader";
+import MetasAhorroLista from "./MetasAhorroLista";
+import MetasAhorroResumen from "./MetasAhorroResumen";
 
 const MetasAhorro = () => {
-  const { data: metas = [], isLoading, error } = UseMetas();
+  const { data: metas = [], isLoading } = UseMetas();
 
   let [modal, setModal] = useState(false);
 

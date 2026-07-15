@@ -3,8 +3,9 @@ import {
   CalendarDaysIcon,
   CursorArrowRaysIcon,
 } from "@heroicons/react/24/outline";
-import { formatDate } from "../../../utils/formatters";
 import { useNavigate } from "react-router-dom";
+
+import { formatDate } from "../../../utils/formatters";
 
 const MetaHeader = ({ meta }) => {
   let { color, name, target_date } = meta;

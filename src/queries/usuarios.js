@@ -1,6 +1,17 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+
 import { detalleUsuario, editarUsuario } from "../services/UsuariosService";
 
+/**
+ * Hooks de React Query para la gestión del perfil del usuario.
+ *
+ * Incluye consultas y mutaciones para obtener y actualizar
+ * la información del usuario autenticado.
+ */
+
+/**
+ * Obtiene la información del usuario autenticado.
+ */
 export const DetalleUsuario = () => {
   return useQuery({
     queryKey: ["usuarios"],
@@ -17,6 +28,9 @@ export const DetalleUsuario = () => {
   });
 };
 
+/**
+ * Actualiza la información del perfil del usuario.
+ */
 export const EditarUsuarioMutation = () => {
   return useMutation({
     mutationFn: async (formData) => {

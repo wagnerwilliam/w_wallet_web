@@ -1,9 +1,17 @@
 import { z } from "zod";
 
+/** Expresión regular para validar nombres de usuario. */
 const USERNAME_REGEX = /^[a-zA-Z0-9_]{3,30}$/;
+
+/** Expresión regular para validar direcciones de correo electrónico. */
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/** Expresión regular para validar contraseñas seguras. */
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
+/**
+ * Esquema de validación para el registro de usuarios.
+ */
 export const registerSchema = z
   .object({
     username: z

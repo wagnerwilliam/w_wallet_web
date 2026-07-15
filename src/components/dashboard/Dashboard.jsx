@@ -1,11 +1,11 @@
-import DashboardHeader from "./DashboardHeader";
-import SummaryCards from "./SummaryCards";
-import RecentRecords from "./RecentRecords";
-
-import SummaryCardsSkeleton from "./SummaryCardsSkeleton";
-import RecentRecordsSkeleton from "./RecentRecordsSkeleton";
 import { useState } from "react";
+
 import { UseDashboard } from "../../queries/dashboard";
+import DashboardHeader from "./DashboardHeader";
+import RecentRecords from "./RecentRecords";
+import RecentRecordsSkeleton from "./RecentRecordsSkeleton";
+import SummaryCards from "./SummaryCards";
+import SummaryCardsSkeleton from "./SummaryCardsSkeleton";
 
 const Dashboard = () => {
   const [period, setPeriod] = useState("month");

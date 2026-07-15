@@ -1,22 +1,29 @@
-import Search from "../base/Search.jsx";
-import Button from "../base/Button.jsx";
-import Table from "../table/Table.jsx";
-import { IngresosTableHead } from "../../utils/ingresos/tableHead.js";
 import { useState } from "react";
+
+import { UseIngresos } from "../../queries/ingresos.js";
+import { IngresosTableHead } from "../../utils/ingresos/tableHead.js";
 import { MODALS } from "../../utils/modals.js";
-import IngresosRow from "../table/IngresosRow.jsx";
-import NoRecords from "../base/NoRecords.jsx";
-import Loading from "../base/Loading.jsx";
+import Button from "../base/Button.jsx";
 import DataState from "../base/DataState.jsx";
+import Loading from "../base/Loading.jsx";
+import NoRecords from "../base/NoRecords.jsx";
+import Search from "../base/Search.jsx";
+import PeriodSelector from "../dashboard/PeriodSelector.jsx";
+import IngresosRow from "../table/IngresosRow.jsx";
+import Table from "../table/Table.jsx";
 import CreateIngresoModal from "./CreateIngresoModal.jsx";
 import DeleteIngresoModal from "./DeleteIngresoModal.jsx";
 import UpdateIngresoModal from "./UpdateIngresoModal.jsx";
-import { UseIngresos } from "../../queries/ingresos.js";
-import PeriodSelector from "../dashboard/PeriodSelector.jsx";
 
+/**
+ * Vista de gestión de ingresos.
+ *
+ * Permite consultar, buscar, crear, editar y eliminar los ingresos
+ * registrados por el usuario, así como filtrarlos por período.
+ */
 const Ingresos = () => {
   let [modal, setModal] = useState(null);
-  let [selectedtIngreso, setSelectedIngreso] = useState(null);
+  let [selectedIngreso, setSelectedIngreso] = useState(null);
   let [search, setSearch] = useState("");
   let [period, setPeriod] = useState("month");
 
@@ -60,7 +67,7 @@ const Ingresos = () => {
       <div className="flex justify-between items-center mt-6">
         <Search
           value={search}
-          onChange={() => setSearch(event.target.value)}
+          onChange={(event) => setSearch(event.target.value)}
           placeholder="Buscar ingreso..."
         />
 
@@ -100,13 +107,13 @@ const Ingresos = () => {
       {modal === MODALS.DELETE && (
         <DeleteIngresoModal
           closeModal={() => closeModal()}
-          ingreso={selectedtIngreso}
+          ingreso={selectedIngreso}
         />
       )}
       {modal === MODALS.UPDATE && (
         <UpdateIngresoModal
           closeModal={() => closeModal()}
-          ingreso={selectedtIngreso}
+          ingreso={selectedIngreso}
         />
       )}
     </>

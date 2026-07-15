@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
-import DropDown from "./Dropdown";
 import { Bars3Icon, UserCircleIcon } from "@heroicons/react/24/outline";
+import { useRef, useState } from "react";
+
 import useClickOutside from "../../custom_hooks/useClickOutside";
+import DropDown from "./Dropdown";
 
 const Header = ({ setIsMobileSidebarOpen, openModal, usuario }) => {
   const [openDropdown, setOpenDropdown] = useState(false);

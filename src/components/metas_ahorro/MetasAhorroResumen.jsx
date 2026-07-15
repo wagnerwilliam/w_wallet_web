@@ -1,17 +1,16 @@
 import {
-  CursorArrowRaysIcon,
   BanknotesIcon,
   CheckBadgeIcon,
   ClockIcon,
+  CursorArrowRaysIcon,
 } from "@heroicons/react/24/outline";
 
-import SummaryCard from "../dashboard/SummaryCard";
-import { formatEUR } from "../../utils/formatters";
-
 import { UseResumenMetas } from "../../queries/metas";
+import { formatEUR } from "../../utils/formatters";
+import SummaryCard from "../dashboard/SummaryCard";
 
 const MetasAhorroResumen = () => {
-  const { data: rersumenMetas = [], isLoading, error } = UseResumenMetas();
+  const { data: rersumenMetas = [] } = UseResumenMetas();
 
   const cards = [
     {

@@ -1,18 +1,24 @@
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
+import { Outlet } from "react-router-dom";
+
+import useClickOutside from "../../custom_hooks/useClickOutside";
+import { DetalleUsuario } from "../../queries/usuarios";
 import Header from "../base/Header";
 import SideBar from "../base/SideBar";
-import { Outlet } from "react-router-dom";
-import useClickOutside from "../../custom_hooks/useClickOutside";
 import PerfilModal from "../perfil/PerfilModal";
 
-import { DetalleUsuario } from "../../queries/usuarios";
-
+/**
+ * Layout principal de la aplicación.
+ *
+ * Proporciona la estructura base para las rutas autenticadas,
+ * incluyendo el menú lateral, el encabezado, el contenido principal
+ * y los elementos globales como el modal de perfil.
+ */
 const BaseLayout = () => {
-  // agregar modala para editar perfil.
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [modal, setOpenModal] = useState(false);
   const sidebarRef = useRef(null);
-  const { data: usuario = {}, isLoading, error } = DetalleUsuario();
+  const { data: usuario = {} } = DetalleUsuario();
 
   useClickOutside(sidebarRef, () => {
     if (isMobileSidebarOpen) setIsMobileSidebarOpen(false);

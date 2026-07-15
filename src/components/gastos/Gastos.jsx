@@ -1,24 +1,29 @@
-import Search from "../base/Search.jsx";
-import Button from "../base/Button.jsx";
-import Table from "../table/Table.jsx";
-import { GastosTableHead } from "../../utils/gastos/tableHead.js";
 import { useState } from "react";
-import { MODALS } from "../../utils/modals.js";
-import GastosRow from "../table/GastosRow.jsx";
-import NoRecords from "../base/NoRecords.jsx";
-import Loading from "../base/Loading.jsx";
-import DataState from "../base/DataState.jsx";
 
 import { UseGastos } from "../../queries/gastos.js";
-
-import CreateGastoModal from "./CreateGastoModal.jsx";
-import UpdateGastoModal from "./UpdateGastoModal.jsx";
-import DeleteGastoModal from "./DeleteGastoModal.jsx";
+import { GastosTableHead } from "../../utils/gastos/tableHead.js";
+import { MODALS } from "../../utils/modals.js";
+import Button from "../base/Button.jsx";
+import DataState from "../base/DataState.jsx";
+import Loading from "../base/Loading.jsx";
+import NoRecords from "../base/NoRecords.jsx";
+import Search from "../base/Search.jsx";
 import PeriodSelector from "../dashboard/PeriodSelector.jsx";
+import GastosRow from "../table/GastosRow.jsx";
+import Table from "../table/Table.jsx";
+import CreateGastoModal from "./CreateGastoModal.jsx";
+import DeleteGastoModal from "./DeleteGastoModal.jsx";
+import UpdateGastoModal from "./UpdateGastoModal.jsx";
 
+/**
+ * Componente de gestión de gastos.
+ *
+ * Permite consultar, buscar, crear, editar y eliminar los gastos
+ * registrados por el usuario, así como filtrarlos por período.
+ */
 const Gastos = () => {
   let [modal, setModal] = useState(null);
-  let [selectedtGasto, setSelectedGasto] = useState(null);
+  let [selectedGasto, setSelectedGasto] = useState(null);
   let [search, setSearch] = useState("");
   let [period, setPeriod] = useState("month");
 
@@ -62,7 +67,7 @@ const Gastos = () => {
       <div className="flex justify-between items-center mt-6">
         <Search
           value={search}
-          onChange={() => setSearch(event.target.value)}
+          onChange={(event) => setSearch(event.target.value)}
           placeholder="Buscar gasto..."
         />
 
@@ -102,14 +107,14 @@ const Gastos = () => {
       {modal === MODALS.DELETE && (
         <DeleteGastoModal
           closeModal={() => closeModal()}
-          gasto={selectedtGasto}
+          gasto={selectedGasto}
         />
       )}
       {}
       {modal === MODALS.UPDATE && (
         <UpdateGastoModal
           closeModal={() => closeModal()}
-          gasto={selectedtGasto}
+          gasto={selectedGasto}
         />
       )}
     </>

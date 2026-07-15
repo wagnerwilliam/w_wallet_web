@@ -1,14 +1,15 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+
+import { UseDashboard } from "../../../queries/dashboard";
+import { AgregarAhorroMutation } from "../../../queries/metas";
+import { formatEUR } from "../../../utils/formatters";
 import Button from "../../base/Button";
 import Input from "../../base/Input";
 import Label from "../../base/Label";
-import { AgregarAhorroMutation } from "../../../queries/metas";
-import { useQueryClient } from "@tanstack/react-query";
 import { ahorroSchema } from "./ZodSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { UseDashboard } from "../../../queries/dashboard";
-import { formatEUR } from "../../../utils/formatters";
 
 const AgregarAhorroModal = ({ closeModal, id }) => {
   const agregarAhorro = AgregarAhorroMutation();
@@ -69,7 +70,7 @@ const AgregarAhorroModal = ({ closeModal, id }) => {
 
           <div className="mt-4 rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3">
             <p className="text-xs font-medium uppercase tracking-wide text-cyan-700">
-              Saldo disponible
+              Dinero disponible
             </p>
 
             <p className="mt-1 text-2xl font-bold text-cyan-800">

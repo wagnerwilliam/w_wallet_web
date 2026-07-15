@@ -1,33 +1,40 @@
-import Input from "../base/Input";
-import Button from "../base/Button";
 import {
-  UserIcon,
-  LockClosedIcon,
   EyeIcon,
   EyeSlashIcon,
+  LockClosedIcon,
+  UserIcon,
 } from "@heroicons/react/24/outline";
-import Icon from "../base/Icon";
-import AuthHeader from "./AuthHeader";
-import AuthFooter from "./AuthFooter";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useContext } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
-import { LoginMutation } from "../../queries/auth";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { loginSchema } from "./ZodSchema";
-import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
-import { useState } from "react";
-import toast from "react-hot-toast";
+import { LoginMutation } from "../../queries/auth";
+import Button from "../base/Button";
+import Icon from "../base/Icon";
+import Input from "../base/Input";
+import AuthFooter from "./AuthFooter";
+import AuthHeader from "./AuthHeader";
+import { loginSchema } from "./ZodSchema";
 
+/**
+ * Componente de inicio de sesión.
+ *
+ * Permite autenticar al usuario mediante sus credenciales,
+ * validar el formulario y redirigir al panel principal
+ * cuando la autenticación es exitosa.
+ */
 const Login = () => {
   const iconClass =
     "absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#0F766E]";
   let { accessToken, login } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
-  const Login = LoginMutation();
+  const loginMutation = LoginMutation();
   const navigate = useNavigate();
 
   const {
@@ -40,7 +47,7 @@ const Login = () => {
   });
 
   const onSubmit = (data) => {
-    Login.mutate(data, {
+    loginMutation.mutate(data, {
       onSuccess: ({ accessToken }) => {
         login(accessToken);
         toast.success("Has iniciado sesión correctamente.");
