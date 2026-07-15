@@ -3,11 +3,23 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
+import sonidoExito from "../../assets/click.mp3";
 import { CrearMetaMutation } from "../../queries/metas";
 import Button from "../base/Button";
 import Input from "../base/Input";
 import Label from "../base/Label";
 import { metasSchema } from "./ZodSchema";
+
+const reproducirSonido = () => {
+  // 2. Creas la instancia de audio
+  const audio = new Audio(sonidoExito);
+
+  // 3. Opcional: Bajas el volumen (0.0 a 1.0) para que no asuste al usuario
+  audio.volume = 0.3;
+
+  // 4. Lo reproduces
+  audio.play();
+};
 
 const CreateMetaModal = ({ closeModal }) => {
   const crearMeta = CrearMetaMutation();
@@ -26,6 +38,7 @@ const CreateMetaModal = ({ closeModal }) => {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["metas"] });
         toast.success("Meta creada correctamente.");
+        reproducirSonido();
         closeModal();
       },
     });

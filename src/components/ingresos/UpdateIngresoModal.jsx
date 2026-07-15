@@ -3,6 +3,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
+import sonidoExito from "../../assets/click.mp3";
 import { EditarIngresoMutation } from "../../queries/ingresos";
 import Button from "../base/Button";
 import Input from "../base/Input";
@@ -10,6 +11,17 @@ import Label from "../base/Label";
 import Select from "../base/Select";
 import CategoriaOptions from "../categorias/CategoriaOptions";
 import { ingresoSchema } from "./ZodSchema";
+
+const reproducirSonido = () => {
+  // 2. Creas la instancia de audio
+  const audio = new Audio(sonidoExito);
+
+  // 3. Opcional: Bajas el volumen (0.0 a 1.0) para que no asuste al usuario
+  audio.volume = 0.3;
+
+  // 4. Lo reproduces
+  audio.play();
+};
 
 /**
  * Modal para editar un ingreso.
@@ -49,6 +61,7 @@ const UpdateIngresoModal = ({ closeModal, ingreso }) => {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["ingresos"] });
           toast.success("Ingreso actualizado correctamente.");
+          reproducirSonido();
           closeModal();
         },
       },
