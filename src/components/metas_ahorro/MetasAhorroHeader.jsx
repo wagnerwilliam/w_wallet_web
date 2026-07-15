@@ -1,4 +1,5 @@
-import { PlusIcon, CursorArrowRaysIcon } from "@heroicons/react/24/outline";
+import { CursorArrowRaysIcon, PlusIcon } from "@heroicons/react/24/outline";
+
 import Button from "../base/Button";
 
 const MetasAhorroHeader = ({ openModal }) => {

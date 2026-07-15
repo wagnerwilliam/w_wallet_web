@@ -2,8 +2,15 @@ import { useState } from "react";
 
 import AuthContext from "../../context/AuthContext";
 
+/**
+ * Proveedor del contexto de autenticación.
+ *
+ * Administra el estado global de la sesión del usuario y expone
+ * las funciones de inicio y cierre de sesión. El token de acceso
+ * se sincroniza con el almacenamiento local para mantener la
+ * autenticación entre recargas de la aplicación.
+ */
 const AuthProvider = ({ children }) => {
-  // aqui se peude obtener el usuario al hacer login para componentes de perfil y dropdown.
   const [accessToken, setAccessToken] = useState(
     localStorage.getItem("accessToken"),
   );

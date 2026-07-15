@@ -1,6 +1,6 @@
-import SummaryCard from "./SummaryCard";
 import { getSummaryCards } from "../../utils/dashboard/summaryCards";
 import { formatEUR } from "../../utils/formatters";
+import SummaryCard from "./SummaryCard";
 
 const SummaryCards = ({ resumen }) => {
   const cards = getSummaryCards(resumen.summary);

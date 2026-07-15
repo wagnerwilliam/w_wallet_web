@@ -1,6 +1,6 @@
 import MetasAhorroCard from "./MetasAhorroCard";
-import MetasVacias from "./MetasVacias";
 import MetaSkeleton from "./MetaSkeleton";
+import MetasVacias from "./MetasVacias";
 
 const MetasAhorroLista = ({ metas = [], isLoading = false, openModal }) => {
   if (isLoading) {

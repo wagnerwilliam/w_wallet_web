@@ -1,17 +1,21 @@
-import { UserCircleIcon, CameraIcon } from "@heroicons/react/24/outline";
+import { CameraIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
+import { EditarUsuarioMutation } from "../../queries/usuarios";
 import Button from "../base/Button";
 import Input from "../base/Input";
 import Label from "../base/Label";
-
 import { profileSchema } from "./ZodSchema";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useQueryClient } from "@tanstack/react-query";
 
-import { EditarUsuarioMutation } from "../../queries/usuarios";
-import toast from "react-hot-toast";
-
+/**
+ * Modal para visualizar y actualizar la información del perfil del usuario.
+ *
+ * Permite modificar datos personales, cambiar la fotografía de perfil
+ * y sincronizar los cambios con el servidor.
+ */
 const PerfilModal = ({ closeModal, usuario }) => {
   let { full_name, username, email, birth_date, photo } = usuario;
   const editarUsuario = EditarUsuarioMutation();

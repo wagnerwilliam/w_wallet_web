@@ -1,9 +1,8 @@
-import Button from "../base/Button";
-import { MODALS } from "../../utils/modals";
-
 import { UseCategoriasByType } from "../../queries/categorias";
 import { categoriasMap } from "../../utils/categoriasMap";
 import { formatDate, formatEUR } from "../../utils/formatters";
+import { MODALS } from "../../utils/modals";
+import Button from "../base/Button";
 
 const GastosRow = ({ obj, openModal }) => {
   let { name, value, is_active, created_at, category_id } = obj;

@@ -1,18 +1,25 @@
-import Search from "../base/Search";
-import Button from "../base/Button";
-import Table from "../table/Table";
-import { CategoriasTableHead } from "../../utils/categorias/tablesHead.js";
 import { useState } from "react";
-import CreateModal from "./CreateCategoriaModal";
+
 import { UseCategorias } from "../../queries/categorias.js";
+import { CategoriasTableHead } from "../../utils/categorias/tablesHead.js";
+import { MODALS } from "../../utils/modals.js";
+import Button from "../base/Button";
+import DataState from "../base/DataState.jsx";
+import Loading from "../base/Loading.jsx";
+import NoRecords from "../base/NoRecords.jsx";
+import Search from "../base/Search";
+import CategoriasRow from "../table/CategoriasRow";
+import Table from "../table/Table";
+import CreateModal from "./CreateCategoriaModal";
 import DeleteCategoriaModal from "./DeleteCategoriaModal.jsx";
 import UpdateCategoriaModal from "./UpdateCategoriaModal.jsx";
-import { MODALS } from "../../utils/modals.js";
-import CategoriasRow from "../table/CategoriasRow";
-import NoRecords from "../base/NoRecords.jsx";
-import Loading from "../base/Loading.jsx";
-import DataState from "../base/DataState.jsx";
 
+/**
+ * Vista de administración de categorías.
+ *
+ * Muestra el listado de categorías registradas, permite realizar búsquedas
+ * y gestionar operaciones de creación, edición y eliminación mediante modales.
+ */
 const Categorias = () => {
   let [modal, setModal] = useState(null);
   let [selectedCategoria, setSelectedCategoria] = useState(null);
@@ -30,7 +37,7 @@ const Categorias = () => {
     setSelectedCategoria(null);
   };
 
-  // TODO:Solucion momentanea se debe buscar mejor forma de filtrar.
+  // TODO: Mover el filtrado al backend cuando el volumen de datos lo requiera.
   const filteredCategorias = (
     Array.isArray(categorias) ? categorias : []
   ).filter(

@@ -1,8 +1,8 @@
 import {
-  WalletIcon,
-  ArrowTrendingUpIcon,
   ArrowTrendingDownIcon,
+  ArrowTrendingUpIcon,
   BanknotesIcon,
+  WalletIcon,
 } from "@heroicons/react/24/outline";
 
 export const getSummaryCards = (summary = {}) => [

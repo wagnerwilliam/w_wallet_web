@@ -1,5 +1,12 @@
 import { Outlet } from "react-router-dom";
 
+/**
+ * Layout de autenticación de la aplicación.
+ *
+ * Define la estructura compartida de las vistas de inicio de sesión
+ * y registro, mostrando una sección de branding y un contenedor
+ * donde se renderizan las rutas hijas mediante <Outlet />.
+ */
 const AuthLayout = () => {
   return (
     <div className="min-h-screen flex font-sans">

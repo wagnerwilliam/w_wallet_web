@@ -4,7 +4,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 
-import { formatEUR, formatDate } from "../../utils/formatters";
+import { formatDate, formatEUR } from "../../utils/formatters";
 import Button from "../base/Button";
 
 const MetasAhorroCard = ({ meta }) => {

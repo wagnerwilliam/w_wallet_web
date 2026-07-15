@@ -1,17 +1,22 @@
-import Label from "../base/Label";
-import Button from "../base/Button";
-import Input from "../base/Input";
-import Select from "../base/Select";
-import { useQueryClient } from "@tanstack/react-query";
-import CategoriaOptions from "../categorias/CategoriaOptions";
-import { EditarIngresoMutation } from "../../queries/ingresos";
-
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ingresoSchema } from "./ZodSchema";
-
+import { useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
+import { EditarIngresoMutation } from "../../queries/ingresos";
+import Button from "../base/Button";
+import Input from "../base/Input";
+import Label from "../base/Label";
+import Select from "../base/Select";
+import CategoriaOptions from "../categorias/CategoriaOptions";
+import { ingresoSchema } from "./ZodSchema";
+
+/**
+ * Modal para editar un ingreso.
+ *
+ * Permite actualizar la información de un ingreso existente
+ * y refresca el listado al guardar los cambios.
+ */
 const UpdateIngresoModal = ({ closeModal, ingreso }) => {
   let { _id, name, value, category_id } = ingreso;
 

@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
 
+/**
+ * Pie de página reutilizable para las vistas de autenticación.
+ *
+ * Muestra un mensaje con un enlace de navegación entre las
+ * pantallas de inicio de sesión y registro.
+ */
 const AuthFooter = ({
   text = "¿No tienes cuenta?",
   linkText = "Regístrate",

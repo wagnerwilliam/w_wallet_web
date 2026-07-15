@@ -1,11 +1,22 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+
 import {
-  ObtenerCategorias,
   crearCategoria,
-  eliminarCategoria,
   editarCategoria,
+  eliminarCategoria,
+  ObtenerCategorias,
 } from "../services/CategoriasService";
 
+/**
+ * Hooks de React Query para la gestión de categorías.
+ *
+ * Incluye consultas y mutaciones para listar, crear, actualizar
+ * y eliminar categorías.
+ */
+
+/**
+ * Obtiene el listado de categorías.
+ */
 export const UseCategorias = () => {
   return useQuery({
     queryKey: ["categorias"],
@@ -21,6 +32,11 @@ export const UseCategorias = () => {
   });
 };
 
+/**
+ * Obtiene las categorías activas filtradas por tipo.
+ *
+ * @param {string} type Tipo de categoría ("ingreso" o "gasto").
+ */
 export const UseCategoriasByType = (type) => {
   const { data = [], ...rest } = UseCategorias();
   const filtered = data?.filter((c) => c.type === type && c.is_active);
@@ -31,6 +47,9 @@ export const UseCategoriasByType = (type) => {
   };
 };
 
+/**
+ * Crea una nueva categoría.
+ */
 export const CrearCategoriaMutation = () => {
   return useMutation({
     mutationFn: async (data) => {
@@ -46,6 +65,9 @@ export const CrearCategoriaMutation = () => {
   });
 };
 
+/**
+ * Actualiza una categoría existente.
+ */
 export const EditarCategoriaMutation = () => {
   return useMutation({
     mutationFn: async ({ _id, data }) => {
@@ -61,6 +83,9 @@ export const EditarCategoriaMutation = () => {
   });
 };
 
+/**
+ * Elimina una categoría.
+ */
 export const EliminarCategoriaMutation = () => {
   return useMutation({
     mutationFn: async (id) => {

@@ -1,18 +1,22 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+
+import { CrearIngresoMutation } from "../../queries/ingresos";
 import Button from "../base/Button";
 import Input from "../base/Input";
 import Label from "../base/Label";
-import { useQueryClient } from "@tanstack/react-query";
-import { CrearIngresoMutation } from "../../queries/ingresos";
-
-import Options from "../categorias/CategoriaOptions";
 import Select from "../base/Select";
-
+import Options from "../categorias/CategoriaOptions";
 import { ingresoSchema } from "./ZodSchema";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 
-import toast from "react-hot-toast";
-
+/**
+ * Modal para crear un nuevo ingreso.
+ *
+ * Permite registrar un ingreso, validar la información ingresada
+ * y actualizar el listado tras su creación.
+ */
 const CreateIngresoModal = ({ onClose }) => {
   const crearIngreso = CrearIngresoMutation();
   const queryClient = useQueryClient();
@@ -137,17 +141,6 @@ const CreateIngresoModal = ({ onClose }) => {
             )}
           </div>
 
-          {/* <div className="space-y-2">
-            <Label text="Color" />
-
-            <Input
-              type="color"
-              variant="color"
-              name="color"
-              defaultValue={color}
-              onChange={(e) => setColor(e.target.value)}
-            />
-          </div> */}
           {/* ACTIONS */}
           <div className="pt-4 flex justify-end gap-2">
             <Button variant="ghost" onClick={onClose}>

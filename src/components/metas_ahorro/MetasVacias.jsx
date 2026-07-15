@@ -1,4 +1,5 @@
 import { CursorArrowRaysIcon } from "@heroicons/react/24/outline";
+
 import Button from "../base/Button";
 
 const MetasVacias = ({ openModal }) => {

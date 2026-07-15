@@ -1,5 +1,11 @@
 import Logo from "../base/Logo";
 
+/**
+ * Encabezado reutilizable para las vistas de autenticación.
+ *
+ * Muestra el logotipo de la aplicación junto con el título
+ * y el subtítulo correspondientes a la pantalla actual.
+ */
 const AuthHeader = ({ title, subtitle }) => {
   return (
     <div className="text-center">

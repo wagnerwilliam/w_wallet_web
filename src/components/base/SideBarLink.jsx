@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+
 import Icon from "./Icon";
 
 const SideBarLink = ({ to, icon, iconClass, children }) => {
