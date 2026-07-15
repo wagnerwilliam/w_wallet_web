@@ -2,9 +2,21 @@ import { useContext } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
+import sonidoExito from "../../assets/click.mp3";
 import AuthContext from "../../context/AuthContext";
 import { LogoutMutation } from "../../queries/auth";
 import Button from "./Button";
+
+const reproducirSonido = () => {
+  // 2. Creas la instancia de audio
+  const audio = new Audio(sonidoExito);
+
+  // 3. Opcional: Bajas el volumen (0.0 a 1.0) para que no asuste al usuario
+  audio.volume = 0.3;
+
+  // 4. Lo reproduces
+  audio.play();
+};
 
 const DropDown = ({ usuario, openModal }) => {
   const { logout } = useContext(AuthContext);
@@ -17,6 +29,7 @@ const DropDown = ({ usuario, openModal }) => {
         onSuccess: () => {
           toast.success("Has cerrado sesión correctamente.");
           logout();
+          reproducirSonido();
           navigate("/login", {
             replace: true,
           });
