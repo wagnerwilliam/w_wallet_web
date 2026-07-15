@@ -64,10 +64,6 @@ const router = createBrowserRouter([
             element: <MetasAhorro />,
           },
           {
-            path: "/resumen",
-            element: <Resumen />,
-          },
-          {
             path: "/metas/detalle/:id",
             element: <MetasAhorroDetalle />,
           },
