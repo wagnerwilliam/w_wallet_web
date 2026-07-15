@@ -8,7 +8,7 @@ import {
 } from "../services/CategoriasService";
 
 /**
- * Hooks de React Query para la gestión de categorías.
+ * Hooks de React TanStack Query para la gestión de categorías.
  *
  * Incluye consultas y mutaciones para listar, crear, actualizar
  * y eliminar categorías.

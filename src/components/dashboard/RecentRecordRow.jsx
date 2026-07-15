@@ -9,6 +9,7 @@ import { formatEUR, formatRelativeDate } from "../../utils/formatters";
 const RecentRecordRow = ({ name, amount, date, type }) => {
   const income = type === "income";
   const expense = type === "expense";
+  const savings = type === "savings";
 
   const Icon = income
     ? ArrowTrendingUpIcon
@@ -26,9 +27,9 @@ const RecentRecordRow = ({ name, amount, date, type }) => {
     ? "text-emerald-600"
     : expense
       ? "text-rose-600"
-      : "text-teal-700";
+      : "text-rose-600";
 
-  const prefix = income ? "+" : expense ? "-" : "";
+  const prefix = income ? "+" : expense ? "-" : "-";
 
   return (
     <div className="flex items-center justify-between px-4 py-3 transition-colors duration-150 hover:bg-slate-50 sm:px-5 sm:py-3.5">
