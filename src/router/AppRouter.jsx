@@ -11,7 +11,6 @@ import AuthLayout from "../components/layouts/AuthLayout";
 import BaseLayout from "../components/layouts/BaseLayout";
 import MetasAhorroDetalle from "../components/metas_ahorro/detalle/MetasAhorroDetalle";
 import MetasAhorro from "../components/metas_ahorro/MetasAhorro";
-import Resumen from "../components/resumen/Resumen";
 
 const router = createBrowserRouter([
   // Rutas publicas.
