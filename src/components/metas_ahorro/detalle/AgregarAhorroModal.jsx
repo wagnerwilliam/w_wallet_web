@@ -74,11 +74,11 @@ const AgregarAhorroModal = ({ closeModal, id }) => {
         {/* Header */}
         <div className="border-b border-slate-200 px-6 py-5">
           <h2 className="text-lg font-semibold text-slate-900">
-            Agregar ahorro
+            Añadir dinero a tu meta
           </h2>
 
           <p className="mt-1 text-sm text-slate-500">
-            Registra un nuevo aporte para esta meta.
+            Cada aporte te acerca un paso más a cumplir tu objetivo de ahorro.
           </p>
 
           <div className="mt-4 rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3">
@@ -91,22 +91,22 @@ const AgregarAhorroModal = ({ closeModal, id }) => {
             </p>
 
             <p className="mt-1 text-xs text-cyan-700">
-              Este es el dinero disponible para destinar a tus metas este
-              período.
+              Puedes destinar parte de este saldo a cualquiera de tus metas de
+              ahorro.
             </p>
           </div>
         </div>
 
         <form className="space-y-5 p-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-2">
-            <Label text="Cantidad (€)" required />
+            <Label text="Monto a aportar" required />
 
             <Input
               type="number"
               variant="filled"
               min="0"
               step="0.01"
-              placeholder="Ej: 150"
+              placeholder="Ej: 150,00 €"
               {...register("saved")}
               error={errors.saved}
             />
@@ -117,11 +117,11 @@ const AgregarAhorroModal = ({ closeModal, id }) => {
           </div>
 
           <div className="space-y-2">
-            <Label text="Nota" />
+            <Label text="Motivo del aporte" required />
 
             <Input
               variant="filled"
-              placeholder="Ej: Pago extra de julio"
+              placeholder="Ej: Aporte de la nómina de julio"
               {...register("description")}
               error={errors.description}
             />
