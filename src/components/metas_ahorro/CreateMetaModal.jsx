@@ -83,14 +83,25 @@ const CreateMetaModal = ({ closeModal }) => {
 
           {/* Objetivo */}
           <div className="space-y-2">
-            <Label text="Objetivo (€)" required />
-            <Input
-              type="number"
-              variant="filled"
-              placeholder="Ej: 5000"
-              {...register("target")}
-              error={errors.target}
-            />
+            <Label text="Objetivo" required />
+
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
+                €
+              </span>
+
+              <Input
+                type="number"
+                placeholder="Ej: 5000"
+                variant="filled"
+                min="0"
+                step="0.01"
+                className="pl-8"
+                {...register("target")}
+                error={errors.target}
+              />
+            </div>
+
             {errors.target && (
               <p className="text-xs text-red-500">{errors.target.message}</p>
             )}
