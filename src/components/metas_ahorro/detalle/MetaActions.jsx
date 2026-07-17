@@ -11,7 +11,7 @@ const MetaActions = ({ openAhorroModal, openEdit }) => {
         onClick={openAhorroModal}
       >
         <PlusCircleIcon className="h-5 w-5" />
-        Agregar ahorro
+        Agregar Dinero
       </Button>
 
       <Button
