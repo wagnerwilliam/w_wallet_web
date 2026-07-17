@@ -1,35 +1,29 @@
-# 💰 W Wallet - Frontend
+# W Wallet Frontend
 
-Frontend de **W Wallet**, una aplicación web desarrollada para la gestión de finanzas personales.
-
-Permite administrar ingresos, gastos, categorías y metas de ahorro mediante una interfaz moderna, intuitiva y completamente responsive.
+Aplicación web desarrollada con React para la gestión de finanzas personales. Permite administrar ingresos, gastos, categorías y metas de ahorro desde una interfaz moderna, intuitiva y responsive.
 
 ---
 
-## 🚀 Demo
+## Características
 
-🌐 https://w-wallet-web.vercel.app/
-
----
-
-## 📸 Características
-
-- 🔐 Autenticación mediante JWT.
-- 🔄 Renovación automática del Access Token mediante Refresh Token.
-- 📊 Dashboard financiero.
-- 💵 Gestión de ingresos.
-- 💸 Gestión de gastos.
-- 🗂 Administración de categorías.
-- 🎯 Creación y seguimiento de metas de ahorro.
-- 💰 Registro de aportes a las metas.
-- 👤 Gestión del perfil de usuario.
-- 📱 Diseño responsive.
+- Autenticación mediante JWT (Access Token + Refresh Token).
+- Dashboard con resumen financiero.
+- Gestión de ingresos.
+- Gestión de gastos.
+- Administración de categorías.
+- Creación y seguimiento de metas de ahorro.
+- Registro de aportes a cada meta.
+- Gestión del perfil del usuario.
+- Interfaz responsive para escritorio y dispositivos móviles.
 
 ---
 
-## 🛠 Tecnologías
+## Tecnologías
 
-- React 19
+### Frontend
+
+- React
+- Vite
 - React Router DOM
 - TanStack Query
 - React Hook Form
@@ -37,13 +31,49 @@ Permite administrar ingresos, gastos, categorías y metas de ahorro mediante una
 - Tailwind CSS
 - Heroicons
 - React Hot Toast
-- Vite
 
 ---
 
-## 📂 Estructura del proyecto
+## Instalación
 
+### Clonar el repositorio
+
+```bash
+git clone https://github.com/wagnerwilliam/w_wallet_web.git
 ```
+
+### Entrar al proyecto
+
+```bash
+cd w_wallet_web
+```
+
+### Instalar dependencias
+
+```bash
+npm install
+```
+
+### Configurar variables de entorno
+
+Crear un archivo `.env` en la raíz del proyecto.
+
+```env
+VITE_BACKEND_URL=http://localhost:3000/
+VITE_APP_CLIENT_KEY=tu_client_key
+```
+
+### Ejecutar el proyecto
+
+```bash
+npm run dev
+```
+
+---
+
+## Estructura del proyecto
+
+```text
 src/
 │
 ├── assets/
@@ -55,84 +85,23 @@ src/
 ├── queries/
 ├── services/
 ├── utils/
-└── App.jsx
+└── main.jsx
 ```
 
 ---
 
-## ⚙️ Instalación
+## Autenticación
 
-Clonar el repositorio
+La aplicación utiliza autenticación basada en JWT.
 
-```bash
-git clone https://github.com/wagnerwilliam/w_wallet_web.git
-```
-
-Entrar al proyecto
-
-```bash
-cd w_wallet_web
-```
-
-Instalar dependencias
-
-```bash
-npm install
-```
+- El Access Token se almacena en `localStorage`.
+- El Refresh Token se almacena en una cookie HTTP Only.
+- Cuando el Access Token expira, el frontend solicita automáticamente uno nuevo al backend utilizando el Refresh Token.
+- Si el Refresh Token también ha expirado o no es válido, el usuario deberá iniciar sesión nuevamente.
 
 ---
 
-## 🔧 Variables de entorno
-
-Crear un archivo **.env** en la raíz del proyecto.
-
-```env
-VITE_BACKEND_URL=http://localhost:3000/
-VITE_APP_CLIENT_KEY=TU_CLIENT_KEY
-```
-
----
-
-## ▶️ Ejecutar en desarrollo
-
-```bash
-npm run dev
-```
-
-La aplicación estará disponible en:
-
-```
-http://localhost:5173
-```
-
----
-
-## 📦 Build de producción
-
-```bash
-npm run build
-```
-
-Previsualizar la build:
-
-```bash
-npm run preview
-```
-
----
-
-## 🔒 Autenticación
-
-La aplicación utiliza un sistema basado en:
-
-- Access Token (JWT)
-- Refresh Token almacenado en cookies HttpOnly
-- Renovación automática del Access Token cuando expira
-- Cierre de sesión seguro invalidando el Refresh Token
-
----
-
-## 📁 Backend
+## Backend
 
 Repositorio del backend:
 
@@ -140,22 +109,12 @@ https://github.com/wagnerwilliam/w_wallet_backend
 
 ---
 
-## 👨‍💻 Autor
+## Demo
 
-**William Wagner**
-
-Backend Engineer
-
-GitHub
-
-https://github.com/wagnerwilliam
-
-LinkedIn
-
-https://www.linkedin.com/in/wagnerwilliam
+https://w-wallet-web.vercel.app/
 
 ---
 
-## 📄 Licencia
+## Autor
 
-Proyecto desarrollado con fines educativos y de demostración.
+William Wagner
