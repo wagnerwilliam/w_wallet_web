@@ -12,9 +12,8 @@ export const ahorroSchema = (available) =>
     description: z
       .string()
       .trim()
-      .max(150, "La nota no puede superar los 150 caracteres")
-      .optional()
-      .or(z.literal("")),
+      .min(1, "La motivo es obligatorio")
+      .max(150, "La motivo no puede superar los 150 caracteres"),
   });
 
 export const editarMetaSchema = z.object({

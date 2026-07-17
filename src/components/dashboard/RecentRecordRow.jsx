@@ -9,7 +9,6 @@ import { formatEUR, formatRelativeDate } from "../../utils/formatters";
 const RecentRecordRow = ({ name, amount, date, type }) => {
   const income = type === "income";
   const expense = type === "expense";
-  const savings = type === "savings";
 
   const Icon = income
     ? ArrowTrendingUpIcon
