@@ -34,6 +34,7 @@ const UpdateIngresoModal = ({ closeModal, ingreso }) => {
 
   const editarIngreso = EditarIngresoMutation();
   const queryClient = useQueryClient();
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const {
     register,
@@ -60,7 +61,11 @@ const UpdateIngresoModal = ({ closeModal, ingreso }) => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["ingresos"] });
-          toast.success("Ingreso actualizado correctamente.");
+
+          if (!isMobile) {
+            toast.success("Ingreso actualizado correctamente.");
+          }
+
           reproducirSonido();
           closeModal();
         },

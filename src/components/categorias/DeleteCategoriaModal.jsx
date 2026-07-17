@@ -25,12 +25,17 @@ const reproducirSonido = () => {
 const DeleteCategoriaModal = ({ closeModal, categoria }) => {
   const eliminarCategoria = EliminarCategoriaMutation();
   const queryClient = useQueryClient();
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const handleDelete = () =>
     eliminarCategoria.mutate(categoria._id, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["categorias"] });
-        toast.success("Categoría eliminada correctamente.");
+
+          if (!isMobile) {
+            toast.success("Categoría eliminada correctamente.");
+          }
+
         reproducirSonido();
         closeModal();
       },

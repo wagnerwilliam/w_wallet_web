@@ -24,6 +24,8 @@ const reproducirSonido = () => {
 const EditarMetaModal = ({ goal, closeModal }) => {
   const editarMeta = EditarMetaMutation();
   const queryClient = useQueryClient();
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
   let { _id, name, target, target_date, color } = goal;
 
   const {
@@ -52,7 +54,11 @@ const EditarMetaModal = ({ goal, closeModal }) => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["metas"] });
-          toast.success("Meta actualizada correctamente.");
+
+          if (!isMobile) {
+            toast.success("Meta actualizada correctamente.");
+          }
+
           reproducirSonido();
           closeModal();
         },

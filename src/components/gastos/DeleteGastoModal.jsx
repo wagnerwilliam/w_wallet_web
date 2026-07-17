@@ -25,12 +25,17 @@ const reproducirSonido = () => {
 const DeleteGastoModal = ({ closeModal, gasto }) => {
   const eliminarGasto = EliminarGastoMutation();
   const queryClient = useQueryClient();
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const handleDelete = () =>
     eliminarGasto.mutate(gasto._id, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["gastos"] });
-        toast.success("Gasto eliminado correctamente.");
+
+        if (!isMobile) {
+          toast.success("Gasto eliminado correctamente.");
+        }
+
         reproducirSonido();
         closeModal();
       },

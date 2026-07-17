@@ -34,6 +34,7 @@ const UpdateGastoModal = ({ closeModal, gasto }) => {
 
   const editarGasto = EditarGastoMutation();
   const queryClient = useQueryClient();
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const {
     register,
@@ -60,7 +61,11 @@ const UpdateGastoModal = ({ closeModal, gasto }) => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["gastos"] });
-          toast.success("Gasto actualizado correctamente.");
+
+          if (!isMobile) {
+            toast.success("Gasto actualizado correctamente.");
+          }
+
           reproducirSonido();
           closeModal();
         },

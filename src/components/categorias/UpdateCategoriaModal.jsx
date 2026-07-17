@@ -33,6 +33,7 @@ const UpdateCategoriaModal = ({ closeModal, categoria }) => {
 
   const editarCategoria = EditarCategoriaMutation();
   const queryClient = useQueryClient();
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const {
     register,
@@ -59,7 +60,11 @@ const UpdateCategoriaModal = ({ closeModal, categoria }) => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["categorias"] });
-          toast.success("Categoría actualizada correctamente.");
+
+          if(!isMobile){
+            toast.success("Categoría actualizada correctamente.");
+          }
+
           reproducirSonido();
           closeModal();
         },
