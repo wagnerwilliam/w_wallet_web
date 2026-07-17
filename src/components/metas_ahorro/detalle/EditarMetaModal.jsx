@@ -81,7 +81,7 @@ const EditarMetaModal = ({ goal, closeModal }) => {
           <div className="space-y-2">
             <Label text="Nombre" required />
 
-            <Input variant="filled" {...register("name")} error={errors.name} />
+            <Input autoFocus variant="filled" {...register("name")} error={errors.name} />
           </div>
 
           <div className="space-y-2">

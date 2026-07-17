@@ -85,6 +85,7 @@ const CreateIngresoModal = ({ onClose }) => {
           <div className="space-y-2">
             <Label text="Concepto" required />
             <Input
+              autoFocus
               type="text"
               placeholder="Ej: Pago de nómina"
               variant="filled"

@@ -89,6 +89,7 @@ const Register = () => {
             {/* USERNAME */}
             <div className="space-y-1">
               <Input
+                autoFocus
                 type="text"
                 placeholder="Nombre de usuario"
                 px="px-4"

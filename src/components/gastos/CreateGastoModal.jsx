@@ -85,6 +85,7 @@ const CreateGastoModal = ({ onClose }) => {
           <div className="space-y-2">
             <Label text="Concepto" required />
             <Input
+              autoFocus
               placeholder="Ej: Pago de alquiler"
               variant="filled"
               {...register("name")}

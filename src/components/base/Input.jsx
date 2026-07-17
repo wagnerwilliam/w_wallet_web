@@ -13,11 +13,13 @@ const Input = ({
   error,
   disabled,
   readOnly,
+  autoFocus,
   className = "",
   ...props
 }) => {
   return (
     <input
+      autoFocus={autoFocus}
       type={type}
       readOnly={readOnly}
       placeholder={placeholder}

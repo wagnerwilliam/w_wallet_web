@@ -105,6 +105,7 @@ const UpdateCategoriaModal = ({ closeModal, categoria }) => {
           <div className="space-y-2">
             <Label text="Nombre" required />
             <Input
+              autoFocus
               variant="filled"
               placeholder="Ej: Alimentación"
               {...register("name")}

@@ -222,6 +222,7 @@ const PerfilModal = ({ closeModal, usuario }) => {
             <div className="space-y-2">
               <Label text="Nombre completo" />
               <Input
+                autoFocus
                 placeholder="Nombre completo"
                 variant="filled"
                 {...register("full_name")}

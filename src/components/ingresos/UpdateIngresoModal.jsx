@@ -107,6 +107,7 @@ const UpdateIngresoModal = ({ closeModal, ingreso }) => {
             <Label text="Nombre" required />
 
             <Input
+              autoFocus
               variant="filled"
               placeholder="Ej: Alimentación"
               {...register("name")}

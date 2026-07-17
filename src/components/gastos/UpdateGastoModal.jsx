@@ -107,6 +107,7 @@ const UpdateGastoModal = ({ closeModal, gasto }) => {
             <Label text="Nombre" required />
 
             <Input
+              autoFocus
               variant="filled"
               placeholder="Ej: Pago de alquiler"
               {...register("name")}
