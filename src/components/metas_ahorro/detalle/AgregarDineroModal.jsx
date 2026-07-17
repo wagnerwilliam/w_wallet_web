@@ -91,7 +91,7 @@ const AgregarDineroModal = ({ closeModal, id }) => {
             </p>
 
             <p className="mt-1 text-xs text-cyan-700">
-              Puedes destinar parte de este saldo a cualquiera de tus metas de
+              Puedes destinar parte de este dinero a cualquiera de tus metas de
               ahorro.
             </p>
           </div>

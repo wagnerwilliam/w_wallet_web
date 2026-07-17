@@ -119,39 +119,40 @@ const PerfilModal = ({ closeModal, usuario }) => {
           </p>
         </div>
 
+        {/* FORM */}
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           {/* FOTO */}
           <div className="flex flex-col items-center border-b border-slate-100 px-5 py-6 sm:px-8 sm:py-8">
             <label className="group relative cursor-pointer">
               <div
                 className="
-      relative
-      flex
-      h-24
-      w-24
-      sm:h-32
-      sm:w-32
-      items-center
-      justify-center
-      overflow-hidden
-      rounded-full
-      border-4
-      border-slate-200
-      bg-slate-200
-    "
+                  relative
+                  flex
+                  h-24
+                  w-24
+                  sm:h-32
+                  sm:w-32
+                  items-center
+                  justify-center
+                  overflow-hidden
+                  rounded-full
+                  border-4
+                  border-slate-200
+                  bg-slate-200
+                "
               >
                 {preview ? (
                   <img
                     src={preview}
                     alt="Perfil"
                     className="
-          h-full
-          w-full
-          object-cover
-          transition
-          duration-300
-          group-hover:brightness-75
-        "
+                      h-full
+                      w-full
+                      object-cover
+                      transition
+                      duration-300
+                      group-hover:brightness-75
+                    "
                   />
                 ) : (
                   <UserCircleIcon className="h-16 w-16 text-slate-500 sm:h-20 sm:w-20" />
@@ -160,18 +161,18 @@ const PerfilModal = ({ closeModal, usuario }) => {
                 {/* Overlay */}
                 <div
                   className="
-        absolute
-        inset-0
-        flex
-        items-center
-        justify-center
-        rounded-full
-        bg-black/40
-        opacity-0
-        transition
-        duration-300
-        group-hover:opacity-100
-      "
+                    absolute
+                    inset-0
+                    flex
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-black/40
+                    opacity-0
+                    transition
+                    duration-300
+                    group-hover:opacity-100
+                  "
                 >
                   <span className="text-sm font-medium text-white">
                     Cambiar foto
@@ -182,21 +183,21 @@ const PerfilModal = ({ closeModal, usuario }) => {
               {/* Botón cámara */}
               <div
                 className="
-      absolute
-      bottom-1
-      right-1
-      flex
-      h-10
-      w-10
-      items-center
-      justify-center
-      rounded-full
-      bg-teal-700
-      text-white
-      shadow-lg
-      transition
-      group-hover:scale-110
-    "
+                  absolute
+                  bottom-1  
+                  right-1
+                  flex
+                  h-10
+                  w-10
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-teal-700
+                  text-white
+                  shadow-lg
+                  transition
+                  group-hover:scale-110
+                "
               >
                 <CameraIcon className="h-5 w-5" />
               </div>
@@ -216,8 +217,7 @@ const PerfilModal = ({ closeModal, usuario }) => {
               </div>
             )}
           </div>
-
-          {/* FORM */}
+          {/* NOMBRE COMPLETO Y CORREO ELECTRONICO */}
           <div className="grid gap-5 p-5 sm:p-8 md:grid-cols-2">
             <div className="space-y-2">
               <Label text="Nombre completo" />

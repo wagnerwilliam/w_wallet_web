@@ -4,14 +4,14 @@ export const metasSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(3, "El nombre debe tener al menos 3 caracteres")
+    .min(1, "El nombre es obligatorio")
     .max(60, "El nombre no puede superar los 60 caracteres"),
 
   target: z.coerce
     .number({
       invalid_type_error: "El objetivo debe ser un número",
     })
-    .positive("El objetivo debe ser mayor que 0")
+    .positive("El objetivo es obligatorio")
     .refine((val) => Number.isFinite(val), {
       message: "El objetivo debe ser un número válido",
     })
