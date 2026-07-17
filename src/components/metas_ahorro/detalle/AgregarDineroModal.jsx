@@ -23,7 +23,7 @@ const reproducirSonido = () => {
   audio.play();
 };
 
-const AgregarAhorroModal = ({ closeModal, id }) => {
+const AgregarDineroModal = ({ closeModal, id }) => {
   const agregarAhorro = AgregarAhorroMutation();
   const { data: dashboard } = UseDashboard("month");
   const queryClient = useQueryClient();
@@ -99,9 +99,10 @@ const AgregarAhorroModal = ({ closeModal, id }) => {
 
         <form className="space-y-5 p-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-2">
-            <Label text="Monto a aportar" required />
+            <Label text="Monto" required />
 
             <Input
+              autoFocus
               type="number"
               variant="filled"
               min="0"
@@ -117,7 +118,7 @@ const AgregarAhorroModal = ({ closeModal, id }) => {
           </div>
 
           <div className="space-y-2">
-            <Label text="Motivo del aporte" required />
+            <Label text="Motivo" required />
 
             <Input
               variant="filled"
@@ -146,4 +147,4 @@ const AgregarAhorroModal = ({ closeModal, id }) => {
   );
 };
 
-export default AgregarAhorroModal;
+export default AgregarDineroModal;

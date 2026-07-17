@@ -84,6 +84,7 @@ const CreateModal = ({ onClose }) => {
           <div className="space-y-2">
             <Label text="Nombre" required />
             <Input
+              autoFocus
               type="text"
               placeholder="Ej: Alimentación"
               variant="filled"

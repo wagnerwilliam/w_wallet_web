@@ -100,6 +100,7 @@ const Login = () => {
               <div className="relative group">
                 <Icon icon={UserIcon} className={iconClass} />
                 <Input
+                  autoFocus
                   type="text"
                   placeholder="Nombre de usuario"
                   className="px-11"

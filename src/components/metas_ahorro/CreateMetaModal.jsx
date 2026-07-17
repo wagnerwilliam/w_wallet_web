@@ -70,6 +70,7 @@ const CreateMetaModal = ({ closeModal }) => {
           <div className="space-y-2">
             <Label text="Nombre" required />
             <Input
+              autoFocus
               variant="filled"
               placeholder="Ej: Viaje a Japón"
               {...register("name")}

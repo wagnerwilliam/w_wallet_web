@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { UseMeta } from "../../../queries/metas";
-import AgregarAhorroModal from "./AgregarAhorroModal";
+import AgregarDineroModal from "./AgregarDineroModal";
 import EditarMetaModal from "./EditarMetaModal";
 import MetaActions from "./MetaActions";
 import MetaHeader from "./MetaHeader";
@@ -43,7 +43,7 @@ const MetasAhorroDetalle = () => {
       <MetaActions openAhorroModal={openAhorroModal} openEdit={openEdit} />
 
       {modal && (
-        <AgregarAhorroModal closeModal={closeAhorroModal} id={meta._id} />
+        <AgregarDineroModal closeModal={closeAhorroModal} id={meta._id} />
       )}
       {editModal && <EditarMetaModal goal={meta} closeModal={closeEdit} />}
     </div>
