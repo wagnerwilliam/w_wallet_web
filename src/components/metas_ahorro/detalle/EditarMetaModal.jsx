@@ -52,7 +52,7 @@ const EditarMetaModal = ({ goal, closeModal }) => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["metas"] });
-          toast.success("Meta editada correctamente.");
+          toast.success("Meta actualizada correctamente.");
           reproducirSonido();
           closeModal();
         },
@@ -81,18 +81,37 @@ const EditarMetaModal = ({ goal, closeModal }) => {
           <div className="space-y-2">
             <Label text="Nombre" required />
 
-            <Input autoFocus variant="filled" {...register("name")} error={errors.name} />
+            <Input
+              autoFocus
+              variant="filled"
+              {...register("name")}
+              error={errors.name}
+            />
           </div>
 
           <div className="space-y-2">
-            <Label text="Objetivo (€)" required />
+            <Label text="Objetivo" required />
 
-            <Input
-              type="number"
-              variant="filled"
-              {...register("target")}
-              error={errors.target}
-            />
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
+                €
+              </span>
+
+              <Input
+                type="number"
+                variant="filled"
+                placeholder="0,00"
+                min="0"
+                step="0.01"
+                className="pl-8"
+                {...register("target")}
+                error={errors.target}
+              />
+            </div>
+
+            {errors.target && (
+              <p className="text-xs text-red-500">{errors.target.message}</p>
+            )}
           </div>
 
           <div className="space-y-2">

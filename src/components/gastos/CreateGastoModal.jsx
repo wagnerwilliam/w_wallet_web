@@ -107,7 +107,7 @@ const CreateGastoModal = ({ onClose }) => {
 
               <Input
                 type="number"
-                placeholder="0.00"
+                placeholder="0,00"
                 variant="filled"
                 min="0"
                 step="0.01"

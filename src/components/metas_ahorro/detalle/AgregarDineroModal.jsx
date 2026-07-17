@@ -101,16 +101,23 @@ const AgregarDineroModal = ({ closeModal, id }) => {
           <div className="space-y-2">
             <Label text="Monto" required />
 
-            <Input
-              autoFocus
-              type="number"
-              variant="filled"
-              min="0"
-              step="0.01"
-              placeholder="Ej: 150,00 €"
-              {...register("saved")}
-              error={errors.saved}
-            />
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
+                €
+              </span>
+
+              <Input
+                autoFocus
+                type="number"
+                placeholder="Ej: 150,00"
+                variant="filled"
+                min="0"
+                step="0.01"
+                className="pl-8"
+                {...register("saved")}
+                error={errors.saved}
+              />
+            </div>
 
             {errors.saved && (
               <p className="text-xs text-red-500">{errors.saved.message}</p>
