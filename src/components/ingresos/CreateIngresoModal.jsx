@@ -32,6 +32,7 @@ const reproducirSonido = () => {
 const CreateIngresoModal = ({ onClose }) => {
   const crearIngreso = CrearIngresoMutation();
   const queryClient = useQueryClient();
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const {
     register,
@@ -45,7 +46,11 @@ const CreateIngresoModal = ({ onClose }) => {
     crearIngreso.mutate(data, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["ingresos"] });
-        toast.success("Ingreso creado correctamente.");
+
+        if (!isMobile) {
+          toast.success("Ingreso creado correctamente.");
+        }
+
         reproducirSonido();
         onClose();
       },

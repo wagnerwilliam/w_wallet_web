@@ -24,6 +24,7 @@ const reproducirSonido = () => {
 const CreateMetaModal = ({ closeModal }) => {
   const crearMeta = CrearMetaMutation();
   const queryClient = useQueryClient();
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const {
     register,
@@ -37,7 +38,11 @@ const CreateMetaModal = ({ closeModal }) => {
     crearMeta.mutate(data, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["metas"] });
-        toast.success("Meta creada correctamente.");
+
+        if (!isMobile) {
+          toast.success("Meta creada correctamente.");
+        }
+
         reproducirSonido();
         closeModal();
       },

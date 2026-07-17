@@ -32,6 +32,7 @@ const reproducirSonido = () => {
 const CreateGastoModal = ({ onClose }) => {
   const crearGasto = CrearGastoMutation();
   const queryClient = useQueryClient();
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const {
     register,
@@ -45,7 +46,11 @@ const CreateGastoModal = ({ onClose }) => {
     crearGasto.mutate(data, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["gastos"] });
-        toast.success("Gasto creado correctamente.");
+
+        if (!isMobile) {
+          toast.success("Gasto creado correctamente.");
+        }
+
         reproducirSonido();
         onClose();
       },

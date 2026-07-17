@@ -32,6 +32,7 @@ const PerfilModal = ({ closeModal, usuario }) => {
   let { full_name, username, email, birth_date, photo } = usuario;
   const editarUsuario = EditarUsuarioMutation();
   const queryClient = useQueryClient();
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const {
     register,
@@ -76,7 +77,11 @@ const PerfilModal = ({ closeModal, usuario }) => {
         queryClient.invalidateQueries({
           queryKey: ["usuarios"],
         });
-        toast.success("Perfil actualizado correctamente.");
+        
+        if (!isMobile) {
+          toast.success("Perfil actualizado correctamente.");
+        }
+          
         reproducirSonido();
         closeModal();
       },

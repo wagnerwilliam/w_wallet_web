@@ -31,6 +31,7 @@ const reproducirSonido = () => {
 const CreateModal = ({ onClose }) => {
   const crearCategoria = CrearCategoriaMutation();
   const queryClient = useQueryClient();
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const {
     register,
@@ -44,9 +45,12 @@ const CreateModal = ({ onClose }) => {
     crearCategoria.mutate(data, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["categorias"] });
-        toast.success("Categoría creada correctamente.");
-        reproducirSonido();
-        onClose();
+          if (!isMobile) {
+            toast.success("Categoría creada correctamente.");
+          }
+
+          reproducirSonido();
+          onClose();
       },
     });
   };

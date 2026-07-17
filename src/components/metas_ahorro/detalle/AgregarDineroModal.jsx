@@ -27,6 +27,7 @@ const AgregarDineroModal = ({ closeModal, id }) => {
   const agregarAhorro = AgregarAhorroMutation();
   const { data: dashboard } = UseDashboard("month");
   const queryClient = useQueryClient();
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const available = dashboard?.summary?.saldo ?? 0;
 
@@ -56,7 +57,11 @@ const AgregarDineroModal = ({ closeModal, id }) => {
             queryKey: ["dashboard"],
           });
           queryClient.invalidateQueries({ queryKey: ["metas"] });
-          toast.success("Ahorro agregado correctamente.");
+
+          if (!isMobile) {
+            toast.success("Ahorro agregado correctamente.");
+          }
+
           reproducirSonido();
           closeModal();
         },

@@ -19,12 +19,17 @@ const reproducirSonido = () => {
 const DeleteIngresoModal = ({ closeModal, ingreso }) => {
   const eliminarIngreso = EliminarIngresoMutation();
   const queryClient = useQueryClient();
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const handleDelete = () =>
     eliminarIngreso.mutate(ingreso._id, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["ingresos"] });
-        toast.success("Ingreso eliminado correctamente.");
+
+        if (!isMobile) {
+          toast.success("Ingreso eliminado correctamente.");
+        }
+
         reproducirSonido();
         closeModal();
       },
